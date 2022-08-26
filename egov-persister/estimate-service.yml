@@ -1,0 +1,97 @@
+serviceMaps:
+ serviceName: estimate-service
+ mappings:
+ - version: 1.0
+   name: Estimate
+   description: Persists estimate details in eg_wms_estimate table
+   fromTopic: save-estimate
+   isTransaction: true
+   queryMaps:
+    - query: INSERT INTO eg_wms_estimate(id,tenantId,estimate_number,admin_sanction_number,proposal_date,status,estimate_status,subject,requirement_number,description,department,location,work_category,beneficiary_type,nature_of_work,type_of_work,subtype_of_work,entrustment_mode,fund,function,budget_head,scheme,sub_scheme,total_amount,additionaldetails,createdby,lastmodifiedby,createdtime,lastmodifiedtime) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+
+      basePath: estimate
+      jsonMaps:
+
+
+       - jsonPath: $.estimate.id
+
+       - jsonPath: $.estimate.tenantId
+
+       - jsonPath: $.estimate.estimate_number
+
+       - jsonPath: $.estimate.admin_sanction_number
+
+       - jsonPath: $.estimate.proposal_date
+
+       - jsonPath: $.estimate.status
+
+       - jsonPath: $.estimate.estimate_status
+
+       - jsonPath: $.estimate.subject
+
+       - jsonPath: $.estimate.requirement_number
+
+       - jsonPath: $.estimate.description
+
+       - jsonPath: $.estimate.department
+
+       - jsonPath: $.estimate.location
+
+       - jsonPath: $.estimate.work_category
+
+       - jsonPath: $.estimate.beneficiary_type
+
+       - jsonPath: $.estimate.nature_of_work
+
+       - jsonPath: $.estimate.type_of_work
+
+       - jsonPath: $.estimate.subtype_of_work
+
+       - jsonPath: $.estimate.entrustment_mode
+
+       - jsonPath: $.estimate.fund
+
+       - jsonPath: $.estimate.function
+
+       - jsonPath: $.estimate.budget_head
+
+       - jsonPath: $.estimate.scheme
+
+       - jsonPath: $.estimate.sub_scheme
+
+       - jsonPath: $.estimate.total_amount
+
+       - jsonPath: $.estimate.additionaldetails
+         type: JSON
+         dbType: JSONB
+
+       - jsonPath: $.estimate.auditDetails.createdby
+
+       - jsonPath: $.estimate.auditDetails.lastmodifiedby
+
+       - jsonPath: $.estimate.auditDetails.createdtime
+
+       - jsonPath: $.estimate.auditDetails.lastmodifiedtime
+
+
+    - query: INSERT INTO eg_wms_estimate_detail(id,tenantId,estimate_id,estimate_detail_number,name,amount,additionaldetails) VALUES (?,?,?,?,?,?,?);
+
+      basePath: estimate.estimateDetails
+      jsonMaps:
+
+
+       - jsonPath: $.estimate.estimateDetails.id
+
+       - jsonPath: $.estimate.estimateDetails.tenantId
+
+       - jsonPath: $.estimate.id
+
+       - jsonPath: $.estimate.estimateDetails.estimate_detail_number
+
+       - jsonPath: $.estimate.estimateDetails.name
+
+       - jsonPath: $.estimate.estimateDetails.amount
+
+       - jsonPath: $.estimate.estimateDetails.additionaldetails
+         type: JSON
+         dbType: JSONB
