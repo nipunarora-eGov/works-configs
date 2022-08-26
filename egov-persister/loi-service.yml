@@ -1,0 +1,56 @@
+serviceMaps:
+  serviceName: loi-service
+  mappings:
+    - version: 1.0
+      description: Persists letterofindent details in eg_wms_loi table
+      fromTopic: save-loi-info
+      isTransaction: true
+      queryMaps:
+        - query: INSERT INTO eg_wms_loi( id, tenantId, loi_number, work_pkg_number,work_identification_number,file_number,file_date,negotiated_percentage,agreement_date,contractor_id,security_deposit,bank_gaurante,emd_amount,contract_period,defect_liability_period,oic_id,status,letter_status,additionaldetails,createdby,lastmodifiedby,createdtime,lastmodifiedtime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)/;
+          basePath: Loi.*
+          jsonMaps:
+            - jsonPath: $.Loi.*.id
+
+            - jsonPath: $.Loi.*.tenantId
+
+            - jsonPath: $.Loi.*.loi_number
+
+            - jsonPath: $.Loi.*.work_pkg_number
+
+            - jsonPath: $.Loi.*.work_identification_number
+
+            - jsonPath: $.Loi.*.file_number
+
+            - jsonPath: $.Loi.*.file_date
+
+            - jsonPath: $.Loi.*.negotiated_percentage
+
+            - jsonPath: $.Loi.*.agreement_date
+
+            - jsonPath: $.Loi.*.contractor_id
+
+            - jsonPath: $.Loi.*.security_deposit
+
+            - jsonPath: $.Loi.*.bank_gaurante
+
+            - jsonPath: $.Loi.*.emd_amount
+
+            - jsonPath: $.Loi.*.contract_period
+
+            - jsonPath: $.Loi.*.defect_liability_period
+
+            - jsonPath: $.Loi.*.oic_id
+
+            - jsonPath: $.Loi.*.status
+
+            - jsonPath: $.Loi.*.letter_status
+
+            - jsonPath: $.Loi.*.additionaldetails
+
+            - jsonPath: $.Loi.*.createdby
+
+            - jsonPath: $.Loi.*.lastmodifiedby
+
+            - jsonPath: $.Loi.*.createdtime
+
+            - jsonPath: $.Loi.*.lastmodifiedtime
