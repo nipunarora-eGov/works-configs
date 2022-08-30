@@ -1,0 +1,56 @@
+serviceMaps:
+  serviceName: loi-service
+  mappings:
+    - version: 1.0
+      description: Persists letterofindent details in eg_wms_loi table
+      fromTopic: save-loi
+      isTransaction: true
+      queryMaps:
+        - query: INSERT INTO eg_wms_loi( id, tenantId, loi_number, work_pkg_number,work_identification_number,file_number,file_date,negotiated_percentage,agreement_date,contractor_id,security_deposit,bank_gaurante,emd_amount,contract_period,defect_liability_period,oic_id,status,letter_status,additionaldetails,createdby,lastmodifiedby,createdtime,lastmodifiedtime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+          basePath: letterOfIndent
+          jsonMaps:
+            - jsonPath: $.letterOfIndent.id
+
+            - jsonPath: $.letterOfIndent.tenantId
+
+            - jsonPath: $.letterOfIndent.loi_number
+
+            - jsonPath: $.letterOfIndent.work_pkg_number
+
+            - jsonPath: $.letterOfIndent.work_identification_number
+
+            - jsonPath: $.letterOfIndent.file_number
+
+            - jsonPath: $.letterOfIndent.file_date
+
+            - jsonPath: $.letterOfIndent.negotiated_percentage
+
+            - jsonPath: $.letterOfIndent.agreement_date
+
+            - jsonPath: $.letterOfIndent.contractor_id
+
+            - jsonPath: $.letterOfIndent.security_deposit
+
+            - jsonPath: $.letterOfIndent.bank_gaurante
+
+            - jsonPath: $.letterOfIndent.emd_amount
+
+            - jsonPath: $.letterOfIndent.contract_period
+
+            - jsonPath: $.letterOfIndent.defect_liability_period
+
+            - jsonPath: $.letterOfIndent.oic_id
+
+            - jsonPath: $.letterOfIndent.status
+
+            - jsonPath: $.letterOfIndent.letter_status
+
+            - jsonPath: $.letterOfIndent.additionaldetails
+
+            - jsonPath: $.letterOfIndent.createdby
+
+            - jsonPath: $.letterOfIndent.lastmodifiedby
+
+            - jsonPath: $.letterOfIndent.createdtime
+
+            - jsonPath: $.letterOfIndent.lastmodifiedtime
