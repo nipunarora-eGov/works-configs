@@ -46,6 +46,8 @@ serviceMaps:
             - jsonPath: $.letterOfIndent.letterStatus
 
             - jsonPath: $.letterOfIndent.additionalDetails
+              type: JSON
+              dbType: JSONB
 
             - jsonPath: $.letterOfIndent.auditDetails.createdBy
 
