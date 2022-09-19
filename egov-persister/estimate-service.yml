@@ -61,7 +61,7 @@ serviceMaps:
 
        - jsonPath: $.estimate.totalAmount
 
-       - jsonPath: $.estimate.additionaldetails
+       - jsonPath: $.estimate.additionalDetails
          type: JSON
          dbType: JSONB
 
@@ -92,6 +92,6 @@ serviceMaps:
 
        - jsonPath: $.estimate.estimateDetails.amount
 
-       - jsonPath: $.estimate.estimateDetails.additionaldetails
+       - jsonPath: $.estimate.estimateDetails.additionalDetails
          type: JSON
          dbType: JSONB
