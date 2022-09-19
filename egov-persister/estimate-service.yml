@@ -17,19 +17,19 @@ serviceMaps:
 
        - jsonPath: $.estimate.tenantId
 
-       - jsonPath: $.estimate.estimate_number
+       - jsonPath: $.estimate.estimateNumber
 
-       - jsonPath: $.estimate.admin_sanction_number
+       - jsonPath: $.estimate.adminSanctionNumber
 
-       - jsonPath: $.estimate.proposal_date
+       - jsonPath: $.estimate.proposalDate
 
        - jsonPath: $.estimate.status
 
-       - jsonPath: $.estimate.estimate_status
+       - jsonPath: $.estimate.estimateStatus
 
        - jsonPath: $.estimate.subject
 
-       - jsonPath: $.estimate.requirement_number
+       - jsonPath: $.estimate.requirementNumber
 
        - jsonPath: $.estimate.description
 
@@ -37,29 +37,29 @@ serviceMaps:
 
        - jsonPath: $.estimate.location
 
-       - jsonPath: $.estimate.work_category
+       - jsonPath: $.estimate.workCategory
 
-       - jsonPath: $.estimate.beneficiary_type
+       - jsonPath: $.estimate.beneficiaryType
 
-       - jsonPath: $.estimate.nature_of_work
+       - jsonPath: $.estimate.natureOfWork
 
-       - jsonPath: $.estimate.type_of_work
+       - jsonPath: $.estimate.typeOfWork
 
-       - jsonPath: $.estimate.subtype_of_work
+       - jsonPath: $.estimate.subTypeOfWork
 
-       - jsonPath: $.estimate.entrustment_mode
+       - jsonPath: $.estimate.entrustmentMode
 
        - jsonPath: $.estimate.fund
 
        - jsonPath: $.estimate.function
 
-       - jsonPath: $.estimate.budget_head
+       - jsonPath: $.estimate.budgetHead
 
        - jsonPath: $.estimate.scheme
 
-       - jsonPath: $.estimate.sub_scheme
+       - jsonPath: $.estimate.subScheme
 
-       - jsonPath: $.estimate.total_amount
+       - jsonPath: $.estimate.totalAmount
 
        - jsonPath: $.estimate.additionaldetails
          type: JSON
@@ -86,7 +86,7 @@ serviceMaps:
 
        - jsonPath: $.estimate.id
 
-       - jsonPath: $.estimate.estimateDetails.estimate_detail_number
+       - jsonPath: $.estimate.estimateDetails.estimateDetailNumber
 
        - jsonPath: $.estimate.estimateDetails.name
 
