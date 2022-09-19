@@ -65,13 +65,13 @@ serviceMaps:
          type: JSON
          dbType: JSONB
 
-       - jsonPath: $.estimate.auditDetails.createdby
+       - jsonPath: $.estimate.auditDetails.createdBy
 
-       - jsonPath: $.estimate.auditDetails.lastmodifiedby
+       - jsonPath: $.estimate.auditDetails.lastModifiedBy
 
-       - jsonPath: $.estimate.auditDetails.createdtime
+       - jsonPath: $.estimate.auditDetails.createdTime
 
-       - jsonPath: $.estimate.auditDetails.lastmodifiedtime
+       - jsonPath: $.estimate.auditDetails.lastModifiedTime
 
 
     - query: INSERT INTO eg_wms_estimate_detail(id,tenantId,estimate_id,estimate_detail_number,name,amount,additionaldetails) VALUES (?,?,?,?,?,?,?);
