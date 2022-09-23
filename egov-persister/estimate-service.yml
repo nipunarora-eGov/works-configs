@@ -76,22 +76,22 @@ serviceMaps:
 
     - query: INSERT INTO eg_wms_estimate_detail(id,tenantId,estimate_id,estimate_detail_number,name,amount,additionaldetails) VALUES (?,?,?,?,?,?,?);
 
-      basePath: estimate.estimateDetails
+      basePath: estimate.estimateDetails.*
       jsonMaps:
 
 
-       - jsonPath: $.estimate.estimateDetails.id
+       - jsonPath: $.estimate.estimateDetails.*.id
 
-       - jsonPath: $.estimate.estimateDetails.tenantId
+       - jsonPath: $.estimate.estimateDetails.*.tenantId
 
        - jsonPath: $.estimate.id
 
-       - jsonPath: $.estimate.estimateDetails.estimateDetailNumber
+       - jsonPath: $.estimate.estimateDetails.*.estimateDetailNumber
 
-       - jsonPath: $.estimate.estimateDetails.name
+       - jsonPath: $.estimate.estimateDetails.*.name
 
-       - jsonPath: $.estimate.estimateDetails.amount
+       - jsonPath: $.estimate.estimateDetails.*.amount
 
-       - jsonPath: $.estimate.estimateDetails.additionalDetails
+       - jsonPath: $.estimate.estimateDetails.*.additionalDetails
          type: JSON
          dbType: JSONB
