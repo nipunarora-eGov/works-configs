@@ -57,7 +57,7 @@ serviceMaps:
 
             - jsonPath: $.letterOfIndent.auditDetails.lastModifiedTime
             
-     - version: 1.0
+    - version: 1.0
       description: Updates letterofindent details in eg_wms_loi table
       fromTopic: update-loi
       isTransaction: true
