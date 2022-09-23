@@ -82,7 +82,7 @@ serviceMaps:
 
        - jsonPath: $.estimate.estimateDetails.*.id
 
-       - jsonPath: $.estimate.estimateDetails.*.tenantId
+       - jsonPath: $.estimate.tenantId
 
        - jsonPath: $.estimate.id
 
