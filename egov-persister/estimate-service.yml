@@ -95,3 +95,78 @@ serviceMaps:
        - jsonPath: $.estimate.estimateDetails.*.additionalDetails
          type: JSON
          dbType: JSONB
+   
+   
+   
+ - version: 1.0
+   description: Update estimate
+   fromTopic: update-estimate
+   isTransaction: true
+   queryMaps:
+      - query: UPDATE eg_wms_estimate set admin_sanction_number=?, status=?, estimate_status=?, subject=?, requirement_number=?, description=?, department=?, location=?,work_category=?, beneficiary_type=?,  nature_of_work=?, type_of_work=?, subtype_of_work=?, entrustment_mode=?, fund=?, function=?,budget_head=?, scheme=?, sub_scheme=? ,total_amount=?, additionaldetails=?,lastmodifiedby=?, lastmodifiedtime=? where id=?;
+        basePath: estimate
+        jsonMaps:           
+
+          - jsonPath: $.estimate.adminSanctionNumber
+
+          - jsonPath: $.estimate.status
+
+          - jsonPath: $.estimate.estimateStatus
+
+          - jsonPath: $.estimate.subject
+
+          - jsonPath: $.estimate.requirementNumber
+
+          - jsonPath: $.estimate.description
+
+          - jsonPath: $.estimate.department
+
+          - jsonPath: $.estimate.location
+
+          - jsonPath: $.estimate.workCategory
+
+          - jsonPath: $.estimate.beneficiaryType
+
+          - jsonPath: $.estimate.natureOfWork
+
+          - jsonPath: $.estimate.typeOfWork
+
+          - jsonPath: $.estimate.subTypeOfWork
+
+          - jsonPath: $.estimate.entrustmentMode
+
+          - jsonPath: $.estimate.fund
+
+          - jsonPath: $.estimate.function
+
+          - jsonPath: $.estimate.budgetHead
+
+          - jsonPath: $.estimate.scheme
+
+          - jsonPath: $.estimate.subScheme
+
+          - jsonPath: $.estimate.totalAmount
+
+          - jsonPath: $.estimate.additionalDetails
+            type: JSON
+            dbType: JSONB
+
+          - jsonPath: $.estimate.auditDetails.lastModifiedBy
+
+          - jsonPath: $.estimate.auditDetails.lastModifiedTime
+          
+          - jsonPath: $.estimate.id
+          
+          
+      - query: UPDATE eg_wms_estimate_detail set name=?, amount=?, additionaldetails=? where id=?;
+
+        basePath: estimate.estimateDetails.*
+        jsonMaps:
+
+        - jsonPath: $.estimate.estimateDetails.*.name
+
+        - jsonPath: $.estimate.estimateDetails.*.amount
+
+        - jsonPath: $.estimate.estimateDetails.*.additionalDetails
+          type: JSON
+          dbType: JSONB
