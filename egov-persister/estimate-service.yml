@@ -170,3 +170,5 @@ serviceMaps:
         - jsonPath: $.estimate.estimateDetails.*.additionalDetails
           type: JSON
           dbType: JSONB
+          
+        - jsonPath: $.estimate.estimateDetails.*.id
