@@ -44,10 +44,10 @@ SearchDefinitions:
           - name: pi.businessservice
             isMandatory: false
             jsonPath: $.searchCriteria.businessservice
-		  - name: est.proposal_date
+	  - name: est.proposal_date
             isMandatory: false
             jsonPath: $.searchCriteria.fromProposalDate
-		  - name: est.proposal_date
+	  - name: est.proposal_date
             isMandatory: false
             jsonPath: $.searchCriteria.toProposalDate
         pagination:
