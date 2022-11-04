@@ -46,9 +46,11 @@ SearchDefinitions:
             jsonPath: $.searchCriteria.businessservice
           - name: est.proposal_date
             isMandatory: false
+            operator: GE
             jsonPath: $.searchCriteria.fromProposalDate
           - name: est.proposal_date
             isMandatory: false
+            operator: LE
             jsonPath: $.searchCriteria.toProposalDate
         pagination:
           noOfRecords: $.searchCriteria.noOfRecords
@@ -56,5 +58,5 @@ SearchDefinitions:
 
       output:
         jsonFormat: {"ResponseInfo": {},"estimates": []}
-        outJsonPath: $.Properties
+        outJsonPath: $.estimates
         responseInfoPath: $.ResponseInfo
