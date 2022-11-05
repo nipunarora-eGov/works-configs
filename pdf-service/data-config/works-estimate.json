@@ -1,0 +1,519 @@
+{
+  "key": "works-estimate",
+  "documentType": "WORKSESTIMATE",
+  "DataConfigs": {
+    "moduleName": "estimate-service",
+    "version": "1.0.0",
+    "baseKeyPath": "$.estimates.*",
+    "entityIdPath":"$.id",
+    "isCommonTableBorderRequired": true,
+    "mappings": [
+      {
+        "topic": "common-pdf-generation-3",
+        "mappings": [
+          {
+            "direct": [
+              {
+                "variable": "projectEstimate",
+                "value": {
+                  "path": "PDF_STATIC_LABEL_ESTIMATE_PROJECT"
+                },
+                "type": "label",
+                "localisation":{
+                  "required":true,
+                  "prefix": null,
+                  "module":"rainmaker-works"
+               }
+              },
+              {
+                "variable": "estimateDetails",
+                "value": {
+                  "path": "PDF_STATIC_LABEL_ESTIMATE_DETAILS"
+                },
+                "type": "label",
+                "localisation":{
+                  "required":true,
+                  "prefix": null,
+                  "module":"rainmaker-works"
+               }
+              },
+              {
+                "variable": "dateOfProposal",
+                "value": {
+                  "path": "PDF_STATIC_LABEL_ESTIMATE_PROPOSAL_DATE"
+                },
+                "type": "label",
+                "localisation":{
+                  "required":true,
+                  "prefix": null,
+                  "module":"rainmaker-works"
+               }
+              },
+              {
+                "variable": "dateOfProposalValue", 
+                "value": {
+                  "path": "$.proposalDate"
+                },
+                "type": "date"
+              },
+              {
+                "variable": "estimateID",
+                "value": {
+                  "path": "PDF_STATIC_LABEL_ESTIMATE_ID"
+                },
+                "type": "label",
+                "localisation":{
+                  "required":true,
+                  "prefix": null,
+                  "module":"rainmaker-works"
+               }
+              },
+              {
+                "variable": "estimateIDValue", 
+                "value": {
+                  "path": "$.estimateNumber"
+                }
+              },
+              {
+                "variable": "projectName",
+                "value": {
+                  "path": "PDF_STATIC_LABEL_ESTIMATE_PROJECT_NAME"
+                },
+                "type": "label",
+                "localisation":{
+                  "required":true,
+                  "prefix": null,
+                  "module":"rainmaker-works"
+               }
+              },
+              {
+                "variable": "projectNameValue", 
+                "value": {
+                  "path": "$.subject"
+                }
+              },
+              {
+                "variable": "estimateAmount",
+                "value": {
+                  "path": "PDF_STATIC_LABEL_ESTIMATE_AMOUNT"
+                },
+                "type": "label",
+                "localisation":{
+                  "required":true,
+                  "prefix": null,
+                  "module":"rainmaker-works"
+               }
+              },
+              {
+                "variable": "estimateAmountValue", 
+                "value": {
+                  "path": "$.totalAmount"
+                }
+              },
+              {
+                "variable": "status",
+                "value": {
+                  "path": "PDF_STATIC_LABEL_ESTIMATE_STATUS"
+                },
+                "type": "label",
+                "localisation":{
+                  "required":true,
+                  "prefix": null,
+                  "module":"rainmaker-works"
+               }
+              },
+              {
+                "variable": "statusValue", 
+                "value": {
+                  "path": "$.estimateStatus"
+                }
+              },
+              {
+                "variable": "department",
+                "value": {
+                  "path": "PDF_STATIC_LABEL_ESTIMATE_DEPARTMENT"
+                },
+                "type": "label",
+                "localisation":{
+                  "required":true,
+                  "prefix": null,
+                  "module":"rainmaker-works"
+               }
+              },
+              {
+                "variable": "departmentValue", 
+                "value": {
+                  "path": "$.department"
+                }
+              },
+              {
+                "variable": "requirementNumber",
+                "value": {
+                  "path": "PDF_STATIC_LABEL_ESTIMATE_REQUIREMENT_NUMBER"
+                },
+                "type": "label",
+                "localisation":{
+                  "required":true,
+                  "prefix": null,
+                  "module":"rainmaker-works"
+               }
+              },
+              {
+                "variable": "requirementNumberValue", 
+                "value": {
+                  "path": "$.requirementNumber"
+                }
+              },
+              {
+                "variable": "locationDetails",
+                "value": {
+                  "path": "PDF_STATIC_LABEL_ESTIMATE_LOC_DETAILS"
+                },
+                "type": "label",
+                "localisation":{
+                  "required":true,
+                  "prefix": null,
+                  "module":"rainmaker-works"
+               }
+              },
+              {
+                "variable": "location",
+                "value": {
+                  "path": "PDF_STATIC_LABEL_ESTIMATE_LOCATION"
+                },
+                "type": "label",
+                "localisation":{
+                  "required":true,
+                  "prefix": null,
+                  "module":"rainmaker-works"
+               }
+              },
+              {
+                "variable": "locationValue", 
+                "value": {
+                  "path": "$.additionalDetails.locality"
+                }
+              },
+              {
+                "variable": "ward",
+                "value": {
+                  "path": "PDF_STATIC_LABEL_ESTIMATE_WARD"
+                },
+                "type": "label",
+                "localisation":{
+                  "required":true,
+                  "prefix": null,
+                  "module":"rainmaker-works"
+               }
+              },
+              {
+                "variable": "wardValue", 
+                "value": {
+                  "path": "$.additionalDetails.ward"
+                }
+              },
+              {
+                "variable": "ulb",
+                "value": {
+                  "path": "PDF_STATIC_LABEL_ESTIMATE_ULB"
+                },
+                "type": "label",
+                "localisation":{
+                  "required":true,
+                  "prefix": null,
+                  "module":"rainmaker-works"
+               }
+              },
+              {
+                "variable": "ulbValue", 
+                "value": {
+                  "path": "$.additionalDetails.ulb"
+                }
+              },
+              {
+                "variable": "district",
+                "value": {
+                  "path": "PDF_STATIC_LABEL_ESTIMATE_DISTRICT"
+                },
+                "type": "label",
+                "localisation":{
+                  "required":true,
+                  "prefix": null,
+                  "module":"rainmaker-works"
+               }
+              },
+              {
+                "variable": "districtValue", 
+                "value": {
+                  "path": "$.additionalDetails.district"
+                }
+              },
+              {
+                "variable": "workDetails",
+                "value": {
+                  "path": "PDF_STATIC_LABEL_ESTIMATE_WORK_DETAILS"
+                },
+                "type": "label",
+                "localisation":{
+                  "required":true,
+                  "prefix": null,
+                  "module":"rainmaker-works"
+               }
+              },
+              {
+                "variable": "benificary",
+                "value": {
+                  "path": "PDF_STATIC_LABEL_ESTIMATE_BENIFICARY"
+                },
+                "type": "label",
+                "localisation":{
+                  "required":true,
+                  "prefix": null,
+                  "module":"rainmaker-works"
+               }
+              },
+              {
+                "variable": "benificaryValue", 
+                "value": {
+                  "path": "$.beneficiaryType"
+                }
+              },
+              {
+                "variable": "natureOfWork",
+                "value": {
+                  "path": "PDF_STATIC_LABEL_ESTIMATE_NATURE_OF_WORK"
+                },
+                "type": "label",
+                "localisation":{
+                  "required":true,
+                  "prefix": null,
+                  "module":"rainmaker-works"
+               }
+              },
+              {
+                "variable": "natureOfWorkValue", 
+                "value": {
+                  "path": "$.natureOfWork"
+                }
+              },
+              {
+                "variable": "typeOfWork",
+                "value": {
+                  "path": "PDF_STATIC_LABEL_ESTIMATE_TYPE_OF_WORK"
+                },
+                "type": "label",
+                "localisation":{
+                  "required":true,
+                  "prefix": null,
+                  "module":"rainmaker-works"
+               }
+              },
+              {
+                "variable": "typeOfWorkValue", 
+                "value": {
+                  "path": "$.typeOfWork"
+                }
+              },
+              {
+                "variable": "subTypeOfWork",
+                "value": {
+                  "path": "PDF_STATIC_LABEL_ESTIMATE_SUB_TYPE_OF_WORK"
+                },
+                "type": "label",
+                "localisation":{
+                  "required":true,
+                  "prefix": null,
+                  "module":"rainmaker-works"
+               }
+              },
+              {
+                "variable": "subTypeOfWorkValue", 
+                "value": {
+                  "path": "$.subTypeOfWork"
+                }
+              },
+              {
+                "variable": "recommendedModeOfEntrustment",
+                "value": {
+                  "path": "PDF_STATIC_LABEL_ESTIMATE_ENTRUSTMENT"
+                },
+                "type": "label",
+                "localisation":{
+                  "required":true,
+                  "prefix": null,
+                  "module":"rainmaker-works"
+               }
+              },
+              {
+                "variable": "recommendedModeOfEntrustmentValue", 
+                "value": {
+                  "path": "$.entrustmentMode"
+                }
+              },
+              {
+                "variable": "financialDetails",
+                "value": {
+                  "path": "PDF_STATIC_LABEL_ESTIMATE_FINANCIAL_DETAILS"
+                },
+                "type": "label",
+                "localisation":{
+                  "required":true,
+                  "prefix": null,
+                  "module":"rainmaker-works"
+               }
+              },
+              {
+                "variable": "chartOfAccounts",
+                "value": {
+                  "path": "PDF_STATIC_LABEL_ESTIMATE_CHART_OF_ACCOUNTS"
+                },
+                "type": "label",
+                "localisation":{
+                  "required":true,
+                  "prefix": null,
+                  "module":"rainmaker-works"
+               }
+              },
+              {
+                "variable": "chartOfAccountsValue", 
+                "value": {
+                  "path": "$.entrustmentMode"
+                }
+              },
+              {
+                "variable": "fund",
+                "value": {
+                  "path": "PDF_STATIC_LABEL_ESTIMATE_FUND"
+                },
+                "type": "label",
+                "localisation":{
+                  "required":true,
+                  "prefix": null,
+                  "module":"rainmaker-works"
+               }
+              },
+              {
+                "variable": "fundValue", 
+                "value": {
+                  "path": "$.fund"
+                }
+              },
+              {
+                "variable": "function",
+                "value": {
+                  "path": "PDF_STATIC_LABEL_ESTIMATE_FUNCTION"
+                },
+                "type": "label",
+                "localisation":{
+                  "required":true,
+                  "prefix": null,
+                  "module":"rainmaker-works"
+               }
+              },
+              {
+                "variable": "functionValue", 
+                "value": {
+                  "path": "$.function"
+                }
+              },
+              {
+                "variable": "budgetHead",
+                "value": {
+                  "path": "PDF_STATIC_LABEL_ESTIMATE_BUDGET"
+                },
+                "type": "label",
+                "localisation":{
+                  "required":true,
+                  "prefix": null,
+                  "module":"rainmaker-works"
+               }
+              },
+              {
+                "variable": "budgetHeadValue", 
+                "value": {
+                  "path": "$.budgetHead"
+                }
+              },
+              {
+                "variable": "scheme",
+                "value": {
+                  "path": "PDF_STATIC_LABEL_ESTIMATE_SCHEME"
+                },
+                "type": "label",
+                "localisation":{
+                  "required":true,
+                  "prefix": null,
+                  "module":"rainmaker-works"
+               }
+              },
+              {
+                "variable": "schemeValue", 
+                "value": {
+                  "path": "$.scheme"
+                }
+              },
+              {
+                "variable": "subScheme",
+                "value": {
+                  "path": "PDF_STATIC_LABEL_ESTIMATE_SCHEME"
+                },
+                "type": "label",
+                "localisation":{
+                  "required":true,
+                  "prefix": null,
+                  "module":"rainmaker-works"
+               }
+              },
+              {
+                "variable": "subSchemeValue", 
+                "value": {
+                  "path": "$.subScheme"
+                }
+              }
+
+            ]
+          },
+          {
+            "externalAPI": [     
+              { 
+                "path": "http://egov-mdms-service.egov:8080/egov-mdms-service/v1/_get",
+                "queryParam": "moduleName=tenant&masterName=tenants&tenantId=pb&filter=%5B?(@.code=='{$.tenantId}')%5D",
+                  "apiRequest": null,
+                  "responseMapping":[
+                    {             
+                      "variable":"address",
+                      "value":"$.MdmsRes.tenant.tenants[0].address"
+                    },
+                    {
+                      "variable":"contact",
+                      "value":"$.MdmsRes.tenant.tenants[0].contactNumber"
+                    },
+                    {
+                      "variable":"emailId",
+                      "value":"$.MdmsRes.tenant.tenants[0].emailId"
+                    },
+                    {
+                      "variable": "pdfHeader",
+                      "value":"$.MdmsRes.tenant.tenants[0].pdfHeader",
+                      "type": "label",
+                      "localisation":{
+                        "required":true,
+                        "prefix": "TENANT_TENANTS",
+                        "module":"rainmaker-common"
+                     }
+                    },
+                    {
+                      "variable": "logoImage",                        
+                      "value":"$.MdmsRes.tenant.tenants[0].logoId",
+                      "type":"image"      
+                    }
+                    
+                  ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
