@@ -19,7 +19,8 @@
                     {
                       "image": "{{logoImage}}",
                       "width": 50,
-                      "height": 61.25
+                      "height": 61.25,
+                      "margin": [10,5,0,0]
                     },
                     {
                       "stack": [
@@ -780,7 +781,7 @@
           ],
           "styles": {
             "noc-head": {
-              "fillcolor": "#F4F4F4",
+              "fillColor": "#F4F4F4",
               "margin": [
                 -40,
                 -40,
