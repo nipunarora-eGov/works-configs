@@ -144,7 +144,12 @@
                 "variable": "departmentValue", 
                 "value": {
                   "path": "$.department"
-                }
+                },
+                "localisation":{
+                  "required":true,
+                  "prefix": "COMMON_MASTERS_DEPARTMENT",
+                  "module":"rainmaker-common"
+               }
               },
               {
                 "variable": "requirementNumber",
@@ -296,7 +301,12 @@
                 "variable": "benificaryValue", 
                 "value": {
                   "path": "$.beneficiaryType"
-                }
+                },
+                "localisation":{
+                  "required":true,
+                  "prefix": "ES_COMMON",
+                  "module":"rainmaker-works"
+               }
               },
               {
                 "variable": "natureOfWork",
@@ -350,7 +360,12 @@
                 "variable": "subTypeOfWorkValue", 
                 "value": {
                   "path": "$.subTypeOfWork"
-                }
+                },
+                "localisation":{
+                  "required":true,
+                  "prefix": "ES_COMMON",
+                  "module":"rainmaker-works"
+               }
               },
               {
                 "variable": "recommendedModeOfEntrustment",
@@ -475,7 +490,7 @@
               {
                 "variable": "subScheme",
                 "value": {
-                  "path": "PDF_STATIC_LABEL_ESTIMATE_SCHEME"
+                  "path": "PDF_STATIC_LABEL_ESTIMATE_SUB_SCHEME"
                 },
                 "type": "label",
                 "localisation":{
@@ -488,7 +503,12 @@
                 "variable": "subSchemeValue", 
                 "value": {
                   "path": "$.subScheme"
-                }
+                },
+                "localisation":{
+                  "required":true,
+                  "prefix": "ES_COMMON",
+                  "module":"rainmaker-works"
+               }
               }
 
             ]
