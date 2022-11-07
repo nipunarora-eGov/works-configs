@@ -431,7 +431,12 @@
                 "variable": "fundValue", 
                 "value": {
                   "path": "$.fund"
-                }
+                },
+                "localisation":{
+                  "required":true,
+                  "prefix": "ES_COMMON",
+                  "module":"rainmaker-works"
+               }
               },
               {
                 "variable": "function",
@@ -449,7 +454,12 @@
                 "variable": "functionValue", 
                 "value": {
                   "path": "$.function"
-                }
+                },
+                "localisation":{
+                  "required":true,
+                  "prefix": "ES_COMMON",
+                  "module":"rainmaker-works"
+               }
               },
               {
                 "variable": "budgetHead",
@@ -467,7 +477,12 @@
                 "variable": "budgetHeadValue", 
                 "value": {
                   "path": "$.budgetHead"
-                }
+                },
+                "localisation":{
+                  "required":true,
+                  "prefix": "ES_COMMON",
+                  "module":"rainmaker-works"
+               }
               },
               {
                 "variable": "scheme",
