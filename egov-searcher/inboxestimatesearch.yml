@@ -38,9 +38,9 @@ SearchDefinitions:
           - name: est.budget_head
             isMandatory: false
             jsonPath: $.searchCriteria.budgetHead
-          - name: est.estimate_number
+          - name: est.id
             isMandatory: false
-            jsonPath: $.searchCriteria.estimateNumber
+            jsonPath: $.searchCriteria.estimateId
           - name: pi.businessservice
             isMandatory: false
             jsonPath: $.searchCriteria.businessservice
