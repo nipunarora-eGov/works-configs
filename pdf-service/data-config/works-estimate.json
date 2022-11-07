@@ -192,7 +192,12 @@
                 "variable": "locationValue", 
                 "value": {
                   "path": "$.additionalDetails.locality"
-                }
+                },
+                "localisation":{
+                  "required":true,
+                  "prefix": "ES_COMMON",
+                  "module":"rainmaker-works"
+               }
               },
               {
                 "variable": "ward",
@@ -210,7 +215,12 @@
                 "variable": "wardValue", 
                 "value": {
                   "path": "$.additionalDetails.ward"
-                }
+                },
+                "localisation":{
+                  "required":true,
+                  "prefix": "ES_COMMON",
+                  "module":"rainmaker-works"
+               }
               },
               {
                 "variable": "ulb",
@@ -228,7 +238,12 @@
                 "variable": "ulbValue", 
                 "value": {
                   "path": "$.additionalDetails.ulb"
-                }
+                },
+                "localisation":{
+                  "required":true,
+                  "prefix": "TENANT_TENANTS",
+                  "module":"rainmaker-common"
+               }
               },
               {
                 "variable": "district",
@@ -246,7 +261,12 @@
                 "variable": "districtValue", 
                 "value": {
                   "path": "$.additionalDetails.district"
-                }
+                },
+                "localisation":{
+                  "required":true,
+                  "prefix": "TENANT_TENANTS",
+                  "module":"rainmaker-common"
+               }
               },
               {
                 "variable": "workDetails",
