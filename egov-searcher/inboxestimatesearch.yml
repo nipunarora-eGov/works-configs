@@ -7,7 +7,7 @@ SearchDefinitions:
       query:
         baseQuery: Select row_to_json(result) from
           (
-          SELECT est.*,estDetail.* ,estDetail.id AS estDetailId,estDetail.additionaldetails AS estDetailAdditional FROM eg_wms_estimate AS est 
+          SELECT est.*,estDetail.id AS estDetailId,estDetail.additionaldetails AS estDetailAdditional FROM eg_wms_estimate AS est 
           LEFT JOIN eg_wms_estimate_detail AS estDetail ON (est.id=estDetail.estimate_id) 
           INNER JOIN eg_wf_processinstance_v2 pi ON pi.businessid = est.estimate_number
           LEFT JOIN eg_wf_assignee_v2 assg ON pi.id = assg.processinstanceid
