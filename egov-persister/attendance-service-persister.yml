@@ -135,8 +135,8 @@ serviceMaps:
        - jsonPath: $.attendance.*.auditDetails.lastModifiedTime 
    
  - version: 1.0
-   description: Save  Attendance
-   fromTopic: save-attendance
+   description: update Attendance
+   fromTopic: update-attendance
    isTransaction: true
    queryMaps:
       - query: UPDATE eg_wms_attendance_register set name=?, startdate=?, enddate=?, status=?,additionaldetails=?,lastmodifiedby=?, lastmodifiedtime=? where id=?;
