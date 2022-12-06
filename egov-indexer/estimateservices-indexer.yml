@@ -8,7 +8,7 @@ ServiceMaps:
       - name: estimate-service
         type: general
         id: $.id,$.tenantId
-        jsonPath: $.estimates
+        jsonPath: $.estimate
         timeStampField: $.auditDetails.createdTime
         customJsonMapping:
           indexMapping: { "Data":{"id":"","tenantId":"","estimateNumber":"","proposalDate":"","status":"","estimateStatus":"","subject":"","requirementNumber":"","description":"","department":"","location":"","workCategory":"","beneficiaryType":"","natureOfWork":"","typeOfWork":"","subTypeOfWork":"","entrustmentMode":"","fund":"","function":"","budgetHead":"","scheme":"","subScheme":"","totalAmount":"","estimateDetails":[],"@timestamp":"timestamp","auditDetails":{},"additionalDetails":{}}}
