@@ -138,7 +138,7 @@ ServiceMaps:
         type: general
         id: $.id,$.tenantId
         isBulk: true
-        jsonPath: $.estimate.*
+        jsonPath: $.estimates.*
         timeStampField: $.auditDetails.createdTime
         customJsonMapping:
           indexMapping: { "Data":{"id":"","tenantId":"","estimateNumber":"","proposalDate":"","status":"","estimateStatus":"","subject":"","requirementNumber":"","description":"","department":"","location":"","workCategory":"","beneficiaryType":"","natureOfWork":"","typeOfWork":"","subTypeOfWork":"","entrustmentMode":"","fund":"","function":"","budgetHead":"","scheme":"","subScheme":"","totalAmount":"","estimateDetails":[],"@timestamp":"timestamp","auditDetails":{},"additionalDetails":{}}}
