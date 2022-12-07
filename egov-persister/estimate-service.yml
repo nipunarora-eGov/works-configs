@@ -4,7 +4,7 @@ serviceMaps:
  - version: 1.0
    name: Estimate
    description: Persists estimate details in eg_wms_estimate table
-   fromTopic: saved-estimate
+   fromTopic: save-estimate
    isTransaction: true
    queryMaps:
     - query: INSERT INTO eg_wms_estimate(id,tenantId,estimate_number,admin_sanction_number,proposal_date,status,estimate_status,subject,requirement_number,description,department,location,work_category,beneficiary_type,nature_of_work,type_of_work,subtype_of_work,entrustment_mode,fund,function,budget_head,scheme,sub_scheme,total_amount,additionaldetails,createdby,lastmodifiedby,createdtime,lastmodifiedtime) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
