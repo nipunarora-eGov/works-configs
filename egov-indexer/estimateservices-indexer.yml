@@ -83,7 +83,7 @@ ServiceMaps:
   - topic: update-estimate
     configKey: INDEX
     indexes:
-      - name: estimate-service
+      - name: estimate-inbox
         type: general
         id: $.id,$.tenantId
         jsonPath: $.estimates
@@ -160,7 +160,7 @@ ServiceMaps:
   - topic: estimate-legacyIndex
     configKey: LEGACYINDEX
     indexes:
-      - name: estimate-service-legacyindex
+      - name: estimate-inbox-legacyindex
         type: general
         id: $.id,$.tenantId
         isBulk: true
