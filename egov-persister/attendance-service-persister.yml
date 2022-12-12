@@ -110,7 +110,7 @@ serviceMaps:
    isTransaction: true
    queryMaps:
       - query: UPDATE eg_wms_attendance_register set name=?, startdate=?, enddate=?, status=?,additionaldetails=?,lastmodifiedby=?, lastmodifiedtime=? where id=?;
-        basePath: attendanceRegister
+        basePath: attendanceRegister.*
         jsonMaps:           
           - jsonPath: $.attendanceRegister.*.name
 
