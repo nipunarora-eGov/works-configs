@@ -1,17 +1,18 @@
 ServiceMaps:
- serviceName: estimate Service
+ serviceName: estimate-event indexer
  version: 1.0.0
  mappings:
   - topic: save-estimate
     configKey: INDEX
     indexes:
-      - name: estimate-service
+      - name: estimate-inbox
         type: general
         id: $.id,$.tenantId
         jsonPath: $.estimate
         timeStampField: $.auditDetails.createdTime
+        isBulk: false
         customJsonMapping:
-          indexMapping: { "Data":{"id":"","tenantId":"","estimateNumber":"","proposalDate":"","status":"","estimateStatus":"","subject":"","requirementNumber":"","description":"","department":"","location":"","workCategory":"","beneficiaryType":"","natureOfWork":"","typeOfWork":"","subTypeOfWork":"","entrustmentMode":"","fund":"","function":"","budgetHead":"","scheme":"","subScheme":"","totalAmount":"","estimateDetails":[],"@timestamp":"timestamp","auditDetails":{},"additionalDetails":{}}}
+          indexMapping: { "Data":{"id":"","tenantId":"","estimateNumber":"","proposalDate":"","status":"","estimateStatus":"","subject":"","requirementNumber":"","description":"","department":"","location":"","workCategory":"","beneficiaryType":"","natureOfWork":"","typeOfWork":"","subTypeOfWork":"","entrustmentMode":"","fund":"","function":"","budgetHead":"","scheme":"","subScheme":"","totalAmount":"","estimateDetails":[],"@timestamp":"timestamp","auditDetails":{},"additionalDetails":{},"currentProcessInstance":{}, "history":{}}}
           fieldMapping:
           - inJsonPath: $.id
             outJsonPath: $.Data.id
@@ -65,18 +66,30 @@ ServiceMaps:
             outJsonPath: $.Data.auditDetails
           - inJsonPath: $.additionalDetails
             outJsonPath: $.Data.additionalDetails
-
+          externalUriMapping:
+          - path: http://egov-workflow-v2.egov:8080/egov-workflow-v2/egov-wf/process/_search
+            queryParam: businessIds=$.estimateNumber,history=false,tenantId=$.tenantId
+            apiRequest: {"RequestInfo":{"apiId":"org.egov.pt","ver":"1.0","ts":1502890899493,"action":"asd","did":"4354648646","key":"xyz","msgId":"654654","requesterId":"61","authToken":"d9994555-7656-4a67-ab3a-a952a0d4dfc8","userInfo":{"id":1,"uuid":"1fec8102-0e02-4d0a-b283-cd80d5dab067","type":"EMPLOYEE","tenantId":"pb.jalandhar","roles":[{"name":"Employee","code":"EMPLOYEE","tenantId":"pb.jalandhar"}]}}}
+            uriResponseMapping:
+            - inJsonPath: $.ProcessInstances
+              outJsonPath: $.Data.currentProcessInstance
+          - path: http://egov-workflow-v2.egov:8080/egov-workflow-v2/egov-wf/process/_search
+            queryParam: businessIds=$.estimateNumber,history=true,tenantId=$.tenantId
+            apiRequest: {"RequestInfo":{"apiId":"org.egov.pt","ver":"1.0","ts":1502890899493,"action":"asd","did":"4354648646","key":"xyz","msgId":"654654","requesterId":"61","authToken":"d9994555-7656-4a67-ab3a-a952a0d4dfc8","userInfo":{"id":1,"uuid":"1fec8102-0e02-4d0a-b283-cd80d5dab067","type":"EMPLOYEE","tenantId":"pb.jalandhar","roles":[{"name":"Employee","code":"EMPLOYEE","tenantId":"pb.jalandhar"}]}}}
+            uriResponseMapping:
+            - inJsonPath: $.ProcessInstances
+              outJsonPath: $.Data.history
 
   - topic: update-estimate
     configKey: INDEX
     indexes:
-      - name: estimate-service
+      - name: estimate-inbox
         type: general
         id: $.id,$.tenantId
         jsonPath: $.estimates
         timeStampField: $.auditDetails.createdTime
         customJsonMapping:
-          indexMapping: { "Data":{"id":"","tenantId":"","estimateNumber":"","proposalDate":"","status":"","estimateStatus":"","subject":"","requirementNumber":"","description":"","department":"","location":"","workCategory":"","beneficiaryType":"","natureOfWork":"","typeOfWork":"","subTypeOfWork":"","entrustmentMode":"","fund":"","function":"","budgetHead":"","scheme":"","subScheme":"","totalAmount":"","estimateDetails":[],"@timestamp":"timestamp","auditDetails":{},"additionalDetails":{}}}
+          indexMapping: { "Data":{"id":"","tenantId":"","estimateNumber":"","proposalDate":"","status":"","estimateStatus":"","subject":"","requirementNumber":"","description":"","department":"","location":"","workCategory":"","beneficiaryType":"","natureOfWork":"","typeOfWork":"","subTypeOfWork":"","entrustmentMode":"","fund":"","function":"","budgetHead":"","scheme":"","subScheme":"","totalAmount":"","estimateDetails":[],"@timestamp":"timestamp","auditDetails":{},"additionalDetails":{},"currentProcessInstance":{}, "history":{}}}
           fieldMapping:
           - inJsonPath: $.id
             outJsonPath: $.Data.id
@@ -129,4 +142,95 @@ ServiceMaps:
           - inJsonPath: $.auditDetails
             outJsonPath: $.Data.auditDetails
           - inJsonPath: $.additionalDetails
-            outJsonPath: $.Data.additionalDetails          
+            outJsonPath: $.Data.additionalDetails
+          externalUriMapping:
+          - path: http://egov-workflow-v2.egov:8080/egov-workflow-v2/egov-wf/process/_search
+            queryParam: businessIds=$.estimateNumber,history=false,tenantId=$.tenantId
+            apiRequest: {"RequestInfo":{"apiId":"org.egov.pt","ver":"1.0","ts":1502890899493,"action":"asd","did":"4354648646","key":"xyz","msgId":"654654","requesterId":"61","authToken":"d9994555-7656-4a67-ab3a-a952a0d4dfc8","userInfo":{"id":1,"uuid":"1fec8102-0e02-4d0a-b283-cd80d5dab067","type":"EMPLOYEE","tenantId":"pb.jalandhar","roles":[{"name":"Employee","code":"EMPLOYEE","tenantId":"pb.jalandhar"}]}}}
+            uriResponseMapping:
+            - inJsonPath: $.ProcessInstances
+              outJsonPath: $.Data.currentProcessInstance
+          - path: http://egov-workflow-v2.egov:8080/egov-workflow-v2/egov-wf/process/_search
+            queryParam: businessIds=$.estimateNumber,history=true,tenantId=$.tenantId
+            apiRequest: {"RequestInfo":{"apiId":"org.egov.pt","ver":"1.0","ts":1502890899493,"action":"asd","did":"4354648646","key":"xyz","msgId":"654654","requesterId":"61","authToken":"d9994555-7656-4a67-ab3a-a952a0d4dfc8","userInfo":{"id":1,"uuid":"1fec8102-0e02-4d0a-b283-cd80d5dab067","type":"EMPLOYEE","tenantId":"pb.jalandhar","roles":[{"name":"Employee","code":"EMPLOYEE","tenantId":"pb.jalandhar"}]}}}
+            uriResponseMapping:
+            - inJsonPath: $.ProcessInstances
+              outJsonPath: $.Data.history         
+
+  - topic: estimate-legacyIndex
+    configKey: LEGACYINDEX
+    indexes:
+      - name: estimate-inbox-legacyindex
+        type: general
+        id: $.id,$.tenantId
+        isBulk: true
+        jsonPath: $.estimates.*
+        timeStampField: $.auditDetails.createdTime
+        customJsonMapping:
+          indexMapping: { "Data":{"id":"","tenantId":"","estimateNumber":"","proposalDate":"","status":"","estimateStatus":"","subject":"","requirementNumber":"","description":"","department":"","location":"","workCategory":"","beneficiaryType":"","natureOfWork":"","typeOfWork":"","subTypeOfWork":"","entrustmentMode":"","fund":"","function":"","budgetHead":"","scheme":"","subScheme":"","totalAmount":"","estimateDetails":[],"@timestamp":"timestamp","auditDetails":{},"additionalDetails":{},"currentProcessInstance":{}, "history":{}}}
+          fieldMapping:
+          - inJsonPath: $.id
+            outJsonPath: $.Data.id
+          - inJsonPath: $.tenantId
+            outJsonPath: $.Data.tenantId
+          - inJsonPath: $.estimateNumber
+            outJsonPath: $.Data.estimateNumber
+          - inJsonPath: $.proposalDate
+            outJsonPath: $.Data.proposalDate
+          - inJsonPath: $.status
+            outJsonPath: $.Data.status
+          - inJsonPath: $.estimateStatus
+            outJsonPath: $.Data.estimateStatus
+          - inJsonPath: $.subject
+            outJsonPath: $.Data.subject
+          - inJsonPath: $.requirementNumber
+            outJsonPath: $.Data.requirementNumber
+          - inJsonPath: $.description
+            outJsonPath: $.Data.description
+          - inJsonPath: $.department
+            outJsonPath: $.Data.department
+          - inJsonPath: $.location
+            outJsonPath: $.Data.location
+          - inJsonPath: $.workCategory
+            outJsonPath: $.Data.workCategory
+          - inJsonPath: $.beneficiaryType
+            outJsonPath: $.Data.beneficiaryType
+          - inJsonPath: $.natureOfWork
+            outJsonPath: $.Data.natureOfWork
+          - inJsonPath: $.typeOfWork
+            outJsonPath: $.Data.typeOfWork
+          - inJsonPath: $.subTypeOfWork
+            outJsonPath: $.Data.subTypeOfWork
+          - inJsonPath: $.entrustmentMode
+            outJsonPath: $.Data.entrustmentMode
+          - inJsonPath: $.fund
+            outJsonPath: $.Data.fund
+          - inJsonPath: $.function
+            outJsonPath: $.Data.function
+          - inJsonPath: $.budgetHead
+            outJsonPath: $.Data.budgetHead
+          - inJsonPath: $.scheme
+            outJsonPath: $.Data.scheme
+          - inJsonPath: $.subScheme
+            outJsonPath: $.Data.subScheme
+          - inJsonPath: $.totalAmount
+            outJsonPath: $.Data.totalAmount
+          - inJsonPath: $.estimateDetails
+            outJsonPath: $.Data.estimateDetails
+          - inJsonPath: $.auditDetails
+            outJsonPath: $.Data.auditDetails
+          - inJsonPath: $.additionalDetails
+            outJsonPath: $.Data.additionalDetails
+          externalUriMapping:
+          - path: http://egov-workflow-v2.egov:8080/egov-workflow-v2/egov-wf/process/_search
+            queryParam: businessIds=$.estimateNumber,history=false,tenantId=$.tenantId
+            apiRequest: {"RequestInfo":{"apiId":"org.egov.pt","ver":"1.0","ts":1502890899493,"action":"asd","did":"4354648646","key":"xyz","msgId":"654654","requesterId":"61","authToken":"d9994555-7656-4a67-ab3a-a952a0d4dfc8","userInfo":{"id":1,"uuid":"1fec8102-0e02-4d0a-b283-cd80d5dab067","type":"EMPLOYEE","tenantId":"pb.jalandhar","roles":[{"name":"Employee","code":"EMPLOYEE","tenantId":"pb.jalandhar"}]}}}
+            uriResponseMapping:
+            - inJsonPath: $.ProcessInstances
+              outJsonPath: $.Data.currentProcessInstance
+          - path: http://egov-workflow-v2.egov:8080/egov-workflow-v2/egov-wf/process/_search
+            queryParam: businessIds=$.estimateNumber,history=true,tenantId=$.tenantId
+            apiRequest: {"RequestInfo":{"apiId":"org.egov.pt","ver":"1.0","ts":1502890899493,"action":"asd","did":"4354648646","key":"xyz","msgId":"654654","requesterId":"61","authToken":"d9994555-7656-4a67-ab3a-a952a0d4dfc8","userInfo":{"id":1,"uuid":"1fec8102-0e02-4d0a-b283-cd80d5dab067","type":"EMPLOYEE","tenantId":"pb.jalandhar","roles":[{"name":"Employee","code":"EMPLOYEE","tenantId":"pb.jalandhar"}]}}}
+            uriResponseMapping:
+            - inJsonPath: $.ProcessInstances
+              outJsonPath: $.Data.history

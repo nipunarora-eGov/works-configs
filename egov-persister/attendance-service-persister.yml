@@ -83,7 +83,7 @@ serviceMaps:
 
        - jsonPath: $.staff.tenantId
 
-       - jsonPath: $.staff.individualId
+       - jsonPath: $.staff.userId
 
        - jsonPath: $.staff.registerId
 
@@ -249,7 +249,7 @@ serviceMaps:
    isTransaction: true
    queryMaps:
       - query: UPDATE eg_wms_attendance_register set name=?, startdate=?, enddate=?, status=?,additionaldetails=?,lastmodifiedby=?, lastmodifiedtime=? where id=?;
-        basePath: attendanceRegister
+        basePath: attendanceRegister.*
         jsonMaps:           
           - jsonPath: $.attendanceRegister.*.name
 
@@ -303,7 +303,7 @@ serviceMaps:
       - query: UPDATE eg_wms_attendance_staff set individual_id=?, register_id=?, enrollment_date=?, deenrollment_date=?,additionaldetails=?,lastmodifiedby=?, lastmodifiedtime=? where id=?;
         basePath: staff
         jsonMaps:   
-         - jsonPath: $.staff.individualId
+         - jsonPath: $.staff.userId
 
          - jsonPath: $.staff.registerId
 
