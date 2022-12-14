@@ -172,7 +172,7 @@ serviceMaps:
    fromTopic: update-attendance-log
    isTransaction: true
    queryMaps:
-    - query: UPDATE eg_wms_attendance_log set status = ?, time = ? ,event_type =? ,additionaldetails = ? ,createdby =? ,lastmodifiedby = ? , createdtime = ? ,lastmodifiedtime = ? where id = ? ;
+    - query: UPDATE eg_wms_attendance_log set status = ?, time = ? ,event_type =? ,additionaldetails = ?  ,lastmodifiedby = ?  ,lastmodifiedtime = ? where id = ? ;
       basePath: attendance.*
       jsonMaps:
     
@@ -186,18 +186,14 @@ serviceMaps:
          type: JSON
          dbType: JSONB
 
-       - jsonPath: $.attendance.*.auditDetails.createdBy
-
        - jsonPath: $.attendance.*.auditDetails.lastModifiedBy
-
-       - jsonPath: $.attendance.*.auditDetails.createdTime
 
        - jsonPath: $.attendance.*.auditDetails.lastModifiedTime
        
        - jsonPath: $.attendance.*.id
 
 
-    - query: INSERT INTO eg_wms_attendance_document(id, filestore_id, document_type, attendance_log_id, additionaldetails, createdby, lastmodifiedby, createdtime, lastmodifiedtime, tenantid, status) VALUES (?,?,?,?,?,?,?,?,?,?,?) ON CONFLICT (id) DO UPDATE SET filestore_id = ?, document_type = ? , additionaldetails = ? ,createdby =? ,lastmodifiedby = ? , createdtime = ? ,lastmodifiedtime = ?, status = ?;
+    - query: INSERT INTO eg_wms_attendance_document(id, filestore_id, document_type, attendance_log_id, additionaldetails, createdby, lastmodifiedby, createdtime, lastmodifiedtime, tenantid, status) VALUES (?,?,?,?,?,?,?,?,?,?,?) ON CONFLICT (id) DO UPDATE SET filestore_id = ?, document_type = ? , additionaldetails = ? ,lastmodifiedby = ? ,lastmodifiedtime = ?, status = ?;
       basePath: attendance.*.documentIds.*
       jsonMaps:
        - jsonPath: $.attendance.*.documentIds.*.id
@@ -232,11 +228,7 @@ serviceMaps:
          type: JSON
          dbType: JSONB
 
-       - jsonPath: $.attendance[*][?({id} in @.documentIds[*].id)].auditDetails.createdBy
-
        - jsonPath: $.attendance[*][?({id} in @.documentIds[*].id)].auditDetails.lastModifiedBy
-
-       - jsonPath: $.attendance[*][?({id} in @.documentIds[*].id)].auditDetails.createdTime
 
        - jsonPath: $.attendance[*][?({id} in @.documentIds[*].id)].auditDetails.lastModifiedTime
 
