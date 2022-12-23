@@ -83,7 +83,7 @@ serviceMaps:
 
        - jsonPath: $.staff.tenantId
 
-       - jsonPath: $.staff.individualId
+       - jsonPath: $.staff.userId
 
        - jsonPath: $.staff.registerId
 
@@ -102,7 +102,138 @@ serviceMaps:
        - jsonPath: $.staff.auditDetails.createdTime
 
        - jsonPath: $.staff.auditDetails.lastModifiedTime
-   
+
+ - version: 1.0
+   name: Attendance Log
+   description: Persists attendance logs and corresponding documents
+   fromTopic: save-attendance-log
+   isTransaction: true
+   queryMaps:
+    - query: INSERT INTO eg_wms_attendance_log(id,tenantid,individual_id,register_id,status,time,event_type,additionaldetails,createdby,lastmodifiedby,createdtime,lastmodifiedtime) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);
+      basePath: attendance.*
+      jsonMaps:
+       - jsonPath: $.attendance.*.id
+
+       - jsonPath: $.attendance.*.tenantId
+
+       - jsonPath: $.attendance.*.individualId
+
+       - jsonPath: $.attendance.*.registerId
+
+       - jsonPath: $.attendance.*.status
+
+       - jsonPath: $.attendance.*.time
+       
+       - jsonPath: $.attendance.*.type
+
+       - jsonPath: $.attendance.*.additionalDetails
+         type: JSON
+         dbType: JSONB
+
+       - jsonPath: $.attendance.*.auditDetails.createdBy
+
+       - jsonPath: $.attendance.*.auditDetails.lastModifiedBy
+
+       - jsonPath: $.attendance.*.auditDetails.createdTime
+
+       - jsonPath: $.attendance.*.auditDetails.lastModifiedTime
+
+    - query: INSERT INTO eg_wms_attendance_document(id,filestore_id,document_type,attendance_log_id,additionaldetails,createdby,lastmodifiedby,createdtime,lastmodifiedtime,tenantid,status) VALUES (?,?,?,?,?,?,?,?,?,?,?);
+      basePath: attendance.*.documentIds.*
+      jsonMaps:
+       - jsonPath: $.attendance.*.documentIds.*.id
+
+       - jsonPath: $.attendance.*.documentIds.*.fileStore
+
+       - jsonPath: $.attendance.*.documentIds.*.documentType
+
+       - jsonPath: $.attendance[*][?({id} in @.documentIds[*].id)].id
+
+       - jsonPath: $.attendance.*.documentIds.*.additionalDetails
+         type: JSON
+         dbType: JSONB
+
+       - jsonPath: $.attendance[*][?({id} in @.documentIds[*].id)].auditDetails.createdBy
+
+       - jsonPath: $.attendance[*][?({id} in @.documentIds[*].id)].auditDetails.lastModifiedBy
+
+       - jsonPath: $.attendance[*][?({id} in @.documentIds[*].id)].auditDetails.createdTime
+
+       - jsonPath: $.attendance[*][?({id} in @.documentIds[*].id)].auditDetails.lastModifiedTime
+       
+       - jsonPath: $.attendance[*][?({id} in @.documentIds[*].id)].tenantId
+
+       - jsonPath: $.attendance.*.documentIds.*.status
+
+ 
+ - version: 1.0
+   name: Attendance Log
+   description: Update attendance logs and corresponding documents
+   fromTopic: update-attendance-log
+   isTransaction: true
+   queryMaps:
+    - query: UPDATE eg_wms_attendance_log set status = ?, time = ? ,event_type =? ,additionaldetails = ?  ,lastmodifiedby = ?  ,lastmodifiedtime = ? where id = ? ;
+      basePath: attendance.*
+      jsonMaps:
+    
+       - jsonPath: $.attendance.*.status
+
+       - jsonPath: $.attendance.*.time
+       
+       - jsonPath: $.attendance.*.type
+
+       - jsonPath: $.attendance.*.additionalDetails
+         type: JSON
+         dbType: JSONB
+
+       - jsonPath: $.attendance.*.auditDetails.lastModifiedBy
+
+       - jsonPath: $.attendance.*.auditDetails.lastModifiedTime
+       
+       - jsonPath: $.attendance.*.id
+
+
+    - query: INSERT INTO eg_wms_attendance_document(id, filestore_id, document_type, attendance_log_id, additionaldetails, createdby, lastmodifiedby, createdtime, lastmodifiedtime, tenantid, status) VALUES (?,?,?,?,?,?,?,?,?,?,?) ON CONFLICT (id) DO UPDATE SET filestore_id = ?, document_type = ? , additionaldetails = ? ,lastmodifiedby = ? ,lastmodifiedtime = ?, status = ?;
+      basePath: attendance.*.documentIds.*
+      jsonMaps:
+       - jsonPath: $.attendance.*.documentIds.*.id
+
+       - jsonPath: $.attendance.*.documentIds.*.fileStore
+
+       - jsonPath: $.attendance.*.documentIds.*.documentType
+
+       - jsonPath: $.attendance[*][?({id} in @.documentIds[*].id)].id
+
+       - jsonPath: $.attendance.*.documentIds.*.additionalDetails
+         type: JSON
+         dbType: JSONB
+
+       - jsonPath: $.attendance[*][?({id} in @.documentIds[*].id)].auditDetails.createdBy
+
+       - jsonPath: $.attendance[*][?({id} in @.documentIds[*].id)].auditDetails.lastModifiedBy
+
+       - jsonPath: $.attendance[*][?({id} in @.documentIds[*].id)].auditDetails.createdTime
+
+       - jsonPath: $.attendance[*][?({id} in @.documentIds[*].id)].auditDetails.lastModifiedTime
+       
+       - jsonPath: $.attendance[*][?({id} in @.documentIds[*].id)].tenantId
+
+       - jsonPath: $.attendance.*.documentIds.*.status
+
+       - jsonPath: $.attendance.*.documentIds.*.fileStore
+
+       - jsonPath: $.attendance.*.documentIds.*.documentType
+
+       - jsonPath: $.attendance.*.documentIds.*.additionalDetails
+         type: JSON
+         dbType: JSONB
+
+       - jsonPath: $.attendance[*][?({id} in @.documentIds[*].id)].auditDetails.lastModifiedBy
+
+       - jsonPath: $.attendance[*][?({id} in @.documentIds[*].id)].auditDetails.lastModifiedTime
+
+       - jsonPath: $.attendance.*.documentIds.*.status
+
 
  - version: 1.0
    description: update Attendance
@@ -110,7 +241,7 @@ serviceMaps:
    isTransaction: true
    queryMaps:
       - query: UPDATE eg_wms_attendance_register set name=?, startdate=?, enddate=?, status=?,additionaldetails=?,lastmodifiedby=?, lastmodifiedtime=? where id=?;
-        basePath: attendanceRegister
+        basePath: attendanceRegister.*
         jsonMaps:           
           - jsonPath: $.attendanceRegister.*.name
 
@@ -164,7 +295,7 @@ serviceMaps:
       - query: UPDATE eg_wms_attendance_staff set individual_id=?, register_id=?, enrollment_date=?, deenrollment_date=?,additionaldetails=?,lastmodifiedby=?, lastmodifiedtime=? where id=?;
         basePath: staff
         jsonMaps:   
-         - jsonPath: $.staff.individualId
+         - jsonPath: $.staff.userId
 
          - jsonPath: $.staff.registerId
 
