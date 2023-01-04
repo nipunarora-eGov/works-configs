@@ -171,9 +171,9 @@ serviceMaps:
 
        - jsonPath: $.project.*.address.locality.children.*.code
 
-       - jsonPath: $.project.*.address.id
+       - jsonPath: $.project.*.address.locality.children.*.addressid
 
-       - jsonPath: $.project.*.address.locality.id
+       - jsonPath: $.project.*.address.locality.children.*.parentid
 
        - jsonPath: $.project.*.address.locality.children.*.name
 
@@ -375,7 +375,7 @@ serviceMaps:
        - jsonPath: $.project.*.address.locality.materializedPath
 
 
-    - query: INSERT INTO eg_pms_locality(id,code,address_id,parent_id,name,latitude,longitude,materializedPath) VALUES (?,?,?,?,?,?,?,?);
+    - query: INSERT INTO eg_pms_locality(id,code,address_id,parent_id,name,latitude,longitude,materializedPath) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT (id) DO UPDATE SET code=?, name=?, latitude=?, longitude=?, materializedPath=?;
       basePath: project.*.address.locality.children.*
       jsonMaps:
 
@@ -383,9 +383,19 @@ serviceMaps:
 
        - jsonPath: $.project.*.address.locality.children.*.code
 
-       - jsonPath: $.project.*.address.id
+       - jsonPath: $.project.*.address.locality.children.*.addressid
 
-       - jsonPath: $.project.*.address.locality.id
+       - jsonPath: $.project.*.address.locality.children.*.parentid
+
+       - jsonPath: $.project.*.address.locality.children.*.name
+
+       - jsonPath: $.project.*.address.locality.children.*.latitude
+
+       - jsonPath: $.project.*.address.locality.children.*.longitude
+
+       - jsonPath: $.project.*.address.locality.children.*.materializedPath
+
+       - jsonPath: $.project.*.address.locality.children.*.code
 
        - jsonPath: $.project.*.address.locality.children.*.name
 
