@@ -7,12 +7,16 @@ serviceMaps:
    fromTopic: save-project
    isTransaction: true
    queryMaps:
-    - query: INSERT INTO eg_pms_project(id,tenantid,projecttype,projectsubtype,department,description,reference_id,startdate,enddate,istaskenabled,parent,additionaldetails,isdeleted,rowversion,createdby,lastmodifiedby,createdtime,lastmodifiedtime) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+    - query: INSERT INTO eg_pms_project(id,tenant_id,project_number,name,project_type,project_subtype,department,description,reference_id,start_date,end_date,is_task_enabled,parent,additional_details,is_deleted,row_version,created_by,last_modified_by,created_time,last_modified_time) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
       basePath: project.*
       jsonMaps:
        - jsonPath: $.project.*.id
 
        - jsonPath: $.project.*.tenantId
+
+       - jsonPath: $.project.*.projectNumber
+
+       - jsonPath: $.project.*.name
 
        - jsonPath: $.project.*.projectType
 
@@ -49,7 +53,7 @@ serviceMaps:
        - jsonPath: $.project.*.auditDetails.lastModifiedTime
 
 
-    - query: INSERT INTO eg_pms_address(id,tenantid,project_id,doorno,latitude,longitude,locationaccuracy,type,addressline1,addressline2,landmark,city,pincode,buildingname,street,createdby,lastmodifiedby,createdtime,lastmodifiedtime) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+    - query: INSERT INTO eg_pms_address(id,tenant_id,project_id,door_no,latitude,longitude,location_accuracy,type,address_line1,address_line2,landmark,city,pin_code,building_name,street,locality,created_by,last_modified_by,created_time,last_modified_time) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
       basePath: project.*.address
       jsonMaps:
        - jsonPath: $.project.*.address.id
@@ -82,6 +86,8 @@ serviceMaps:
 
        - jsonPath: $.project.*.address.street
 
+       - jsonPath: $.project.*.address.locality
+
        - jsonPath: $.project.*.address.auditDetails.createdBy
 
        - jsonPath: $.project.*.address.auditDetails.lastModifiedBy
@@ -91,7 +97,7 @@ serviceMaps:
        - jsonPath: $.project.*.address.auditDetails.lastModifiedTime
 
 
-    - query: INSERT INTO eg_pms_target(id,project_id,beneficiarytype,totalno,targetno,isdeleted,createdby,lastmodifiedby,createdtime,lastmodifiedtime) VALUES (?,?,?,?,?,?,?,?,?,?);
+    - query: INSERT INTO eg_pms_target(id,project_id,beneficiary_type,total_no,target_no,is_deleted,created_by,last_modified_by,created_time,last_modified_time) VALUES (?,?,?,?,?,?,?,?,?,?);
       basePath: project.*.targets.*
       jsonMaps:
        - jsonPath: $.project.*.targets.*.id
@@ -115,7 +121,7 @@ serviceMaps:
        - jsonPath: $.project.*.targets.*.auditDetails.lastModifiedTime
 
 
-    - query: INSERT INTO eg_pms_document(id,project_id,documenttype,filestore_id,documentuid,additionaldetails,status,createdby,lastmodifiedby,createdtime,lastmodifiedtime) VALUES (?,?,?,?,?,?,?,?,?,?,?);
+    - query: INSERT INTO eg_pms_document(id,project_id,document_type,filestore_id,document_uid,additional_details,status,created_by,last_modified_by,created_time,last_modified_time) VALUES (?,?,?,?,?,?,?,?,?,?,?);
       basePath: project.*.documents.*
       jsonMaps:
        - jsonPath: $.project.*.documents.*.id
@@ -143,56 +149,17 @@ serviceMaps:
        - jsonPath: $.project.*.documents.*.auditDetails.lastModifiedTime
 
 
-    - query: INSERT INTO eg_pms_locality(id,code,address_id,parent_id,name,latitude,longitude,materializedPath) VALUES (?,?,?,?,?,?,?,?);
-      basePath: project.*.address.locality
-      jsonMaps:
-       - jsonPath: $.project.*.address.locality.id
-
-       - jsonPath: $.project.*.address.locality.code
-
-       - jsonPath: $.project.*.address.id
-
-       - jsonPath: $.project.*.address.null
-
-       - jsonPath: $.project.*.address.locality.name
-
-       - jsonPath: $.project.*.address.locality.latitude
-
-       - jsonPath: $.project.*.address.locality.longitude
-
-       - jsonPath: $.project.*.address.locality.materializedPath
-
-
-    - query: INSERT INTO eg_pms_locality(id,code,address_id,parent_id,name,latitude,longitude,materializedPath) VALUES (?,?,?,?,?,?,?,?);
-      basePath: project.*.address.locality.children.*
-      jsonMaps:
-
-       - jsonPath: $.project.*.address.locality.children.*.id
-
-       - jsonPath: $.project.*.address.locality.children.*.code
-
-       - jsonPath: $.project.*.address.locality.children.*.addressid
-
-       - jsonPath: $.project.*.address.locality.children.*.parentid
-
-       - jsonPath: $.project.*.address.locality.children.*.name
-
-       - jsonPath: $.project.*.address.locality.children.*.latitude
-
-       - jsonPath: $.project.*.address.locality.children.*.longitude
-
-       - jsonPath: $.project.*.address.locality.children.*.materializedPath
-
-
  - version: 1.0
    name: project
    description: Updates project details in eg_pms_project table
    fromTopic: update-project
    isTransaction: true
    queryMaps:
-    - query: UPDATE eg_pms_project SET projecttype = ?, projectsubtype = ?, department = ?, description = ?, reference_id = ?, startdate = ?, enddate = ?, istaskenabled = ?, parent = ?, additionaldetails = ?, isdeleted = ?, rowversion = ?, lastmodifiedby = ?, lastmodifiedtime = ? WHERE id = ?;
+    - query: UPDATE eg_pms_project SET name = ?, project_type = ?, project_subtype = ?, department = ?, description = ?, reference_id = ?, start_date = ?, end_date = ?, is_task_enabled = ?, parent = ?, additional_details = ?, is_deleted = ?, row_version = ?, last_modified_by = ?, last_modified_time = ? WHERE id = ?;
       basePath: project.*
       jsonMaps:
+
+       - jsonPath: $.project.*.name
 
        - jsonPath: $.project.*.projectType
 
@@ -227,7 +194,7 @@ serviceMaps:
        - jsonPath: $.project.*.id
 
 
-    - query: UPDATE eg_pms_address SET doorno = ?, latitude=?, longitude=?, locationaccuracy=?, type=?, addressline1=?, addressline2=?, landmark=?, city=?, pincode=?, buildingname=?, street=?, lastmodifiedby=?, lastmodifiedtime=? WHERE id=?;
+    - query: UPDATE eg_pms_address SET door_no = ?, latitude=?, longitude=?, location_accuracy=?, type=?, address_line1=?, address_line2=?, landmark=?, city=?, pin_code=?, building_name=?, street=?, locality=?, last_modified_by=?, last_modified_time=? WHERE id=?;
       basePath: project.*.address
       jsonMaps:
 
@@ -255,6 +222,8 @@ serviceMaps:
 
        - jsonPath: $.project.*.address.street
 
+       - jsonPath: $.project.*.address.locality
+
        - jsonPath: $.project.*.address.auditDetails.lastModifiedBy
 
        - jsonPath: $.project.*.address.auditDetails.lastModifiedTime
@@ -262,7 +231,7 @@ serviceMaps:
        - jsonPath: $.project.*.address.id
 
 
-    - query: INSERT INTO eg_pms_target(id,project_id,beneficiarytype,totalno,targetno,isdeleted,createdby,lastmodifiedby,createdtime,lastmodifiedtime) VALUES (?,?,?,?,?,?,?,?,?,?) ON CONFLICT (id) DO UPDATE SET beneficiarytype = ?, totalno =?, targetno=?, isdeleted=?, lastmodifiedby=?, lastmodifiedtime=?;
+    - query: INSERT INTO eg_pms_target(id,project_id,beneficiary_type,total_no,target_no,is_deleted,created_by,last_modified_by,created_time,last_modified_time) VALUES (?,?,?,?,?,?,?,?,?,?) ON CONFLICT (id) DO UPDATE SET beneficiary_type = ?, total_no =?, target_no=?, is_deleted=?, last_modified_by=?, last_modified_time=?;
       basePath: project.*.targets.*
       jsonMaps:
 
@@ -299,7 +268,7 @@ serviceMaps:
        - jsonPath: $.project.*.targets.*.auditDetails.lastModifiedTime
 
 
-    - query: INSERT INTO eg_pms_document(id,project_id,documenttype,filestore_id,documentuid,additionaldetails,status,createdby,lastmodifiedby,createdtime,lastmodifiedtime) VALUES (?,?,?,?,?,?,?,?,?,?,?) ON CONFLICT (id) DO UPDATE SET documenttype=?, filestore_id=?, documentuid=?, additionaldetails=?, status=?, lastmodifiedby =?, lastmodifiedtime=?;
+    - query: INSERT INTO eg_pms_document(id,project_id,document_type,filestore_id,document_uid,additional_details,status,created_by,last_modified_by,created_time,last_modified_time) VALUES (?,?,?,?,?,?,?,?,?,?,?) ON CONFLICT (id) DO UPDATE SET document_type=?, filestore_id=?, document_uid=?, additional_details=?, status=?, last_modified_by=?, last_modified_time=?;
       basePath: project.*.documents.*
       jsonMaps:
 
@@ -342,65 +311,3 @@ serviceMaps:
        - jsonPath: $.project.*.documents.*.auditDetails.lastModifiedBy
 
        - jsonPath: $.project.*.documents.*.auditDetails.lastModifiedTime
-
-
-    - query: INSERT INTO eg_pms_locality(id,code,address_id,parent_id,name,latitude,longitude,materializedPath) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT (id) DO UPDATE SET code=?, name=?, latitude=?, longitude=?, materializedPath=?;
-      basePath: project.*.address.locality
-      jsonMaps:
-
-       - jsonPath: $.project.*.address.locality.id
-
-       - jsonPath: $.project.*.address.locality.code
-
-       - jsonPath: $.project.*.address.id
-
-       - jsonPath: $.project.*.address.null
-
-       - jsonPath: $.project.*.address.locality.name
-
-       - jsonPath: $.project.*.address.locality.latitude
-
-       - jsonPath: $.project.*.address.locality.longitude
-
-       - jsonPath: $.project.*.address.locality.materializedPath
-
-       - jsonPath: $.project.*.address.locality.code
-
-       - jsonPath: $.project.*.address.locality.name
-
-       - jsonPath: $.project.*.address.locality.latitude
-
-       - jsonPath: $.project.*.address.locality.longitude
-
-       - jsonPath: $.project.*.address.locality.materializedPath
-
-
-    - query: INSERT INTO eg_pms_locality(id,code,address_id,parent_id,name,latitude,longitude,materializedPath) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT (id) DO UPDATE SET code=?, name=?, latitude=?, longitude=?, materializedPath=?;
-      basePath: project.*.address.locality.children.*
-      jsonMaps:
-
-       - jsonPath: $.project.*.address.locality.children.*.id
-
-       - jsonPath: $.project.*.address.locality.children.*.code
-
-       - jsonPath: $.project.*.address.locality.children.*.addressid
-
-       - jsonPath: $.project.*.address.locality.children.*.parentid
-
-       - jsonPath: $.project.*.address.locality.children.*.name
-
-       - jsonPath: $.project.*.address.locality.children.*.latitude
-
-       - jsonPath: $.project.*.address.locality.children.*.longitude
-
-       - jsonPath: $.project.*.address.locality.children.*.materializedPath
-
-       - jsonPath: $.project.*.address.locality.children.*.code
-
-       - jsonPath: $.project.*.address.locality.children.*.name
-
-       - jsonPath: $.project.*.address.locality.children.*.latitude
-
-       - jsonPath: $.project.*.address.locality.children.*.longitude
-
-       - jsonPath: $.project.*.address.locality.children.*.materializedPath
