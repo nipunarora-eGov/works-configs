@@ -77,31 +77,31 @@ serviceMaps:
    isTransaction: true
    queryMaps:
     - query: INSERT INTO eg_wms_attendance_staff(id,tenantid,individual_id,register_id,enrollment_date,deenrollment_date,additionaldetails,createdby,lastmodifiedby,createdtime,lastmodifiedtime) VALUES (?,?,?,?,?,?,?,?,?,?,?);
-      basePath: staff
+      basePath: staff.*
       jsonMaps:
-       - jsonPath: $.staff.id
+       - jsonPath: $.staff.*.id
 
-       - jsonPath: $.staff.tenantId
+       - jsonPath: $.staff.*.tenantId
 
-       - jsonPath: $.staff.userId
+       - jsonPath: $.staff.*.userId
 
-       - jsonPath: $.staff.registerId
+       - jsonPath: $.staff.*.registerId
 
-       - jsonPath: $.staff.enrollmentDate
+       - jsonPath: $.staff.*.enrollmentDate
 
-       - jsonPath: $.staff.denrollmentDate
+       - jsonPath: $.staff.*.denrollmentDate
 
-       - jsonPath: $.staff.additionalDetails
+       - jsonPath: $.staff.*.additionalDetails
          type: JSON
          dbType: JSONB
 
-       - jsonPath: $.staff.auditDetails.createdBy
+       - jsonPath: $.staff.*.auditDetails.createdBy
 
-       - jsonPath: $.staff.auditDetails.lastModifiedBy
+       - jsonPath: $.staff.*.auditDetails.lastModifiedBy
 
-       - jsonPath: $.staff.auditDetails.createdTime
+       - jsonPath: $.staff.*.auditDetails.createdTime
 
-       - jsonPath: $.staff.auditDetails.lastModifiedTime
+       - jsonPath: $.staff.*.auditDetails.lastModifiedTime
 
  - version: 1.0
    name: Attendance Log
@@ -293,23 +293,23 @@ serviceMaps:
    isTransaction: true
    queryMaps:  
       - query: UPDATE eg_wms_attendance_staff set individual_id=?, register_id=?, enrollment_date=?, deenrollment_date=?,additionaldetails=?,lastmodifiedby=?, lastmodifiedtime=? where id=?;
-        basePath: staff
+        basePath: staff.*
         jsonMaps:   
-         - jsonPath: $.staff.userId
+         - jsonPath: $.staff.*.userId
 
-         - jsonPath: $.staff.registerId
+         - jsonPath: $.staff.*.registerId
 
-         - jsonPath: $.staff.enrollmentDate
+         - jsonPath: $.staff.*.enrollmentDate
 
-         - jsonPath: $.staff.denrollmentDate
+         - jsonPath: $.staff.*.denrollmentDate
 
-         - jsonPath: $.staff.additionalDetails
+         - jsonPath: $.staff.*.additionalDetails
            type: JSON
            dbType: JSONB
 
-         - jsonPath: $.staff.auditDetails.lastModifiedBy
+         - jsonPath: $.staff.*.auditDetails.lastModifiedBy
  
-         - jsonPath: $.staff.auditDetails.lastModifiedTime
+         - jsonPath: $.staff.*.auditDetails.lastModifiedTime
 
-         - jsonPath: $.staff.id
+         - jsonPath: $.staff.*.id
          
