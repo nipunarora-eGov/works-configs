@@ -2,312 +2,312 @@ serviceMaps:
  serviceName: project-management-system
  mappings:
  - version: 1.0
-   name: project
+   name: Projects
    description: Persists project details in eg_pms_project table
    fromTopic: save-project
    isTransaction: true
    queryMaps:
     - query: INSERT INTO eg_pms_project(id,tenant_id,project_number,name,project_type,project_subtype,department,description,reference_id,start_date,end_date,is_task_enabled,parent,additional_details,is_deleted,row_version,created_by,last_modified_by,created_time,last_modified_time) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
-      basePath: project.*
+      basePath: Projects.*
       jsonMaps:
-       - jsonPath: $.project.*.id
+       - jsonPath: $.Projects.*.id
 
-       - jsonPath: $.project.*.tenantId
+       - jsonPath: $.Projects.*.tenantId
 
-       - jsonPath: $.project.*.projectNumber
+       - jsonPath: $.Projects.*.projectNumber
 
-       - jsonPath: $.project.*.name
+       - jsonPath: $.Projects.*.name
 
-       - jsonPath: $.project.*.projectType
+       - jsonPath: $.Projects.*.projectType
 
-       - jsonPath: $.project.*.projectSubType
+       - jsonPath: $.Projects.*.projectSubType
 
-       - jsonPath: $.project.*.department
+       - jsonPath: $.Projects.*.department
 
-       - jsonPath: $.project.*.description
+       - jsonPath: $.Projects.*.description
 
-       - jsonPath: $.project.*.referenceID
+       - jsonPath: $.Projects.*.referenceID
 
-       - jsonPath: $.project.*.startDate
+       - jsonPath: $.Projects.*.startDate
 
-       - jsonPath: $.project.*.endDate
+       - jsonPath: $.Projects.*.endDate
 
-       - jsonPath: $.project.*.isTaskEnabled
+       - jsonPath: $.Projects.*.isTaskEnabled
 
-       - jsonPath: $.project.*.parent
+       - jsonPath: $.Projects.*.parent
 
-       - jsonPath: $.project.*.additionalDetails
+       - jsonPath: $.Projects.*.additionalDetails
          type: JSON
          dbType: JSONB
 
-       - jsonPath: $.project.*.isDeleted
+       - jsonPath: $.Projects.*.isDeleted
 
-       - jsonPath: $.project.*.rowVersion
+       - jsonPath: $.Projects.*.rowVersion
 
-       - jsonPath: $.project.*.auditDetails.createdBy
+       - jsonPath: $.Projects.*.auditDetails.createdBy
 
-       - jsonPath: $.project.*.auditDetails.lastModifiedBy
+       - jsonPath: $.Projects.*.auditDetails.lastModifiedBy
 
-       - jsonPath: $.project.*.auditDetails.createdTime
+       - jsonPath: $.Projects.*.auditDetails.createdTime
 
-       - jsonPath: $.project.*.auditDetails.lastModifiedTime
+       - jsonPath: $.Projects.*.auditDetails.lastModifiedTime
 
 
     - query: INSERT INTO eg_pms_address(id,tenant_id,project_id,door_no,latitude,longitude,location_accuracy,type,address_line1,address_line2,landmark,city,pin_code,building_name,street,locality,created_by,last_modified_by,created_time,last_modified_time) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
-      basePath: project.*.address
+      basePath: Projects.*.address
       jsonMaps:
-       - jsonPath: $.project.*.address.id
+       - jsonPath: $.Projects.*.address.id
 
-       - jsonPath: $.project.*.address.tenantId
+       - jsonPath: $.Projects.*.address.tenantId
 
-       - jsonPath: $.project.*.id
+       - jsonPath: $.Projects.*.id
 
-       - jsonPath: $.project.*.address.doorNo
+       - jsonPath: $.Projects.*.address.doorNo
 
-       - jsonPath: $.project.*.address.latitude
+       - jsonPath: $.Projects.*.address.latitude
 
-       - jsonPath: $.project.*.address.longitude
+       - jsonPath: $.Projects.*.address.longitude
 
-       - jsonPath: $.project.*.address.locationAccuracy
+       - jsonPath: $.Projects.*.address.locationAccuracy
 
-       - jsonPath: $.project.*.address.type
+       - jsonPath: $.Projects.*.address.type
 
-       - jsonPath: $.project.*.address.addressLine1
+       - jsonPath: $.Projects.*.address.addressLine1
 
-       - jsonPath: $.project.*.address.addressLine2
+       - jsonPath: $.Projects.*.address.addressLine2
 
-       - jsonPath: $.project.*.address.landmark
+       - jsonPath: $.Projects.*.address.landmark
 
-       - jsonPath: $.project.*.address.city
+       - jsonPath: $.Projects.*.address.city
 
-       - jsonPath: $.project.*.address.pincode
+       - jsonPath: $.Projects.*.address.pincode
 
-       - jsonPath: $.project.*.address.buildingName
+       - jsonPath: $.Projects.*.address.buildingName
 
-       - jsonPath: $.project.*.address.street
+       - jsonPath: $.Projects.*.address.street
 
-       - jsonPath: $.project.*.address.locality
+       - jsonPath: $.Projects.*.address.locality
 
-       - jsonPath: $.project.*.address.auditDetails.createdBy
+       - jsonPath: $.Projects.*.address.auditDetails.createdBy
 
-       - jsonPath: $.project.*.address.auditDetails.lastModifiedBy
+       - jsonPath: $.Projects.*.address.auditDetails.lastModifiedBy
 
-       - jsonPath: $.project.*.address.auditDetails.createdTime
+       - jsonPath: $.Projects.*.address.auditDetails.createdTime
 
-       - jsonPath: $.project.*.address.auditDetails.lastModifiedTime
+       - jsonPath: $.Projects.*.address.auditDetails.lastModifiedTime
 
 
     - query: INSERT INTO eg_pms_target(id,project_id,beneficiary_type,total_no,target_no,is_deleted,created_by,last_modified_by,created_time,last_modified_time) VALUES (?,?,?,?,?,?,?,?,?,?);
-      basePath: project.*.targets.*
+      basePath: Projects.*.targets.*
       jsonMaps:
-       - jsonPath: $.project.*.targets.*.id
+       - jsonPath: $.Projects.*.targets.*.id
 
-       - jsonPath: $.project[*][?({id} in @.targets[*].id)].id
+       - jsonPath: $.Projects[*][?({id} in @.targets[*].id)].id
 
-       - jsonPath: $.project.*.targets.*.beneficiaryType
+       - jsonPath: $.Projects.*.targets.*.beneficiaryType
 
-       - jsonPath: $.project.*.targets.*.totalNo
+       - jsonPath: $.Projects.*.targets.*.totalNo
 
-       - jsonPath: $.project.*.targets.*.targetNo
+       - jsonPath: $.Projects.*.targets.*.targetNo
 
-       - jsonPath: $.project.*.targets.*.isDeleted
+       - jsonPath: $.Projects.*.targets.*.isDeleted
 
-       - jsonPath: $.project.*.targets.*.auditDetails.createdBy
+       - jsonPath: $.Projects.*.targets.*.auditDetails.createdBy
 
-       - jsonPath: $.project.*.targets.*.auditDetails.lastModifiedBy
+       - jsonPath: $.Projects.*.targets.*.auditDetails.lastModifiedBy
 
-       - jsonPath: $.project.*.targets.*.auditDetails.createdTime
+       - jsonPath: $.Projects.*.targets.*.auditDetails.createdTime
 
-       - jsonPath: $.project.*.targets.*.auditDetails.lastModifiedTime
+       - jsonPath: $.Projects.*.targets.*.auditDetails.lastModifiedTime
 
 
     - query: INSERT INTO eg_pms_document(id,project_id,document_type,filestore_id,document_uid,additional_details,status,created_by,last_modified_by,created_time,last_modified_time) VALUES (?,?,?,?,?,?,?,?,?,?,?);
-      basePath: project.*.documents.*
+      basePath: Projects.*.documents.*
       jsonMaps:
-       - jsonPath: $.project.*.documents.*.id
+       - jsonPath: $.Projects.*.documents.*.id
 
-       - jsonPath: $.project[*][?({id} in @.documents[*].id)].id
+       - jsonPath: $.Projects[*][?({id} in @.documents[*].id)].id
 
-       - jsonPath: $.project.*.documents.*.documentType
+       - jsonPath: $.Projects.*.documents.*.documentType
 
-       - jsonPath: $.project.*.documents.*.fileStore
+       - jsonPath: $.Projects.*.documents.*.fileStore
 
-       - jsonPath: $.project.*.documents.*.documentUid
+       - jsonPath: $.Projects.*.documents.*.documentUid
 
-       - jsonPath: $.project.*.additionalDetails
+       - jsonPath: $.Projects.*.additionalDetails
          type: JSON
          dbType: JSONB
 
-       - jsonPath: $.project.*.documents.*.status
+       - jsonPath: $.Projects.*.documents.*.status
 
-       - jsonPath: $.project.*.documents.*.auditDetails.createdBy
+       - jsonPath: $.Projects.*.documents.*.auditDetails.createdBy
 
-       - jsonPath: $.project.*.documents.*.auditDetails.lastModifiedBy
+       - jsonPath: $.Projects.*.documents.*.auditDetails.lastModifiedBy
 
-       - jsonPath: $.project.*.documents.*.auditDetails.createdTime
+       - jsonPath: $.Projects.*.documents.*.auditDetails.createdTime
 
-       - jsonPath: $.project.*.documents.*.auditDetails.lastModifiedTime
+       - jsonPath: $.Projects.*.documents.*.auditDetails.lastModifiedTime
 
 
  - version: 1.0
-   name: project
+   name: Projects
    description: Updates project details in eg_pms_project table
    fromTopic: update-project
    isTransaction: true
    queryMaps:
     - query: UPDATE eg_pms_project SET name = ?, project_type = ?, project_subtype = ?, department = ?, description = ?, reference_id = ?, start_date = ?, end_date = ?, is_task_enabled = ?, parent = ?, additional_details = ?, is_deleted = ?, row_version = ?, last_modified_by = ?, last_modified_time = ? WHERE id = ?;
-      basePath: project.*
+      basePath: Projects.*
       jsonMaps:
 
-       - jsonPath: $.project.*.name
+       - jsonPath: $.Projects.*.name
 
-       - jsonPath: $.project.*.projectType
+       - jsonPath: $.Projects.*.projectType
 
-       - jsonPath: $.project.*.projectSubType
+       - jsonPath: $.Projects.*.projectSubType
 
-       - jsonPath: $.project.*.department
+       - jsonPath: $.Projects.*.department
 
-       - jsonPath: $.project.*.description
+       - jsonPath: $.Projects.*.description
 
-       - jsonPath: $.project.*.referenceID
+       - jsonPath: $.Projects.*.referenceID
 
-       - jsonPath: $.project.*.startDate
+       - jsonPath: $.Projects.*.startDate
 
-       - jsonPath: $.project.*.endDate
+       - jsonPath: $.Projects.*.endDate
 
-       - jsonPath: $.project.*.isTaskEnabled
+       - jsonPath: $.Projects.*.isTaskEnabled
 
-       - jsonPath: $.project.*.parent
+       - jsonPath: $.Projects.*.parent
 
-       - jsonPath: $.project.*.additionalDetails
+       - jsonPath: $.Projects.*.additionalDetails
          type: JSON
          dbType: JSONB
 
-       - jsonPath: $.project.*.isDeleted
+       - jsonPath: $.Projects.*.isDeleted
 
-       - jsonPath: $.project.*.rowVersion
+       - jsonPath: $.Projects.*.rowVersion
 
-       - jsonPath: $.project.*.auditDetails.lastModifiedBy
+       - jsonPath: $.Projects.*.auditDetails.lastModifiedBy
 
-       - jsonPath: $.project.*.auditDetails.lastModifiedTime
+       - jsonPath: $.Projects.*.auditDetails.lastModifiedTime
 
-       - jsonPath: $.project.*.id
+       - jsonPath: $.Projects.*.id
 
 
     - query: UPDATE eg_pms_address SET door_no = ?, latitude=?, longitude=?, location_accuracy=?, type=?, address_line1=?, address_line2=?, landmark=?, city=?, pin_code=?, building_name=?, street=?, locality=?, last_modified_by=?, last_modified_time=? WHERE id=?;
-      basePath: project.*.address
+      basePath: Projects.*.address
       jsonMaps:
 
-       - jsonPath: $.project.*.address.doorNo
+       - jsonPath: $.Projects.*.address.doorNo
 
-       - jsonPath: $.project.*.address.latitude
+       - jsonPath: $.Projects.*.address.latitude
 
-       - jsonPath: $.project.*.address.longitude
+       - jsonPath: $.Projects.*.address.longitude
 
-       - jsonPath: $.project.*.address.locationAccuracy
+       - jsonPath: $.Projects.*.address.locationAccuracy
 
-       - jsonPath: $.project.*.address.type
+       - jsonPath: $.Projects.*.address.type
 
-       - jsonPath: $.project.*.address.addressLine1
+       - jsonPath: $.Projects.*.address.addressLine1
 
-       - jsonPath: $.project.*.address.addressLine2
+       - jsonPath: $.Projects.*.address.addressLine2
 
-       - jsonPath: $.project.*.address.landmark
+       - jsonPath: $.Projects.*.address.landmark
 
-       - jsonPath: $.project.*.address.city
+       - jsonPath: $.Projects.*.address.city
 
-       - jsonPath: $.project.*.address.pincode
+       - jsonPath: $.Projects.*.address.pincode
 
-       - jsonPath: $.project.*.address.buildingName
+       - jsonPath: $.Projects.*.address.buildingName
 
-       - jsonPath: $.project.*.address.street
+       - jsonPath: $.Projects.*.address.street
 
-       - jsonPath: $.project.*.address.locality
+       - jsonPath: $.Projects.*.address.locality
 
-       - jsonPath: $.project.*.address.auditDetails.lastModifiedBy
+       - jsonPath: $.Projects.*.address.auditDetails.lastModifiedBy
 
-       - jsonPath: $.project.*.address.auditDetails.lastModifiedTime
+       - jsonPath: $.Projects.*.address.auditDetails.lastModifiedTime
 
-       - jsonPath: $.project.*.address.id
+       - jsonPath: $.Projects.*.address.id
 
 
     - query: INSERT INTO eg_pms_target(id,project_id,beneficiary_type,total_no,target_no,is_deleted,created_by,last_modified_by,created_time,last_modified_time) VALUES (?,?,?,?,?,?,?,?,?,?) ON CONFLICT (id) DO UPDATE SET beneficiary_type = ?, total_no =?, target_no=?, is_deleted=?, last_modified_by=?, last_modified_time=?;
-      basePath: project.*.targets.*
+      basePath: Projects.*.targets.*
       jsonMaps:
 
-       - jsonPath: $.project.*.targets.*.id
+       - jsonPath: $.Projects.*.targets.*.id
 
-       - jsonPath: $.project[*][?({id} in @.targets[*].id)].id
+       - jsonPath: $.Projects[*][?({id} in @.targets[*].id)].id
 
-       - jsonPath: $.project.*.targets.*.beneficiaryType
+       - jsonPath: $.Projects.*.targets.*.beneficiaryType
 
-       - jsonPath: $.project.*.targets.*.totalNo
+       - jsonPath: $.Projects.*.targets.*.totalNo
 
-       - jsonPath: $.project.*.targets.*.targetNo
+       - jsonPath: $.Projects.*.targets.*.targetNo
 
-       - jsonPath: $.project.*.targets.*.isDeleted
+       - jsonPath: $.Projects.*.targets.*.isDeleted
 
-       - jsonPath: $.project.*.targets.*.auditDetails.createdBy
+       - jsonPath: $.Projects.*.targets.*.auditDetails.createdBy
 
-       - jsonPath: $.project.*.targets.*.auditDetails.lastModifiedBy
+       - jsonPath: $.Projects.*.targets.*.auditDetails.lastModifiedBy
 
-       - jsonPath: $.project.*.targets.*.auditDetails.createdTime
+       - jsonPath: $.Projects.*.targets.*.auditDetails.createdTime
 
-       - jsonPath: $.project.*.targets.*.auditDetails.lastModifiedTime
+       - jsonPath: $.Projects.*.targets.*.auditDetails.lastModifiedTime
 
-       - jsonPath: $.project.*.targets.*.beneficiaryType
+       - jsonPath: $.Projects.*.targets.*.beneficiaryType
 
-       - jsonPath: $.project.*.targets.*.totalNo
+       - jsonPath: $.Projects.*.targets.*.totalNo
 
-       - jsonPath: $.project.*.targets.*.targetNo
+       - jsonPath: $.Projects.*.targets.*.targetNo
 
-       - jsonPath: $.project.*.targets.*.isDeleted
+       - jsonPath: $.Projects.*.targets.*.isDeleted
 
-       - jsonPath: $.project.*.targets.*.auditDetails.lastModifiedBy
+       - jsonPath: $.Projects.*.targets.*.auditDetails.lastModifiedBy
 
-       - jsonPath: $.project.*.targets.*.auditDetails.lastModifiedTime
+       - jsonPath: $.Projects.*.targets.*.auditDetails.lastModifiedTime
 
 
     - query: INSERT INTO eg_pms_document(id,project_id,document_type,filestore_id,document_uid,additional_details,status,created_by,last_modified_by,created_time,last_modified_time) VALUES (?,?,?,?,?,?,?,?,?,?,?) ON CONFLICT (id) DO UPDATE SET document_type=?, filestore_id=?, document_uid=?, additional_details=?, status=?, last_modified_by=?, last_modified_time=?;
-      basePath: project.*.documents.*
+      basePath: Projects.*.documents.*
       jsonMaps:
 
-       - jsonPath: $.project.*.documents.*.id
+       - jsonPath: $.Projects.*.documents.*.id
 
-       - jsonPath: $.project[*][?({id} in @.documents[*].id)].id
+       - jsonPath: $.Projects[*][?({id} in @.documents[*].id)].id
 
-       - jsonPath: $.project.*.documents.*.documentType
+       - jsonPath: $.Projects.*.documents.*.documentType
 
-       - jsonPath: $.project.*.documents.*.fileStore
+       - jsonPath: $.Projects.*.documents.*.fileStore
 
-       - jsonPath: $.project.*.documents.*.documentUid
+       - jsonPath: $.Projects.*.documents.*.documentUid
 
-       - jsonPath: $.project.*.additionalDetails
+       - jsonPath: $.Projects.*.additionalDetails
          type: JSON
          dbType: JSONB
 
-       - jsonPath: $.project.*.documents.*.status
+       - jsonPath: $.Projects.*.documents.*.status
 
-       - jsonPath: $.project.*.documents.*.auditDetails.createdBy
+       - jsonPath: $.Projects.*.documents.*.auditDetails.createdBy
 
-       - jsonPath: $.project.*.documents.*.auditDetails.lastModifiedBy
+       - jsonPath: $.Projects.*.documents.*.auditDetails.lastModifiedBy
 
-       - jsonPath: $.project.*.documents.*.auditDetails.createdTime
+       - jsonPath: $.Projects.*.documents.*.auditDetails.createdTime
 
-       - jsonPath: $.project.*.documents.*.auditDetails.lastModifiedTime
+       - jsonPath: $.Projects.*.documents.*.auditDetails.lastModifiedTime
 
-       - jsonPath: $.project.*.documents.*.documentType
+       - jsonPath: $.Projects.*.documents.*.documentType
 
-       - jsonPath: $.project.*.documents.*.fileStore
+       - jsonPath: $.Projects.*.documents.*.fileStore
 
-       - jsonPath: $.project.*.documents.*.documentUid
+       - jsonPath: $.Projects.*.documents.*.documentUid
 
-       - jsonPath: $.project.*.additionalDetails
+       - jsonPath: $.Projects.*.additionalDetails
          type: JSON
          dbType: JSONB
 
-       - jsonPath: $.project.*.documents.*.status
+       - jsonPath: $.Projects.*.documents.*.status
 
-       - jsonPath: $.project.*.documents.*.auditDetails.lastModifiedBy
+       - jsonPath: $.Projects.*.documents.*.auditDetails.lastModifiedBy
 
-       - jsonPath: $.project.*.documents.*.auditDetails.lastModifiedTime
+       - jsonPath: $.Projects.*.documents.*.auditDetails.lastModifiedTime
