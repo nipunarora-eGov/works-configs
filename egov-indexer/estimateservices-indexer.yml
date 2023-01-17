@@ -12,7 +12,7 @@ ServiceMaps:
         timeStampField: $.auditDetails.createdTime
         isBulk: false
         customJsonMapping:
-          indexMapping: { "Data":{"id":"","tenantId":"","estimateNumber":"","projectId":"","proposalDate":"","status":"","wfStatus":"","name":"","referenceNumber":"","description":"","executingDepartment":"","address":{},"totalEstimateAmount":"","estimateDetails":[],"@timestamp":"timestamp","auditDetails":{},"additionalDetails":{},"currentProcessInstance":{}, "history":{}}}
+          indexMapping: { "Data":{"id":"","tenantId":"","estimateNumber":"","projectId":"","proposalDate":"","status":"","wfStatus":"","name":"","referenceNumber":"","description":"","executingDepartment":"","address":{},"estimateDetails":[],"@timestamp":"timestamp","auditDetails":{},"additionalDetails":{},"currentProcessInstance":{}, "history":{}}}
           fieldMapping:
           - inJsonPath: $.id
             outJsonPath: $.Data.id
@@ -37,9 +37,7 @@ ServiceMaps:
           - inJsonPath: $.executingDepartment
             outJsonPath: $.Data.executingDepartment
           - inJsonPath: $.address
-            outJsonPath: $.Data.address      
-          - inJsonPath: $.totalEstimateAmount
-            outJsonPath: $.Data.totalEstimateAmount        
+            outJsonPath: $.Data.address       
           - inJsonPath: $.estimateDetails
             outJsonPath: $.Data.estimateDetails
           - inJsonPath: $.auditDetails
@@ -69,7 +67,7 @@ ServiceMaps:
         jsonPath: $.estimates
         timeStampField: $.auditDetails.createdTime
         customJsonMapping:
-          indexMapping: { "Data":{"id":"","tenantId":"","estimateNumber":"","projectId":"","proposalDate":"","status":"","wfStatus":"","name":"","referenceNumber":"","description":"","executingDepartment":"","address":{},"totalEstimateAmount":"","estimateDetails":[],"@timestamp":"timestamp","auditDetails":{},"additionalDetails":{},"currentProcessInstance":{}, "history":{}}}
+          indexMapping: { "Data":{"id":"","tenantId":"","estimateNumber":"","projectId":"","proposalDate":"","status":"","wfStatus":"","name":"","referenceNumber":"","description":"","executingDepartment":"","address":{},"estimateDetails":[],"@timestamp":"timestamp","auditDetails":{},"additionalDetails":{},"currentProcessInstance":{}, "history":{}}}
           fieldMapping:
           - inJsonPath: $.id
             outJsonPath: $.Data.id
@@ -94,9 +92,7 @@ ServiceMaps:
           - inJsonPath: $.executingDepartment
             outJsonPath: $.Data.executingDepartment
           - inJsonPath: $.address
-            outJsonPath: $.Data.address
-          - inJsonPath: $.totalEstimateAmount
-            outJsonPath: $.Data.totalEstimateAmount    
+            outJsonPath: $.Data.address    
           - inJsonPath: $.estimateDetails
             outJsonPath: $.Data.estimateDetails
           - inJsonPath: $.auditDetails
@@ -127,7 +123,7 @@ ServiceMaps:
         jsonPath: $.estimates.*
         timeStampField: $.auditDetails.createdTime
         customJsonMapping:
-          indexMapping: { "Data":{"id":"","tenantId":"","estimateNumber":"","projectId":"","proposalDate":"","status":"","wfStatus":"","name":"","referenceNumber":"","description":"","executingDepartment":"","address":{},"totalEstimateAmount":"","estimateDetails":[],"@timestamp":"timestamp","auditDetails":{},"additionalDetails":{},"currentProcessInstance":{}, "history":{}}}
+          indexMapping: { "Data":{"id":"","tenantId":"","estimateNumber":"","projectId":"","proposalDate":"","status":"","wfStatus":"","name":"","referenceNumber":"","description":"","executingDepartment":"","address":{},"estimateDetails":[],"@timestamp":"timestamp","auditDetails":{},"additionalDetails":{},"currentProcessInstance":{}, "history":{}}}
           fieldMapping:
           - inJsonPath: $.id
             outJsonPath: $.Data.id
@@ -153,8 +149,6 @@ ServiceMaps:
             outJsonPath: $.Data.executingDepartment
           - inJsonPath: $.address
             outJsonPath: $.Data.address
-          - inJsonPath: $.totalEstimateAmount
-            outJsonPath: $.Data.totalEstimateAmount
           - inJsonPath: $.estimateDetails
             outJsonPath: $.Data.estimateDetails
           - inJsonPath: $.auditDetails
