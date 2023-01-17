@@ -12,54 +12,34 @@ ServiceMaps:
         timeStampField: $.auditDetails.createdTime
         isBulk: false
         customJsonMapping:
-          indexMapping: { "Data":{"id":"","tenantId":"","estimateNumber":"","proposalDate":"","status":"","estimateStatus":"","subject":"","requirementNumber":"","description":"","department":"","location":"","workCategory":"","beneficiaryType":"","natureOfWork":"","typeOfWork":"","subTypeOfWork":"","entrustmentMode":"","fund":"","function":"","budgetHead":"","scheme":"","subScheme":"","totalAmount":"","estimateDetails":[],"@timestamp":"timestamp","auditDetails":{},"additionalDetails":{},"currentProcessInstance":{}, "history":{}}}
+          indexMapping: { "Data":{"id":"","tenantId":"","estimateNumber":"","projectId":"","proposalDate":"","status":"","wfStatus":"","name":"","referenceNumber":"","description":"","executingDepartment":"","address":{},"totalEstimateAmount":"","estimateDetails":[],"@timestamp":"timestamp","auditDetails":{},"additionalDetails":{},"currentProcessInstance":{}, "history":{}}}
           fieldMapping:
           - inJsonPath: $.id
             outJsonPath: $.Data.id
           - inJsonPath: $.tenantId
             outJsonPath: $.Data.tenantId
           - inJsonPath: $.estimateNumber
-            outJsonPath: $.Data.estimateNumber
+            outJsonPath: $.Data.estimateNumber  
+          - inJsonPath: $.projectId
+            outJsonPath: $.Data.projectId
           - inJsonPath: $.proposalDate
             outJsonPath: $.Data.proposalDate
           - inJsonPath: $.status
             outJsonPath: $.Data.status
-          - inJsonPath: $.estimateStatus
-            outJsonPath: $.Data.estimateStatus
-          - inJsonPath: $.subject
-            outJsonPath: $.Data.subject
-          - inJsonPath: $.requirementNumber
-            outJsonPath: $.Data.requirementNumber
+          - inJsonPath: $.wfStatus
+            outJsonPath: $.Data.wfStatus
+          - inJsonPath: $.name
+            outJsonPath: $.Data.name
+          - inJsonPath: $.referenceNumber
+            outJsonPath: $.Data.referenceNumber
           - inJsonPath: $.description
             outJsonPath: $.Data.description
-          - inJsonPath: $.department
-            outJsonPath: $.Data.department
-          - inJsonPath: $.location
-            outJsonPath: $.Data.location
-          - inJsonPath: $.workCategory
-            outJsonPath: $.Data.workCategory
-          - inJsonPath: $.beneficiaryType
-            outJsonPath: $.Data.beneficiaryType
-          - inJsonPath: $.natureOfWork
-            outJsonPath: $.Data.natureOfWork
-          - inJsonPath: $.typeOfWork
-            outJsonPath: $.Data.typeOfWork
-          - inJsonPath: $.subTypeOfWork
-            outJsonPath: $.Data.subTypeOfWork
-          - inJsonPath: $.entrustmentMode
-            outJsonPath: $.Data.entrustmentMode
-          - inJsonPath: $.fund
-            outJsonPath: $.Data.fund
-          - inJsonPath: $.function
-            outJsonPath: $.Data.function
-          - inJsonPath: $.budgetHead
-            outJsonPath: $.Data.budgetHead
-          - inJsonPath: $.scheme
-            outJsonPath: $.Data.scheme
-          - inJsonPath: $.subScheme
-            outJsonPath: $.Data.subScheme
-          - inJsonPath: $.totalAmount
-            outJsonPath: $.Data.totalAmount
+          - inJsonPath: $.executingDepartment
+            outJsonPath: $.Data.executingDepartment
+          - inJsonPath: $.address
+            outJsonPath: $.Data.address      
+          - inJsonPath: $.totalEstimateAmount
+            outJsonPath: $.Data.totalEstimateAmount        
           - inJsonPath: $.estimateDetails
             outJsonPath: $.Data.estimateDetails
           - inJsonPath: $.auditDetails
@@ -89,54 +69,34 @@ ServiceMaps:
         jsonPath: $.estimates
         timeStampField: $.auditDetails.createdTime
         customJsonMapping:
-          indexMapping: { "Data":{"id":"","tenantId":"","estimateNumber":"","proposalDate":"","status":"","estimateStatus":"","subject":"","requirementNumber":"","description":"","department":"","location":"","workCategory":"","beneficiaryType":"","natureOfWork":"","typeOfWork":"","subTypeOfWork":"","entrustmentMode":"","fund":"","function":"","budgetHead":"","scheme":"","subScheme":"","totalAmount":"","estimateDetails":[],"@timestamp":"timestamp","auditDetails":{},"additionalDetails":{},"currentProcessInstance":{}, "history":{}}}
+          indexMapping: { "Data":{"id":"","tenantId":"","estimateNumber":"","projectId":"","proposalDate":"","status":"","wfStatus":"","name":"","referenceNumber":"","description":"","executingDepartment":"","address":{},"totalEstimateAmount":"","estimateDetails":[],"@timestamp":"timestamp","auditDetails":{},"additionalDetails":{},"currentProcessInstance":{}, "history":{}}}
           fieldMapping:
           - inJsonPath: $.id
             outJsonPath: $.Data.id
           - inJsonPath: $.tenantId
             outJsonPath: $.Data.tenantId
           - inJsonPath: $.estimateNumber
-            outJsonPath: $.Data.estimateNumber
+            outJsonPath: $.Data.estimateNumber 
+          - inJsonPath: $.projectId
+            outJsonPath: $.Data.projectId
           - inJsonPath: $.proposalDate
             outJsonPath: $.Data.proposalDate
           - inJsonPath: $.status
             outJsonPath: $.Data.status
-          - inJsonPath: $.estimateStatus
-            outJsonPath: $.Data.estimateStatus
-          - inJsonPath: $.subject
-            outJsonPath: $.Data.subject
-          - inJsonPath: $.requirementNumber
-            outJsonPath: $.Data.requirementNumber
+          - inJsonPath: $.wfStatus
+            outJsonPath: $.Data.wfStatus
+          - inJsonPath: $.name
+            outJsonPath: $.Data.name
+          - inJsonPath: $.referenceNumber
+            outJsonPath: $.Data.referenceNumber
           - inJsonPath: $.description
             outJsonPath: $.Data.description
-          - inJsonPath: $.department
-            outJsonPath: $.Data.department
-          - inJsonPath: $.location
-            outJsonPath: $.Data.location
-          - inJsonPath: $.workCategory
-            outJsonPath: $.Data.workCategory
-          - inJsonPath: $.beneficiaryType
-            outJsonPath: $.Data.beneficiaryType
-          - inJsonPath: $.natureOfWork
-            outJsonPath: $.Data.natureOfWork
-          - inJsonPath: $.typeOfWork
-            outJsonPath: $.Data.typeOfWork
-          - inJsonPath: $.subTypeOfWork
-            outJsonPath: $.Data.subTypeOfWork
-          - inJsonPath: $.entrustmentMode
-            outJsonPath: $.Data.entrustmentMode
-          - inJsonPath: $.fund
-            outJsonPath: $.Data.fund
-          - inJsonPath: $.function
-            outJsonPath: $.Data.function
-          - inJsonPath: $.budgetHead
-            outJsonPath: $.Data.budgetHead
-          - inJsonPath: $.scheme
-            outJsonPath: $.Data.scheme
-          - inJsonPath: $.subScheme
-            outJsonPath: $.Data.subScheme
-          - inJsonPath: $.totalAmount
-            outJsonPath: $.Data.totalAmount
+          - inJsonPath: $.executingDepartment
+            outJsonPath: $.Data.executingDepartment
+          - inJsonPath: $.address
+            outJsonPath: $.Data.address
+          - inJsonPath: $.totalEstimateAmount
+            outJsonPath: $.Data.totalEstimateAmount    
           - inJsonPath: $.estimateDetails
             outJsonPath: $.Data.estimateDetails
           - inJsonPath: $.auditDetails
@@ -167,7 +127,7 @@ ServiceMaps:
         jsonPath: $.estimates.*
         timeStampField: $.auditDetails.createdTime
         customJsonMapping:
-          indexMapping: { "Data":{"id":"","tenantId":"","estimateNumber":"","proposalDate":"","status":"","estimateStatus":"","subject":"","requirementNumber":"","description":"","department":"","location":"","workCategory":"","beneficiaryType":"","natureOfWork":"","typeOfWork":"","subTypeOfWork":"","entrustmentMode":"","fund":"","function":"","budgetHead":"","scheme":"","subScheme":"","totalAmount":"","estimateDetails":[],"@timestamp":"timestamp","auditDetails":{},"additionalDetails":{},"currentProcessInstance":{}, "history":{}}}
+          indexMapping: { "Data":{"id":"","tenantId":"","estimateNumber":"","projectId":"","proposalDate":"","status":"","wfStatus":"","name":"","referenceNumber":"","description":"","executingDepartment":"","address":{},"totalEstimateAmount":"","estimateDetails":[],"@timestamp":"timestamp","auditDetails":{},"additionalDetails":{},"currentProcessInstance":{}, "history":{}}}
           fieldMapping:
           - inJsonPath: $.id
             outJsonPath: $.Data.id
@@ -175,46 +135,26 @@ ServiceMaps:
             outJsonPath: $.Data.tenantId
           - inJsonPath: $.estimateNumber
             outJsonPath: $.Data.estimateNumber
+          - inJsonPath: $.projectId
+            outJsonPath: $.Data.projectId
           - inJsonPath: $.proposalDate
             outJsonPath: $.Data.proposalDate
           - inJsonPath: $.status
             outJsonPath: $.Data.status
-          - inJsonPath: $.estimateStatus
-            outJsonPath: $.Data.estimateStatus
-          - inJsonPath: $.subject
-            outJsonPath: $.Data.subject
-          - inJsonPath: $.requirementNumber
-            outJsonPath: $.Data.requirementNumber
+          - inJsonPath: $.wfStatus
+            outJsonPath: $.Data.wfStatus
+          - inJsonPath: $.name
+            outJsonPath: $.Data.name
+          - inJsonPath: $.referenceNumber
+            outJsonPath: $.Data.referenceNumber
           - inJsonPath: $.description
             outJsonPath: $.Data.description
-          - inJsonPath: $.department
-            outJsonPath: $.Data.department
-          - inJsonPath: $.location
-            outJsonPath: $.Data.location
-          - inJsonPath: $.workCategory
-            outJsonPath: $.Data.workCategory
-          - inJsonPath: $.beneficiaryType
-            outJsonPath: $.Data.beneficiaryType
-          - inJsonPath: $.natureOfWork
-            outJsonPath: $.Data.natureOfWork
-          - inJsonPath: $.typeOfWork
-            outJsonPath: $.Data.typeOfWork
-          - inJsonPath: $.subTypeOfWork
-            outJsonPath: $.Data.subTypeOfWork
-          - inJsonPath: $.entrustmentMode
-            outJsonPath: $.Data.entrustmentMode
-          - inJsonPath: $.fund
-            outJsonPath: $.Data.fund
-          - inJsonPath: $.function
-            outJsonPath: $.Data.function
-          - inJsonPath: $.budgetHead
-            outJsonPath: $.Data.budgetHead
-          - inJsonPath: $.scheme
-            outJsonPath: $.Data.scheme
-          - inJsonPath: $.subScheme
-            outJsonPath: $.Data.subScheme
-          - inJsonPath: $.totalAmount
-            outJsonPath: $.Data.totalAmount
+          - inJsonPath: $.executingDepartment
+            outJsonPath: $.Data.executingDepartment
+          - inJsonPath: $.address
+            outJsonPath: $.Data.address
+          - inJsonPath: $.totalEstimateAmount
+            outJsonPath: $.Data.totalEstimateAmount
           - inJsonPath: $.estimateDetails
             outJsonPath: $.Data.estimateDetails
           - inJsonPath: $.auditDetails
