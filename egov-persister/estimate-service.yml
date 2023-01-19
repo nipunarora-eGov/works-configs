@@ -115,7 +115,7 @@ serviceMaps:
 
        - jsonPath: $.estimate.estimateDetails.*.amountDetail.*.id
 
-       - jsonPath: $.estimate.estimateDetails.*.amountDetail.*.tenantId
+       - jsonPath: $.estimate.tenantId
 
        - jsonPath: $.estimate.estimateDetails.*.id
 
