@@ -117,7 +117,7 @@ serviceMaps:
 
        - jsonPath: $.estimate.tenantId
 
-       - jsonPath: $.estimate.estimateDetails.*.id
+       - jsonPath: $.estimate.estimateDetails[*][?({id} in @.amountDetail[*].id)].id
 
        - jsonPath: $.estimate.estimateDetails.*.amountDetail.*.type
        
