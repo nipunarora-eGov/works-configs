@@ -7,7 +7,7 @@ serviceMaps:
    fromTopic: save-estimate
    isTransaction: true
    queryMaps:
-    - query: INSERT INTO eg_wms_estimate(id,tenant_id,estimate_number,project_id,proposal_date,status,wf_status,name,reference_number,description,executing_department,additional_details,created_by,last_modified_by,created_time,last_modified_time) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+    - query: INSERT INTO eg_wms_estimate(id,tenant_id,estimate_number,project_id,proposal_date,status,wf_status,name,reference_number,description,executing_department,additional_details,created_by,last_modified_by,created_time,last_modified_time) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
 
       basePath: estimate
       jsonMaps:
@@ -115,9 +115,9 @@ serviceMaps:
 
        - jsonPath: $.estimate.estimateDetails.*.amountDetail.*.id
 
-       - jsonPath: $.estimate.estimateDetails.*.amountDetail.*.tenantId
+       - jsonPath: $.estimate.tenantId
 
-       - jsonPath: $.estimate.estimateDetails.*.id
+       - jsonPath: $.estimate.estimateDetails[*][?({id} in @.amountDetail[*].id)].id
 
        - jsonPath: $.estimate.estimateDetails.*.amountDetail.*.type
        
