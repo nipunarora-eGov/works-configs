@@ -36,6 +36,33 @@ serviceMaps:
 
        - jsonPath: $.attendanceRegister.*.auditDetails.lastModifiedTime
 
+    - query: INSERT INTO eg_wms_attendance_staff(id,tenantid,individual_id,register_id,enrollment_date,deenrollment_date,additionaldetails,createdby,lastmodifiedby,createdtime,lastmodifiedtime) VALUES (?,?,?,?,?,?,?,?,?,?,?);
+      basePath: attendanceRegister.*.staff.*
+      jsonMaps:
+       - jsonPath: $.staff.*.id
+
+       - jsonPath: $.staff.*.tenantId
+
+       - jsonPath: $.staff.*.userId
+
+       - jsonPath: $.staff.*.registerId
+
+       - jsonPath: $.staff.*.enrollmentDate
+
+       - jsonPath: $.staff.*.denrollmentDate
+
+       - jsonPath: $.staff.*.additionalDetails
+         type: JSON
+         dbType: JSONB
+
+       - jsonPath: $.staff.*.auditDetails.createdBy
+
+       - jsonPath: $.staff.*.auditDetails.lastModifiedBy
+
+       - jsonPath: $.staff.*.auditDetails.createdTime
+
+       - jsonPath: $.staff.*.auditDetails.lastModifiedTime
+
  - version: 1.0
    name: attendee
    description: Persists attendee details in eg_wms_attendance_attendee table
