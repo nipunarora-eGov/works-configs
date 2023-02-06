@@ -2,7 +2,7 @@ ServiceMaps:
  serviceName: estimate-event indexer
  version: 1.0.0
  mappings:
-  - topic: save-estimate
+  - topic: enrich-estimate
     configKey: INDEX
     indexes:
       - name: estimate-inbox
