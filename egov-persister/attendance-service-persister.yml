@@ -35,7 +35,7 @@ serviceMaps:
        - jsonPath: $.attendanceRegister.*.auditDetails.createdTime
 
        - jsonPath: $.attendanceRegister.*.auditDetails.lastModifiedTime
-       		
+
     - query: INSERT INTO eg_wms_attendance_staff(id,tenantid,individual_id,register_id,enrollment_date,deenrollment_date,additionaldetails,createdby,lastmodifiedby,createdtime,lastmodifiedtime) VALUES (?,?,?,?,?,?,?,?,?,?,?);
       basePath: attendanceRegister.*.staff.*
       jsonMaps:
