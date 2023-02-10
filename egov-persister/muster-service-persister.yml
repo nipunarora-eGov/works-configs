@@ -7,7 +7,7 @@ serviceMaps:
       fromTopic: save-musterroll
       isTransaction: true
       queryMaps:
-         - query: INSERT INTO eg_wms_muster_roll(id,tenantid,musterrollnumber,attendanceregisterid,startdate,enddate,musterrollstatus,status,additionaldetails,createdby,lastmodifiedby,createdtime,lastmodifiedtime) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?);
+         - query: INSERT INTO eg_wms_muster_roll(id,tenant_id,musterroll_number,attendance_register_id,start_date,end_date,musterroll_status,status,additionaldetails,createdby,lastmodifiedby,createdtime,lastmodifiedtime) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?);
            basePath: musterRoll
            jsonMaps:
              - jsonPath: $.musterRoll.id
@@ -38,7 +38,7 @@ serviceMaps:
 
              - jsonPath: $.musterRoll.auditDetails.lastModifiedTime
     
-         - query: INSERT INTO eg_wms_attendance_summary(id,individual_id,muster_roll_id,musterrollnumber,total_attendance,additionaldetails,createdby,lastmodifiedby,createdtime,lastmodifiedtime) VALUES(?,?,?,?,?,?,?,?,?,?);
+         - query: INSERT INTO eg_wms_attendance_summary(id,individual_id,muster_roll_id,musterroll_number,actual_total_attendance,additionaldetails,createdby,lastmodifiedby,createdtime,lastmodifiedtime,modified_total_attendance) VALUES(?,?,?,?,?,?,?,?,?,?,?);
            basePath: musterRoll.individualEntries.*
            jsonMaps:
 
@@ -50,7 +50,7 @@ serviceMaps:
 
              - jsonPath: $.musterRoll.musterRollNumber
 
-             - jsonPath: $.musterRoll.individualEntries.*.totalAttendance
+             - jsonPath: $.musterRoll.individualEntries.*.actualTotalAttendance
 
              - jsonPath: $.musterRoll.individualEntries.*.additionalDetails
                type: JSON
@@ -64,7 +64,9 @@ serviceMaps:
 
              - jsonPath: $.musterRoll.individualEntries.*.auditDetails.lastModifiedTime
 
-         - query: INSERT INTO eg_wms_attendance_entries(id,attendance_summary_id,individual_id,musterrollnumber,date_of_attendance,attendance,additionaldetails,createdby,lastmodifiedby,createdtime,lastmodifiedtime) VALUES(?,?,?,?,?,?,?,?,?,?,?);
+             - jsonPath: $.musterRoll.individualEntries.*.modifiedTotalAttendance
+
+         - query: INSERT INTO eg_wms_attendance_entries(id,attendance_summary_id,individual_id,musterroll_number,date_of_attendance,attendance_value,additionaldetails,createdby,lastmodifiedby,createdtime,lastmodifiedtime) VALUES(?,?,?,?,?,?,?,?,?,?,?);
            basePath: musterRoll.individualEntries.*.attendanceEntries.*
            jsonMaps:
 
@@ -97,7 +99,7 @@ serviceMaps:
       fromTopic: update-musterroll
       isTransaction: true
       queryMaps:
-         - query: UPDATE eg_wms_muster_roll SET musterrollstatus=?, status=?, additionaldetails=?, lastmodifiedby=?, lastmodifiedtime=? WHERE id=?;
+         - query: UPDATE eg_wms_muster_roll SET musterroll_status=?, status=?, additionaldetails=?, lastmodifiedby=?, lastmodifiedtime=? WHERE id=?;
            basePath: musterRoll
            jsonMaps:
 
@@ -115,11 +117,13 @@ serviceMaps:
 
              - jsonPath: $.musterRoll.id
 
-         - query: UPDATE eg_wms_attendance_summary SET total_attendance=?, additionaldetails=?, lastmodifiedby=?, lastmodifiedtime=? WHERE id=?;
+         - query: UPDATE eg_wms_attendance_summary SET actual_total_attendance=?, modified_total_attendance=?, additionaldetails=?, lastmodifiedby=?, lastmodifiedtime=? WHERE id=?;
            basePath: musterRoll.individualEntries.*
            jsonMaps:
 
-             - jsonPath: $.musterRoll.individualEntries.*.totalAttendance
+             - jsonPath: $.musterRoll.individualEntries.*.actualTotalAttendance
+
+             - jsonPath: $.musterRoll.individualEntries.*.modifiedTotalAttendance
 
              - jsonPath: $.musterRoll.individualEntries.*.additionalDetails
                type: JSON
@@ -132,7 +136,7 @@ serviceMaps:
              - jsonPath: $.musterRoll.individualEntries.*.id
 
 
-         - query: UPDATE eg_wms_attendance_entries SET attendance=?, additionaldetails=?, lastmodifiedby=?, lastmodifiedtime=? WHERE id=?;
+         - query: UPDATE eg_wms_attendance_entries SET attendance_value=?, additionaldetails=?, lastmodifiedby=?, lastmodifiedtime=? WHERE id=?;
            basePath: musterRoll.individualEntries.*.attendanceEntries.*
            jsonMaps:
 
