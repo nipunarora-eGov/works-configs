@@ -108,7 +108,7 @@ serviceMaps:
       module: MST
       objecIdJsonPath: $.id
       tenantIdJsonPath: $.tenantId
-      transactionCodeJsonPath: $.musterRollNumber
+      transactionCodeJsonPath: $.id
       auditAttributeBasePath: $.musterRoll
       queryMaps:
          - query: UPDATE eg_wms_muster_roll SET musterroll_status=?, status=?, additionaldetails=?, lastmodifiedby=?, lastmodifiedtime=? WHERE id=?;
