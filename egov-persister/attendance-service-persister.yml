@@ -6,9 +6,15 @@ serviceMaps:
    description: Persists attendance details in eg_wms_attendance_register table
    fromTopic: save-attendance
    isTransaction: true
+   isAuditEnabled: true
+   module: ATND
+   objecIdJsonPath: $.id
+   tenantIdJsonPath: $.tenantId
+   transactionCodeJsonPath: $.registerNumber
+   auditAttributeBasePath: $.attendanceRegister.*
    queryMaps:
     - query: INSERT INTO eg_wms_attendance_register(id,tenantid,registernumber,name,startdate,enddate,status,additionaldetails,createdby,lastmodifiedby,createdtime,lastmodifiedtime) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);
-      basePath: attendanceRegister.*
+      basePath: $.attendanceRegister.*
       jsonMaps:
        - jsonPath: $.attendanceRegister.*.id
 
@@ -37,7 +43,7 @@ serviceMaps:
        - jsonPath: $.attendanceRegister.*.auditDetails.lastModifiedTime
 
     - query: INSERT INTO eg_wms_attendance_staff(id,tenantid,individual_id,register_id,enrollment_date,deenrollment_date,additionaldetails,createdby,lastmodifiedby,createdtime,lastmodifiedtime) VALUES (?,?,?,?,?,?,?,?,?,?,?);
-      basePath: attendanceRegister.*.staff.*
+      basePath: $.attendanceRegister.*.staff.*
       jsonMaps:
        - jsonPath: $.staff.*.id
 
@@ -68,9 +74,15 @@ serviceMaps:
    description: Persists attendee details in eg_wms_attendance_attendee table
    fromTopic: save-attendee
    isTransaction: true
+   isAuditEnabled: true
+   module: ATND
+   objecIdJsonPath: $.id
+   tenantIdJsonPath: $.tenantId
+   transactionCodeJsonPath: $.registerId
+   auditAttributeBasePath: $.attendees.*
    queryMaps:
     - query: INSERT INTO eg_wms_attendance_attendee(id,tenantid,individual_id,register_id,enrollment_date,deenrollment_date,additionaldetails,createdby,lastmodifiedby,createdtime,lastmodifiedtime) VALUES (?,?,?,?,?,?,?,?,?,?,?);
-      basePath: attendees.*
+      basePath: $.attendees.*
       jsonMaps:
 
        - jsonPath: $.attendees.*.id
@@ -102,9 +114,15 @@ serviceMaps:
    description: Persists staff registration details in eg_wms_attendance_staff table
    fromTopic: save-staff
    isTransaction: true
+   isAuditEnabled: true
+   module: ATND
+   objecIdJsonPath: $.id
+   tenantIdJsonPath: $.tenantId
+   transactionCodeJsonPath: $.registerId
+   auditAttributeBasePath: $.staff.*
    queryMaps:
     - query: INSERT INTO eg_wms_attendance_staff(id,tenantid,individual_id,register_id,enrollment_date,deenrollment_date,additionaldetails,createdby,lastmodifiedby,createdtime,lastmodifiedtime) VALUES (?,?,?,?,?,?,?,?,?,?,?);
-      basePath: staff.*
+      basePath: $.staff.*
       jsonMaps:
        - jsonPath: $.staff.*.id
 
@@ -135,9 +153,15 @@ serviceMaps:
    description: Persists attendance logs and corresponding documents
    fromTopic: save-attendance-log
    isTransaction: true
+   isAuditEnabled: true
+   module: ATND
+   objecIdJsonPath: $.id
+   tenantIdJsonPath: $.tenantId
+   transactionCodeJsonPath: $.registerId
+   auditAttributeBasePath: $.attendance.*
    queryMaps:
     - query: INSERT INTO eg_wms_attendance_log(id,tenantid,individual_id,register_id,status,time,event_type,additionaldetails,createdby,lastmodifiedby,createdtime,lastmodifiedtime) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);
-      basePath: attendance.*
+      basePath: $.attendance.*
       jsonMaps:
        - jsonPath: $.attendance.*.id
 
@@ -166,7 +190,7 @@ serviceMaps:
        - jsonPath: $.attendance.*.auditDetails.lastModifiedTime
 
     - query: INSERT INTO eg_wms_attendance_document(id,filestore_id,document_type,attendance_log_id,additionaldetails,createdby,lastmodifiedby,createdtime,lastmodifiedtime,tenantid,status) VALUES (?,?,?,?,?,?,?,?,?,?,?);
-      basePath: attendance.*.documentIds.*
+      basePath: $.attendance.*.documentIds.*
       jsonMaps:
        - jsonPath: $.attendance.*.documentIds.*.id
 
@@ -198,9 +222,15 @@ serviceMaps:
    description: Update attendance logs and corresponding documents
    fromTopic: update-attendance-log
    isTransaction: true
+   isAuditEnabled: true
+   module: ATND
+   objecIdJsonPath: $.id
+   tenantIdJsonPath: $.tenantId
+   transactionCodeJsonPath: $.registerId
+   auditAttributeBasePath: $.attendance.*
    queryMaps:
     - query: UPDATE eg_wms_attendance_log set status = ?, time = ? ,event_type =? ,additionaldetails = ?  ,lastmodifiedby = ?  ,lastmodifiedtime = ? where id = ? ;
-      basePath: attendance.*
+      basePath: $.attendance.*
       jsonMaps:
     
        - jsonPath: $.attendance.*.status
@@ -221,7 +251,7 @@ serviceMaps:
 
 
     - query: INSERT INTO eg_wms_attendance_document(id, filestore_id, document_type, attendance_log_id, additionaldetails, createdby, lastmodifiedby, createdtime, lastmodifiedtime, tenantid, status) VALUES (?,?,?,?,?,?,?,?,?,?,?) ON CONFLICT (id) DO UPDATE SET filestore_id = ?, document_type = ? , additionaldetails = ? ,lastmodifiedby = ? ,lastmodifiedtime = ?, status = ?;
-      basePath: attendance.*.documentIds.*
+      basePath: $.attendance.*.documentIds.*
       jsonMaps:
        - jsonPath: $.attendance.*.documentIds.*.id
 
@@ -266,9 +296,15 @@ serviceMaps:
    description: update Attendance
    fromTopic: update-attendance
    isTransaction: true
+   isAuditEnabled: true
+   module: ATND
+   objecIdJsonPath: $.id
+   tenantIdJsonPath: $.tenantId
+   transactionCodeJsonPath: $.registerNumber
+   auditAttributeBasePath: $.attendanceRegister.*
    queryMaps:
       - query: UPDATE eg_wms_attendance_register set name=?, startdate=?, enddate=?, status=?,additionaldetails=?,lastmodifiedby=?, lastmodifiedtime=? where id=?;
-        basePath: attendanceRegister.*
+        basePath: $.attendanceRegister.*
         jsonMaps:           
           - jsonPath: $.attendanceRegister.*.name
 
@@ -292,9 +328,15 @@ serviceMaps:
    description: update Attendee
    fromTopic: update-attendee
    isTransaction: true
+   isAuditEnabled: true
+   module: ATND
+   objecIdJsonPath: $.id
+   tenantIdJsonPath: $.tenantId
+   transactionCodeJsonPath: $.registerId
+   auditAttributeBasePath: $.attendees.*
    queryMaps:  
       - query: UPDATE eg_wms_attendance_attendee set individual_id=?, register_id=?, enrollment_date=?, deenrollment_date=?,additionaldetails=?,lastmodifiedby=?, lastmodifiedtime=? where id=?;
-        basePath: attendees.*
+        basePath: $.attendees.*
         jsonMaps:   
          - jsonPath: $.attendees.*.individualId
 
@@ -318,9 +360,15 @@ serviceMaps:
    description: update staff
    fromTopic: update-staff
    isTransaction: true
+   isAuditEnabled: true
+   module: ATND
+   objecIdJsonPath: $.id
+   tenantIdJsonPath: $.tenantId
+   transactionCodeJsonPath: $.registerId
+   auditAttributeBasePath: $.staff.*
    queryMaps:  
       - query: UPDATE eg_wms_attendance_staff set individual_id=?, register_id=?, enrollment_date=?, deenrollment_date=?,additionaldetails=?,lastmodifiedby=?, lastmodifiedtime=? where id=?;
-        basePath: staff.*
+        basePath: $.staff.*
         jsonMaps:   
          - jsonPath: $.staff.*.userId
 
