@@ -6,9 +6,15 @@ serviceMaps:
    description: Persists project details in eg_pms_project table
    fromTopic: save-project
    isTransaction: true
+   isAuditEnabled: true
+   module: PMS
+   objecIdJsonPath: $.id
+   tenantIdJsonPath: $.tenantId
+   transactionCodeJsonPath: $.projectNumber
+   auditAttributeBasePath: $.Projects.*
    queryMaps:
-    - query: INSERT INTO eg_pms_project(id,tenant_id,project_number,name,project_type,project_subtype,department,description,reference_id,start_date,end_date,is_task_enabled,parent,project_hierarchy,additional_details,is_deleted,row_version,created_by,last_modified_by,created_time,last_modified_time) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
-      basePath: Projects.*
+    - query: INSERT INTO eg_pms_project(id,tenant_id,project_number,name,project_type,project_subtype,department,description,reference_id,start_date,end_date,nature_of_work,is_task_enabled,parent,project_hierarchy,additional_details,is_deleted,row_version,created_by,last_modified_by,created_time,last_modified_time) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+      basePath: $.Projects.*
       jsonMaps:
        - jsonPath: $.Projects.*.id
 
@@ -32,6 +38,8 @@ serviceMaps:
 
        - jsonPath: $.Projects.*.endDate
 
+       - jsonPath: $.Projects.*.natureOfWork
+      
        - jsonPath: $.Projects.*.isTaskEnabled
 
        - jsonPath: $.Projects.*.parent
@@ -55,8 +63,8 @@ serviceMaps:
        - jsonPath: $.Projects.*.auditDetails.lastModifiedTime
 
 
-    - query: INSERT INTO eg_pms_address(id,tenant_id,project_id,door_no,latitude,longitude,location_accuracy,type,address_line1,address_line2,landmark,city,pin_code,building_name,street,locality,created_by,last_modified_by,created_time,last_modified_time) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
-      basePath: Projects.*.address
+    - query: INSERT INTO eg_pms_address(id,tenant_id,project_id,door_no,latitude,longitude,location_accuracy,type,address_line1,address_line2,landmark,city,pin_code,building_name,street,boundary,created_by,last_modified_by,created_time,last_modified_time) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+      basePath: $.Projects.*.address
       jsonMaps:
        - jsonPath: $.Projects.*.address.id
 
@@ -88,7 +96,7 @@ serviceMaps:
 
        - jsonPath: $.Projects.*.address.street
 
-       - jsonPath: $.Projects.*.address.locality
+       - jsonPath: $.Projects.*.address.boundary
 
        - jsonPath: $.Projects.*.address.auditDetails.createdBy
 
@@ -100,7 +108,7 @@ serviceMaps:
 
 
     - query: INSERT INTO eg_pms_target(id,project_id,beneficiary_type,total_no,target_no,is_deleted,created_by,last_modified_by,created_time,last_modified_time) VALUES (?,?,?,?,?,?,?,?,?,?);
-      basePath: Projects.*.targets.*
+      basePath: $.Projects.*.targets.*
       jsonMaps:
        - jsonPath: $.Projects.*.targets.*.id
 
@@ -124,7 +132,7 @@ serviceMaps:
 
 
     - query: INSERT INTO eg_pms_document(id,project_id,document_type,filestore_id,document_uid,additional_details,status,created_by,last_modified_by,created_time,last_modified_time) VALUES (?,?,?,?,?,?,?,?,?,?,?);
-      basePath: Projects.*.documents.*
+      basePath: $.Projects.*.documents.*
       jsonMaps:
        - jsonPath: $.Projects.*.documents.*.id
 
@@ -156,9 +164,15 @@ serviceMaps:
    description: Updates project details in eg_pms_project table
    fromTopic: update-project
    isTransaction: true
+   isAuditEnabled: true
+   module: PMS
+   objecIdJsonPath: $.id
+   tenantIdJsonPath: $.tenantId
+   transactionCodeJsonPath: $.projectNumber
+   auditAttributeBasePath: $.Projects.*
    queryMaps:
-    - query: UPDATE eg_pms_project SET name = ?, project_type = ?, project_subtype = ?, department = ?, description = ?, reference_id = ?, start_date = ?, end_date = ?, is_task_enabled = ?, additional_details = ?, is_deleted = ?, row_version = ?, last_modified_by = ?, last_modified_time = ? WHERE id = ?;
-      basePath: Projects.*
+    - query: UPDATE eg_pms_project SET name = ?, project_type = ?, project_subtype = ?, department = ?, description = ?, reference_id = ?, start_date = ?, end_date = ?, nature_of_work = ?, is_task_enabled = ?, additional_details = ?, is_deleted = ?, row_version = ?, last_modified_by = ?, last_modified_time = ? WHERE id = ?;
+      basePath: $.Projects.*
       jsonMaps:
 
        - jsonPath: $.Projects.*.name
@@ -176,6 +190,8 @@ serviceMaps:
        - jsonPath: $.Projects.*.startDate
 
        - jsonPath: $.Projects.*.endDate
+
+       - jsonPath: $.Projects.*.natureOfWork
 
        - jsonPath: $.Projects.*.isTaskEnabled
 
@@ -195,7 +211,7 @@ serviceMaps:
 
 
     - query: UPDATE eg_pms_address SET door_no = ?, latitude=?, longitude=?, location_accuracy=?, type=?, address_line1=?, address_line2=?, landmark=?, city=?, pin_code=?, building_name=?, street=?, last_modified_by=?, last_modified_time=? WHERE id=?;
-      basePath: Projects.*.address
+      basePath: $.Projects.*.address
       jsonMaps:
 
        - jsonPath: $.Projects.*.address.doorNo
@@ -230,7 +246,7 @@ serviceMaps:
 
 
     - query: INSERT INTO eg_pms_target(id,project_id,beneficiary_type,total_no,target_no,is_deleted,created_by,last_modified_by,created_time,last_modified_time) VALUES (?,?,?,?,?,?,?,?,?,?) ON CONFLICT (id) DO UPDATE SET beneficiary_type = ?, total_no =?, target_no=?, is_deleted=?, last_modified_by=?, last_modified_time=?;
-      basePath: Projects.*.targets.*
+      basePath: $.Projects.*.targets.*
       jsonMaps:
 
        - jsonPath: $.Projects.*.targets.*.id
@@ -267,7 +283,7 @@ serviceMaps:
 
 
     - query: INSERT INTO eg_pms_document(id,project_id,document_type,filestore_id,document_uid,additional_details,status,created_by,last_modified_by,created_time,last_modified_time) VALUES (?,?,?,?,?,?,?,?,?,?,?) ON CONFLICT (id) DO UPDATE SET document_type=?, filestore_id=?, document_uid=?, additional_details=?, status=?, last_modified_by=?, last_modified_time=?;
-      basePath: Projects.*.documents.*
+      basePath: $.Projects.*.documents.*
       jsonMaps:
 
        - jsonPath: $.Projects.*.documents.*.id
