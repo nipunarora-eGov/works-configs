@@ -63,7 +63,7 @@ serviceMaps:
        - jsonPath: $.Projects.*.auditDetails.lastModifiedTime
 
 
-    - query: INSERT INTO eg_pms_address(id,tenant_id,project_id,door_no,latitude,longitude,location_accuracy,type,address_line1,address_line2,landmark,city,pin_code,building_name,street,boundary,created_by,last_modified_by,created_time,last_modified_time) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+    - query: INSERT INTO eg_pms_address(id,tenant_id,project_id,door_no,latitude,longitude,location_accuracy,type,address_line1,address_line2,landmark,city,pin_code,building_name,street,boundary_type,boundary,created_by,last_modified_by,created_time,last_modified_time) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
       basePath: $.Projects.*.address
       jsonMaps:
        - jsonPath: $.Projects.*.address.id
@@ -95,6 +95,8 @@ serviceMaps:
        - jsonPath: $.Projects.*.address.buildingName
 
        - jsonPath: $.Projects.*.address.street
+
+       - jsonPath: $.Projects.*.address.boundaryType
 
        - jsonPath: $.Projects.*.address.boundary
 
@@ -210,7 +212,7 @@ serviceMaps:
        - jsonPath: $.Projects.*.id
 
 
-    - query: UPDATE eg_pms_address SET door_no = ?, latitude=?, longitude=?, location_accuracy=?, type=?, address_line1=?, address_line2=?, landmark=?, city=?, pin_code=?, building_name=?, street=?, last_modified_by=?, last_modified_time=? WHERE id=?;
+    - query: UPDATE eg_pms_address SET door_no = ?, latitude=?, longitude=?, location_accuracy=?, type=?, address_line1=?, address_line2=?, landmark=?, city=?, pin_code=?, building_name=?, street=?, boundary_type=?, boundary=?, last_modified_by=?, last_modified_time=? WHERE id=?;
       basePath: $.Projects.*.address
       jsonMaps:
 
@@ -237,6 +239,10 @@ serviceMaps:
        - jsonPath: $.Projects.*.address.buildingName
 
        - jsonPath: $.Projects.*.address.street
+
+       - jsonPath: $.Projects.*.address.boundaryType
+
+       - jsonPath: $.Projects.*.address.boundary
 
        - jsonPath: $.Projects.*.address.auditDetails.lastModifiedBy
 
