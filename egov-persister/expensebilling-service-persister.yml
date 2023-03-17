@@ -8,66 +8,66 @@ serviceMaps:
    isTransaction: true
    queryMaps:
     - query: INSERT INTO eg_wms_bill_demand (id, tenant_id, bill_number, bill_date, net_amount, gross_amount, head_of_account, ifms_sanction_number, purpose, created_by, last_modified_by, created_time, last_modified_time) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);
-      basePath: $.*
+      basePath: $.BillDemands.*
       jsonMaps:
-       - jsonPath: $.*.id
+       - jsonPath: $.BillDemands.*.id
 
-       - jsonPath: $.*.tenantId
+       - jsonPath: $.BillDemands.*.tenantId
 
-       - jsonPath: $.*.billNumber
+       - jsonPath: $.BillDemands.*.billNumber
 
-       - jsonPath: $.*.billDate
+       - jsonPath: $.BillDemands.*.billDate
 
-       - jsonPath: $.*.netAmount
+       - jsonPath: $.BillDemands.*.netAmount
 
-       - jsonPath: $.*.grossAmount
+       - jsonPath: $.BillDemands.*.grossAmount
 
-       - jsonPath: $.*.headOfAccount
+       - jsonPath: $.BillDemands.*.headOfAccount
 
-       - jsonPath: $.*.ifmsSanctionNumber
+       - jsonPath: $.BillDemands.*.ifmsSanctionNumber
 
-       - jsonPath: $.*.purpose
+       - jsonPath: $.BillDemands.*.purpose
 
-       - jsonPath: $.*.auditDetails.createdBy
+       - jsonPath: $.BillDemands.*.auditDetails.createdBy
 
-       - jsonPath: $.*.auditDetails.lastModifiedBy
+       - jsonPath: $.BillDemands.*.auditDetails.lastModifiedBy
 
-       - jsonPath: $.*.auditDetails.createdTime
+       - jsonPath: $.BillDemands.*.auditDetails.createdTime
 
-       - jsonPath: $.*.auditDetails.lastModifiedTime
+       - jsonPath: $.BillDemands.*.auditDetails.lastModifiedTime
 
     - query: INSERT INTO eg_wms_demand_beneficiaries (id, bill_number, name, account_number, ifsc_code, mobile_number, address, account_type, amount, purpose, status, created_by, last_modified_by, created_time, last_modified_time) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
-      basePath: $.*.beneficiaries.*
+      basePath: $.BillDemands.*.beneficiaries.*
       jsonMaps:
-        - jsonPath: $.*.beneficiaries.*.id
+        - jsonPath: $.BillDemands.*.beneficiaries.*.id
 
-        - jsonPath: $.[*][?({id} in @.beneficiaries[*].id)].billNumber
+        - jsonPath: $.BillDemands[*][?({id} in @.beneficiaries[*].id)].billNumber
 
-        - jsonPath: $.*.beneficiaries.*.name
+        - jsonPath: $.BillDemands.*.beneficiaries.*.name
 
-        - jsonPath: $.*.beneficiaries.*.accountNumber
+        - jsonPath: $.BillDemands.*.beneficiaries.*.accountNumber
 
-        - jsonPath: $.*.beneficiaries.*.ifscCode
+        - jsonPath: $.BillDemands.*.beneficiaries.*.ifscCode
 
-        - jsonPath: $.*.beneficiaries.*.mobileNumber
+        - jsonPath: $.BillDemands.*.beneficiaries.*.mobileNumber
 
-        - jsonPath: $.*.beneficiaries.*.address
+        - jsonPath: $.BillDemands.*.beneficiaries.*.address
 
-        - jsonPath: $.*.beneficiaries.*.accountType
+        - jsonPath: $.BillDemands.*.beneficiaries.*.accountType
 
-        - jsonPath: $.*.beneficiaries.*.amount
+        - jsonPath: $.BillDemands.*.beneficiaries.*.amount
 
-        - jsonPath: $.*.beneficiaries.*.purpose
+        - jsonPath: $.BillDemands.*.beneficiaries.*.purpose
 
-        - jsonPath: $.*.beneficiaries.*.status
+        - jsonPath: $.BillDemands.*.beneficiaries.*.status
 
-        - jsonPath: $.[*][?({id} in @.beneficiaries[*].id)].auditDetails.createdBy
+        - jsonPath: $.BillDemands[*][?({id} in @.beneficiaries[*].id)].auditDetails.createdBy
 
-        - jsonPath: $.[*][?({id} in @.beneficiaries[*].id)].auditDetails.lastModifiedBy
+        - jsonPath: $.BillDemands[*][?({id} in @.beneficiaries[*].id)].auditDetails.lastModifiedBy
 
-        - jsonPath: $.[*][?({id} in @.beneficiaries[*].id)].auditDetails.createdTime
+        - jsonPath: $.BillDemands[*][?({id} in @.beneficiaries[*].id)].auditDetails.createdTime
 
-        - jsonPath: $.[*][?({id} in @.beneficiaries[*].id)].auditDetails.lastModifiedTime
+        - jsonPath: $.BillDemands[*][?({id} in @.beneficiaries[*].id)].auditDetails.lastModifiedTime
 
  - version: 1.0
    name: expensebilling
