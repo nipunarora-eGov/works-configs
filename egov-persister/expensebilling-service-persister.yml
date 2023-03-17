@@ -76,40 +76,40 @@ serviceMaps:
    isTransaction: true
    queryMaps:
      - query: INSERT INTO eg_wms_bill_payment (bill_number, bill_date, voucher_number, voucher_date) VALUES (?,?,?,?);
-       basePath: $.billPayment
+       basePath: $.PaymentStatuses.*
        jsonMaps:
-         - jsonPath: $.billPayment.bill_number
+         - jsonPath: $.PaymentStatuses.*.billNumber
 
-         - jsonPath: $.billPayment.bill_date
+         - jsonPath: $.PaymentStatuses.*.billDate
 
-         - jsonPath: $.billPayment.voucher_number
+         - jsonPath: $.PaymentStatuses.*.voucherNumber
 
-         - jsonPath: $.billPayment.voucher_date
+         - jsonPath: $.PaymentStatuses.*.voucherDate
 
      - query: INSERT INTO eg_wms_beneficiary_transfer_status (bill_number, account_number, ifsc_code, rbi_sequence_number, sequence_date, end_to_end_id, status) VALUES (?,?,?,?,?,?,?);
-       basePath: $.billPayment.beneficiaryTransferStatuses.*
+       basePath: $.PaymentStatuses.*.beneficiaryTransferStatuses.*
        jsonMaps:
-         - jsonPath: $.billPayment.beneficiaryTransferStatuses.*.bill_number
+         - jsonPath: $.PaymentStatuses[*][?({id} in @.beneficiaryTransferStatuses[*].id)].billNumber
 
-         - jsonPath: $.billPayment.beneficiaryTransferStatuses.*.account_number
+         - jsonPath: $.PaymentStatuses.*.beneficiaryTransferStatuses.*.accountNumber
 
-         - jsonPath: $.billPayment.beneficiaryTransferStatuses.*.ifsc_code
+         - jsonPath: $.PaymentStatuses.*.beneficiaryTransferStatuses.*.ifscCode
 
-         - jsonPath: $.billPayment.beneficiaryTransferStatuses.*.rbi_sequence_number
+         - jsonPath: $.PaymentStatuses.*.beneficiaryTransferStatuses.*.rbiSequenceNumber
 
-         - jsonPath: $.billPayment.beneficiaryTransferStatuses.*.sequence_date
+         - jsonPath: $.PaymentStatuses.*.beneficiaryTransferStatuses.*.sequenceDate
 
-         - jsonPath: $.billPayment.beneficiaryTransferStatuses.*.end_to_end_id
+         - jsonPath: $.PaymentStatuses.*.beneficiaryTransferStatuses.*.endToEndId
 
-         - jsonPath: $.billPayment.beneficiaryTransferStatuses.*.status
+         - jsonPath: $.PaymentStatuses.*.beneficiaryTransferStatuses.*.status
 
      - query: UPDATE eg_wms_demand_beneficiaries set status = ? where bill_number = ? and account_number = ? and ifsc_code = ? ;
-       basePath: $.billPayment.beneficiaryTransferStatuses.*
+       basePath: $.PaymentStatuses.*.beneficiaryTransferStatuses.*
        jsonMaps:
-         - jsonPath: $.billPayment.beneficiaryTransferStatuses.*.status
+         - jsonPath: $.PaymentStatuses.*.beneficiaryTransferStatuses.*.status
 
-         - jsonPath: $.billPayment.beneficiaryTransferStatuses.*.bill_number
+         - jsonPath: $.PaymentStatuses[*][?({id} in @.beneficiaryTransferStatuses[*].id)].billNumber
 
-         - jsonPath: $.billPayment.beneficiaryTransferStatuses.*.account_number
+         - jsonPath: $.PaymentStatuses.*.beneficiaryTransferStatuses.*.accountNumber
 
-         - jsonPath: $.billPayment.beneficiaryTransferStatuses.*.ifsc_code
+         - jsonPath: $.PaymentStatuses.*.beneficiaryTransferStatuses.*.ifscCode
