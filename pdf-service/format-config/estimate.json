@@ -70,8 +70,8 @@
         "style": "noc-table",
         "table": {
           "widths": [
-            "25%",
-            "60%"
+            "50%",
+            "50%"
           ],
           "body": [
             [
@@ -193,47 +193,41 @@
         "table": {
           "headerRows": 1,
           "widths": [
-            30,
-            200,
             40,
-            40,
+            120,
+            50,
+            50,
             80,
             80
           ],
           "body": [[
             {
               "text": "{{SNo}}",
-              "bold": true,
-              "fillColor":"#D3D3D3"
+              "bold": true
             },
             {
               "text": "{{EstimateDescription}}",
-              "bold": true,
-              "fillColor":"#D3D3D3"
+              "bold": true
             },
             {
               "text": "{{EstimateUOM}}",
-              "bold": true,
-              "fillColor":"#D3D3D3"
+              "bold": true
             },
             {
               "text": "{{EstimateRate}}",
-              "bold": true,
-              "fillColor":"#D3D3D3"
+              "bold": true
             },
             {
               "text": "{{EstimateQuantity}}",
-              "bold": true,
-              "fillColor":"#D3D3D3"
+              "bold": true
             },
             {
               "text": "{{EstimateAmount}}",
-              "bold": true,
-              "fillColor":"#D3D3D3"
+              "bold": true
             }
           ],
           
-            "{{#estimates}}[{\"text\":\"{{Sno}}\",\"alignment\":\"center\"},{\"text\":\"{{estimateName}}: {{estimateDescription}}\",\"alignment\":\"center\"},{\"text\":\"{{uom}}\",\"alignment\":\"right\"},{\"text\":\"{{unitRate}}\",\"alignment\":\"right\"},{\"text\":\"{{noOfunit}}\",\"alignment\":\"right\"},{\"text\":\"{{amount}}\",\"alignment\":\"right\"}]{{/estimates}}",
+            "{{#estimates}}[{\"text\":\"{{Sno}}\",\"alignment\":\"center\"},{\"text\":\"{{estimateDescription}}\",\"alignment\":\"center\"},{\"text\":\"{{uom}}\",\"alignment\":\"right\"},{\"text\":\"{{unitRate}}\",\"alignment\":\"right\"},{\"text\":\"{{noOfunit}}\",\"alignment\":\"right\"},{\"text\":\"{{amount}}\",\"alignment\":\"right\"}]{{/estimates}}",
             "{{#charges}}[{\"text\":\"{{chargeDescription}} ({{percent}})\",\"colSpan\":\"5\",\"alignment\":\"right\"},{\"text\":\"\"},{\"text\":\"\"},{\"text\":\"\"},{\"text\":\"\"},{\"text\":\"{{charge}}\",\"style\":\"receipt-table-value2\"}]{{/charges}}",
            
             [{"text":"{{TotalEstimateAmount}}","bold":true,"colSpan":5,"alignment":"right","fontSize":14},
