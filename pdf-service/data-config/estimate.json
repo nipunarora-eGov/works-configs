@@ -213,7 +213,7 @@
                   "path": "$.estimateDetails"
                 },
                 "type":"function",
-                "format":"var y=[],a=[],estimateDetails=arguments[0]; for(var i=0;i<estimateDetails.length;i++){ if(estimateDetails[i].category!='OVERHEAD'){var x={ Sno:i+1,uom:estimateDetails[i].uom,unitRate:estimateDetails[i].unitRate,noOfunit:estimateDetails[i].noOfunit,estimateDescription:estimateDetails[i].description,amount:estimateDetails[i].amountDetail[0].amount};y.push(x);}else{var b={chargeDescription:estimateDetails[i].description,charge:estimateDetails[i].amountDetail[0].amount}; a.push(b);}}return y;"
+                "format":"var y=[],a=[],estimateDetails=arguments[0]; for(var i=0;i<estimateDetails.length;i++){ if(estimateDetails[i].category!='OVERHEAD'){var x={ Sno:i+1,uom:estimateDetails[i].uom,unitRate:estimateDetails[i].unitRate,noOfunit:estimateDetails[i].noOfunit,estimateDescription:estimateDetails[i].description,estimateName:estimateDetails[i].name,amount:estimateDetails[i].amountDetail[0].amount};y.push(x);}else{var b={chargeDescription:estimateDetails[i].description,charge:estimateDetails[i].amountDetail[0].amount}; a.push(b);}}return y;"
               },
               {
                 "variable": "charges", 
