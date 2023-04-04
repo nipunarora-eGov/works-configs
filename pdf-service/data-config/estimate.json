@@ -213,7 +213,7 @@
                   "path": "$.estimateDetails"
                 },
                 "type":"function",
-                "format":"var y=[],a=[],estimateDetails=arguments[0]; for(var i=0;i<estimateDetails.length;i++){ if(estimateDetails[i].category!='OVERHEAD'){var x={ Sno:i+1,uom:estimateDetails[i].uom,unitRate:estimateDetails[i].unitRate,noOfunit:estimateDetails[i].noOfunit,estimateDescription:estimateDetails[i].description,amount:estimateDetails[i].amountDetail[0].amount};y.push(x);}else{var b={chargeDescription:estimateDetails[i].description,charge:estimateDetails[i].amountDetail[0].amount}; a.push(b);}}return y;"
+                "format":"var y=[],a=[],estimateDetails=arguments[0]; for(var i=0;i<estimateDetails.length;i++){ if(estimateDetails[i].category!='OVERHEAD'){var x={ Sno:i+1,uom:estimateDetails[i].uom,unitRate:estimateDetails[i].unitRate,noOfunit:estimateDetails[i].noOfunit,estimateDescription:estimateDetails[i].description,estimateName:estimateDetails[i].name,amount:estimateDetails[i].amountDetail[0].amount};y.push(x);}else{var b={chargeDescription:estimateDetails[i].description,charge:estimateDetails[i].amountDetail[0].amount}; a.push(b);}}return y;"
               },
               {
                 "variable": "charges", 
@@ -270,7 +270,34 @@
                         }
                     }
                   ]
-              }
+              },
+              { 
+                "path": "http://localhost:8083/egov-mdms-service/v1/_get",
+                "queryParam": "moduleName=tenant&masterName=footer&tenantId=pg&filter=%5B?(@.code=='{$.tenantId}' %26%26 @.service=='{$.paymentDetails[0].businessService}')%5D",
+                "apiRequest": null,
+                "responseMapping":[
+                  {
+                    "variable": "variable11",                        
+                    "value": "$.MdmsRes.tenant.footer[0].receiptFooterContent.*",
+                     "type":"array",
+                     "format":{                            
+                        "type":"string",
+                        "scema":[
+                           {
+                            "variable":"disclaimerContent",
+                            "value":"disclaimer",
+                            "type":"string",
+                            "localisation":{
+                              "required":true,
+                              "prefix": null,
+                              "module": "rainmaker-common"
+                           }
+                         }
+                        ]
+                    } 
+                 }
+                ]
+            }
             ]
           }
         ]
