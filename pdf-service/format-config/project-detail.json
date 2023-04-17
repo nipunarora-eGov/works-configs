@@ -284,7 +284,7 @@
 										"fontSyze":11
 									},
 									{
-										"text": "{{estimatedCostInRs}}.00",
+										"text": "₹{{estimatedCostInRs}}.00",
 										"fontSyze":11
 									}
 								],
