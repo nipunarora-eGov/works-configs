@@ -13,6 +13,19 @@
         "mappings": [
           {
             "direct": [
+              
+              {
+                "variable": "rupee_symbol",
+                "value": {
+                  "path": "COMMON_MUSTER_RUPEE"
+                },
+                "type": "label",
+                "localisation": {
+                  "required": true,
+                  "prefix": null,
+                  "module": "rainmaker-common"
+                }
+              },
               {
                 "variable": "pdf_header",
                 "value": {
