@@ -4,7 +4,7 @@ serviceMaps:
     - version: 1.0
       name: bill create
       description: create bill in eg_expense_bill
-      fromTopic: expense-billing-bill-create
+      fromTopic: expense-bill-create
       queryMaps:
         - query: INSERT into eg_expense_bill (id, tenantid, billdate, duedate, netPayableAmount, netPaidAmount, businessservice, referenceId, fromperiod, toperiod, status, paymentStatus, createdby, createdTime, lastmodifiedby, lastModifiedTime, additionalDetails) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
           basePath: $.bill
@@ -206,7 +206,7 @@ serviceMaps:
     - version: 1.0
       name: bill update
       description: update bill in eg_expense_bill
-      fromTopic: expense-billing-bill-update
+      fromTopic: expense-bill-update
       queryMaps:
         - query: UPDATE eg_expense_bill SET billdate=?, duedate=?, netpayableamount=?, netpaidamount=?, businessservice=?, referenceid=?, fromperiod=?, toperiod=?, status=?, paymentstatus=?, lastmodifiedby=?, lastmodifiedtime=?, additionaldetails=? WHERE id=? AND tenantid=?;
           basePath: $.bill
@@ -394,9 +394,9 @@ serviceMaps:
     - version: 1.0
       name: Payment create
       description: create payment in eg_expense_payment
-      fromTopic: save-expense-payment-db
+      fromTopic: expense-payment-create
       queryMaps:
-        - query: INSERT INTO eg_expense_payment(id, tenantid, netpayableamount, netpaidamount, status, createdby, createdtime, lastmodifiedby, lastmodifiedtime, additionaldetails) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+        - query: INSERT INTO eg_expense_payment(id, tenant_id, net_payable_amount, net_paid_amount, status, created_by, created_time, last_modified_by, last_modified_time, additional_details) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
           basePath: $.payment
           jsonMaps:
 
@@ -424,22 +424,25 @@ serviceMaps:
 
 
         # insert into party from payer of payment
-        - query: INSERT INTO eg_expense_bill_payment(paymentid, billid, tenantid) VALUES (?, ?, ?);
+        - query: INSERT INTO eg_expense_bill_payment(id,payment_id, bill_id, tenant_id) VALUES (?, ?, ?, ?);
           basePath: $.payment.bills.*
           jsonMaps:
 
             - jsonPath: $.payment.id
 
+            - jsonPath: $.payment.id
+
             - jsonPath: $.payment.bills.*.id
 
-            - jsonPath: $.payment.tenantid
+            - jsonPath: $.payment.tenantId
+
 
     - version: 1.0
       name: Payment update
       description: update payment status in eg_expense_payment
-      fromTopic: update-expense-payment-db
+      fromTopic: expense-payment-update
       queryMaps:
-        - query: UPDATE eg_expense_payment SET status=?, lastmodifiedby=?, lastmodifiedtime=?, additionaldetails=? WHERE id=? AND tenantid=?;
+        - query: UPDATE eg_expense_payment SET status=?, last_modified_by=?, last_modified_time=?, additional_details=? WHERE id=? AND tenant_id=?;
           basePath: $.payment
           jsonMaps:
 
