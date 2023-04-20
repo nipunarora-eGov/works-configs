@@ -5,6 +5,7 @@ serviceMaps:
       name: bill create
       description: create bill in eg_expense_bill
       fromTopic: expense-bill-create
+      isTransaction: true
       queryMaps:
         - query: INSERT into eg_expense_bill (id, tenantid, billdate, duedate, netPayableAmount, netPaidAmount, businessservice, referenceId, fromperiod, toperiod, status, paymentStatus, createdby, createdTime, lastmodifiedby, lastModifiedTime, additionalDetails) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
           basePath: $.bill
@@ -207,6 +208,7 @@ serviceMaps:
       name: bill update
       description: update bill in eg_expense_bill
       fromTopic: expense-bill-update
+      isTransaction: true
       queryMaps:
         - query: UPDATE eg_expense_bill SET billdate=?, duedate=?, netpayableamount=?, netpaidamount=?, businessservice=?, referenceid=?, fromperiod=?, toperiod=?, status=?, paymentstatus=?, lastmodifiedby=?, lastmodifiedtime=?, additionaldetails=? WHERE id=? AND tenantid=?;
           basePath: $.bill
@@ -299,7 +301,7 @@ serviceMaps:
               dbType: JSONB
 
         # update party from payee of bill details
-        - query: INSERT into eg_expense_party_payee (id, type, identifier, parentId, status, createdby, createdTime, lastmodifiedby, lastModifiedTime, additionalDetails) values(?,?,?,?,?,?,?,?,?,?,?) ON CONFLICT (id) DO UPDATE SET type=EXCLUDED.type, identifier=EXCLUDED.identifier, parentid=EXCLUDED.parentid, status=EXCLUDED.status, lastmodifiedby=EXCLUDED.lastmodifiedby, lastmodifiedtime=EXCLUDED.lastmodifiedtime, additionaldetails=EXCLUDED.additionaldetails;
+        - query: INSERT into eg_expense_party_payee (id, type, identifier, parentId, status, createdby, createdTime, lastmodifiedby, lastModifiedTime, additionalDetails) values(?,?,?,?,?,?,?,?,?,?) ON CONFLICT (id) DO UPDATE SET type=EXCLUDED.type, identifier=EXCLUDED.identifier, parentid=EXCLUDED.parentid, status=EXCLUDED.status, lastmodifiedby=EXCLUDED.lastmodifiedby, lastmodifiedtime=EXCLUDED.lastmodifiedtime, additionaldetails=EXCLUDED.additionaldetails;
           basePath: $.bill.billDetails.*.payee
           jsonMaps:
 
