@@ -25,18 +25,6 @@
                 }
               },
               {
-                "variable": "minucipality",
-                "value": {
-                  "path": "MINUCIPALITY"
-                },
-                "type": "label",
-                "localisation": {
-                  "required": true,
-                  "prefix": null,
-                  "module": "rainmaker-common"
-                }
-              },
-              {
                 "variable": "work_order_number",
                 "value": {
                   "path": "WORKS_ORDER_NO"
@@ -662,7 +650,7 @@
           {
             "externalAPI": [
               {
-                "path": "http://egov-mdms-service:8080/egov-mdms-service/v1/_get",
+                "path": "http://localhost:8083/egov-mdms-service/v1/_get",
                 "queryParam": "moduleName=tenant&masterName=tenants&tenantId=pg&filter=%5B?(@.code=='{$.tenantId}')%5D",
                 "apiRequest": null,
                 "responseMapping": [
@@ -704,6 +692,10 @@
                       "prefix": "TENANT_TENANTS",
                       "module": "rainmaker-pg"
                     }
+                  },
+                  {
+                    "variable": "subdivision",
+                    "value": "$.MdmsRes.tenant.tenants[0].city.ulbGrade"
                   }
                 ]
               }
