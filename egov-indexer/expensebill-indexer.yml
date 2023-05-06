@@ -48,13 +48,13 @@ ServiceMaps:
              outJsonPath: $.Data.additionalDetails
            - inJsonPath: $.auditDetails
              outJsonPath: $.Data.auditDetails
-          - inJsonPath: $.additionalDetails.locality
+           - inJsonPath: $.additionalDetails.locality
              outJsonPath: $.Data.locality
-          - inJsonPath: $.additionalDetails.ward
+           - inJsonPath: $.additionalDetails.ward
              outJsonPath: $.Data.ward
-          - inJsonPath: $.additionalDetails.projectName
+           - inJsonPath: $.additionalDetails.projectName
              outJsonPath: $.Data.projectName  
-          - inJsonPath: $.additionalDetails.orgName
+           - inJsonPath: $.additionalDetails.orgName
              outJsonPath: $.Data.orgName
            externalUriMapping:
            - path: http://egov-workflow-v2.egov:8080/egov-workflow-v2/egov-wf/process/_search
