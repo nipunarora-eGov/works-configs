@@ -12,7 +12,7 @@ ServiceMaps:
          isBulk: false
          timeStampField: $.auditDetails.createdTime
          customJsonMapping:
-           indexMapping: { "Data":{"id":"","tenantId":"","billNumber":"","billDate":"","dueDate":"","totalAmount":"","totalPaidAmount":"","businessService":"","referenceId":"","fromPeriod":"","toPeriod":"","paymentStatus":"","status":"","payer":{},"billDetails":[],"additionalDetails":{},"auditDetails":{},"currentProcessInstance":{},"history":{}}}
+           indexMapping: { "Data":{"id":"","tenantId":"","billNumber":"","billDate":"","dueDate":"","totalAmount":"","totalPaidAmount":"","businessService":"","referenceId":"","fromPeriod":"","toPeriod":"","paymentStatus":"","status":"","payer":{},"billDetails":[],"additionalDetails":{},"auditDetails":{},"workflow":{},"history":{}}}
            fieldMapping:
            - inJsonPath: $.id
              outJsonPath: $.Data.id
@@ -65,6 +65,9 @@ ServiceMaps:
              uriResponseMapping:
              - inJsonPath: $.ProcessInstances
                outJsonPath: $.Data.history
+             - inJsonPath: $.ProcessInstances[0]
+               outJsonPath: $.Data.workflow
+
 
    - topic: expense-bill-create
      configKey: INDEX
@@ -76,7 +79,7 @@ ServiceMaps:
          isBulk: false
          timeStampField: $.auditDetails.createdTime
          customJsonMapping:
-           indexMapping: { "Data":{"id":"","tenantId":"","billNumber":"","billDate":"","dueDate":"","totalAmount":"","totalPaidAmount":"","businessService":"","referenceId":"","fromPeriod":"","toPeriod":"","paymentStatus":"","status":"","payer":{},"billDetails":[],"additionalDetails":{},"auditDetails":{},"history":{}}}
+           indexMapping: { "Data":{"id":"","tenantId":"","billNumber":"","billDate":"","dueDate":"","totalAmount":"","totalPaidAmount":"","businessService":"","referenceId":"","fromPeriod":"","toPeriod":"","paymentStatus":"","status":"","payer":{},"billDetails":[],"additionalDetails":{},"auditDetails":{},"workflow":{},"history":{}}}
            fieldMapping:
            - inJsonPath: $.id
              outJsonPath: $.Data.id
@@ -119,6 +122,9 @@ ServiceMaps:
              uriResponseMapping:
              - inJsonPath: $.ProcessInstances
                outJsonPath: $.Data.history
+             - inJsonPath: $.ProcessInstances[0]
+               outJsonPath: $.Data.workflow
+
 
    - topic: expense-bill-update
      configKey: INDEX
@@ -130,7 +136,7 @@ ServiceMaps:
          isBulk: false
          timeStampField: $.auditDetails.createdTime
          customJsonMapping:
-           indexMapping: { "Data":{"id":"","tenantId":"","billNumber":"","billDate":"","dueDate":"","totalAmount":"","totalPaidAmount":"","businessService":"","referenceId":"","fromPeriod":"","toPeriod":"","paymentStatus":"","status":"","payer":{},"billDetails":[],"additionalDetails":{},"auditDetails":{},"currentProcessInstance":{},"history":{}}}
+           indexMapping: { "Data":{"id":"","tenantId":"","billNumber":"","billDate":"","dueDate":"","totalAmount":"","totalPaidAmount":"","businessService":"","referenceId":"","fromPeriod":"","toPeriod":"","paymentStatus":"","status":"","payer":{},"billDetails":[],"additionalDetails":{},"auditDetails":{},"workflow":{},"history":{}}}
            fieldMapping:
            - inJsonPath: $.id
              outJsonPath: $.Data.id
@@ -179,6 +185,8 @@ ServiceMaps:
              uriResponseMapping:
              - inJsonPath: $.ProcessInstances
                outJsonPath: $.Data.history
+             - inJsonPath: $.ProcessInstances[0]
+               outJsonPath: $.Data.workflow
 
    - topic: expense-bill-legacyIndex
      configKey: LEGACYINDEX
