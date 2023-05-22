@@ -8,10 +8,10 @@
       "requesterId": "",
       "ts": 1513579888683,
       "ver": "1.0.0",
-      "authToken": "6835b444-ca92-4f48-b077-ca31c89bc56c",
-             "userInfo":{
-         "uuid":"01203742-db1a-4256-a935-f767635e2ef7"
-       }
+      "authToken": "{{token}}",
+      "userInfo": {
+          "uuid": "{{userId}}"
+      }
   },
     "BusinessServices": [
     {
@@ -156,13 +156,6 @@
               "roles": [
                 "ESTIMATE_CREATOR"
               ]
-            },
-            {
-              "action": "REJECT",
-              "nextState": "REJECTED",
-              "roles": [
-                "ESTIMATE_CREATOR"
-              ]
             }
           ]
         },
@@ -184,7 +177,7 @@
           "isStartState": false,
           "isTerminateState": true,
           "isStateUpdatable": false,
-          "actions": []
+          "actions": null
         }
       ]
     }
