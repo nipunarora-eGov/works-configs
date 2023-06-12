@@ -21,5 +21,33 @@
         "insight": {
         },
         "_comment": " "
+      },
+  "MusterRollsByStatus": {
+        "chartName": "DSS_MUKTA_MUSTER_ROLLS_BY_STATUS",
+        "queries": [
+          {
+            "module": "MUSTER-ROLL-SERVICES",
+            "dateRefField": "Data.@timestamp",
+            "requestQueryMap": "{\"tenantId\" : \"Data.tenantId\"}",
+            "indexName": "muster-roll-inbox",
+            "aggrQuery": "{\n  \"aggs\": {\n    \"AGGR\": {\n      \"filter\": {\n        \"bool\": {\n          \"must_not\": [\n            {\n              \"term\": {\n                \"Data.tenantId.keyword\": \"pb.testing\"\n              }\n            }\n          ]\n        }\n      },\n      \"aggs\": {\n        \"Muster Rolls\": {\n          \"terms\": {\n            \"field\": \"Data.musterRollStatus.keyword\"\n          },\n          \"aggs\": {\n            \"Count\": {\n              \"value_count\": {\n                \"field\": \"Data.auditDetails.createdTime\"\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n}"
+          }
+        ],
+        "chartType": "perform",
+        "valueType": "number",
+        "documentType": "_doc",
+        "drillChart": "none",
+        "action": "number",
+        "isRoundOff": true,
+        "order": "desc",
+        "limit": 5,
+        "aggregationPaths": [
+          "Muster Rolls"
+        ],
+        "isCumulative": false,
+        "interval": "month",
+        "insight": {
+        },
+        "_comment": ""
       }
 }
