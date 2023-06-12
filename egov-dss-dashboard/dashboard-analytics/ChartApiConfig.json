@@ -30,7 +30,7 @@
             "dateRefField": "Data.@timestamp",
             "requestQueryMap": "{\"tenantId\" : \"Data.tenantId\"}",
             "indexName": "muster-roll-inbox",
-            "aggrQuery": "{\n  \"aggs\": {\n    \"AGGR\": {\n      \"filter\": {\n        \"bool\": {\n          \"must_not\": [\n            {\n              \"term\": {\n                \"Data.tenantId.keyword\": \"pb.testing\"\n              }\n            }\n          ]\n        }\n      },\n      \"aggs\": {\n        \"Muster Rolls\": {\n          \"terms\": {\n            \"field\": \"Data.musterRollStatus.keyword\"\n          },\n          \"aggs\": {\n            \"Count\": {\n              \"value_count\": {\n                \"field\": \"Data.auditDetails.createdTime\"\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n}"
+            "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.tenantId.keyword\":\"pb.testing\"}},{\"terms\":{\"Data.musterRollStatus.keyword\":[\"REJECTED\"]}}]}},\"aggs\":{\"MusterRolls\":{\"terms\":{\"script\":{\"source\":\"if(['APPROVED','SUBMITTED'].contains(doc['Data.musterRollStatus.keyword'].value)){returndoc['Data.musterRollStatus.keyword'].value}else{return'YET_TO_APPROVE'}\"}},\"aggs\":{\"Count\":{\"value_count\":{\"field\":\"Data.auditDetails.createdTime\"}}}}}}}}"
           }
         ],
         "chartType": "perform",
