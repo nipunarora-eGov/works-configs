@@ -22,12 +22,12 @@
         },
         "_comment": " "
       },
-  "MusterRollsByStatus": {
+  "musterRollsByStatus": {
         "chartName": "DSS_MUKTA_MUSTER_ROLLS_BY_STATUS",
         "queries": [
           {
             "module": "MUSTER-ROLL-SERVICES",
-            "dateRefField": "Data.@timestamp",
+            "dateRefField": "Data.auditDetails.createdTime",
             "requestQueryMap": "{\"tenantId\" : \"Data.tenantId\"}",
             "indexName": "muster-roll-inbox",
             "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.tenantId.keyword\":\"pb.testing\"}},{\"terms\":{\"Data.musterRollStatus.keyword\":[\"REJECTED\"]}}]}},\"aggs\":{\"MusterRolls\":{\"terms\":{\"script\":{\"source\":\"if(['APPROVED','SUBMITTED'].contains(doc['Data.musterRollStatus.keyword'].value)){returndoc['Data.musterRollStatus.keyword'].value}else{return'YET_TO_APPROVE'}\"}},\"aggs\":{\"Count\":{\"value_count\":{\"field\":\"Data.auditDetails.createdTime\"}}}}}}}}"
@@ -40,7 +40,7 @@
         "action": "number",
         "isRoundOff": true,
         "order": "desc",
-        "limit": 5,
+        "limit": 3,
         "aggregationPaths": [
           "Muster Rolls"
         ],
