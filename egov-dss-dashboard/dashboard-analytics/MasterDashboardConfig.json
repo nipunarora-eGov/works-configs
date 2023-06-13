@@ -15,7 +15,7 @@
               "id": 101,
               "name": "DSS_MUKTA_PROJECTS",
               "label": "DSS_MUKTA_PROJECTS",
-              "vizType": "stacked-collection",
+              "vizType": "metric-collection",
               "noUnit": true,
               "isCollapsible": false,
               "charts": [
@@ -26,6 +26,43 @@
                   "chartType": "metric",
                   "filter": "",
                   "headers": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "row": 2,
+          "name": "DSS_MUKTA",
+          "vizArray": [
+            {
+              "id": 151,
+              "name": "DSS_MUKTA_PENDING_BILLS",
+              "dimensions": {
+                "height": 250,
+                "width": 4
+              },
+              "label": "",
+              "vizType": "chart",
+              "isCollapsible": false,
+              "charts": [
+                {
+                  "id": "pendingBillsByBillNumberType",
+                  "name": "DSS_MUKTA_PENDING_BILLS_BY_BILL_NUMBER_TYPE",
+                  "code": "",
+                  "chartType": "donut",
+                  "filter": "",
+                  "headers": [],
+                  "tabName": "Number"
+                },
+                {
+                  "id": "pendingBillsByBillAmountType",
+                  "name": "DSS_MUKTA_PENDING_BILLS_BY_BILL_AMOUNT_TYPE",
+                  "code": "",
+                  "chartType": "donut",
+                  "filter": "",
+                  "headers": [],
+                  "tabName": "Amount"
                 }
               ]
             }
