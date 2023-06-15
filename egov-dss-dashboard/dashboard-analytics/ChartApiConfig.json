@@ -148,5 +148,28 @@
     "insight": {
     },
     "_comment": "Estimated amount of Projects by their Project Type"
+  },
+  "projectsByStatusHorizontal":{
+    "chartName": "DSS_MUKTA_PROJECTS_BY_STATUS_HORIZONTAL",
+    "queries": [
+      {
+        "module": "PROJECT",
+        "requestQueryMap": "{\"tenantId\" : \"Data.tenantId\"}",
+        "dateRefField": "Data.auditDetails.createdTime",
+        "indexName": "project-index",
+        "aggrQuery":"{\"size\":10000,\"aggs\":{\"totalProject\":{\"cardinality\":{\"field\":\"Data.projectNumber.keyword\"}}}}" 
+      }
+    ],
+    "chartType": "pie",
+    "valueType": "number",
+    "action": "",
+    "documentType": "_doc",
+    "drillChart": "none",
+    "aggregationPaths": [
+      "totalProject"
+    ],
+    "insight": {
+    },
+    "_comment": "Count of Created Projects"
   }
 }

@@ -97,6 +97,34 @@
           ]
         },
         {
+          "row":4,
+          "name":"DSS_MUKTA",
+          "vizArray":[
+            {
+              "id": 151,
+              "name": "DSS_MUKTA_PROJECTS_CREATED",
+              "dimensions": {
+                "height": 250,
+                "width": 4
+              },
+              "label": "",
+              "vizType": "chart",
+              "isCollapsible": false,
+              "charts":[
+                {
+                  "id": "projectsByStatusHorizontal",
+                  "name": "DSS_MUKTA_PROJECTS_BY_STATUS_HORIZONTAL",
+                  "code": "",
+                  "chartType": "donut",
+                  "filter": "",
+                  "headers": [],
+                  "tabName": "Number"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "row": 5,
           "name": "DSS_MUKTA",
           "vizArray": [
