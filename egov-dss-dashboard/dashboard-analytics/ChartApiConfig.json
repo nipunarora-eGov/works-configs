@@ -171,5 +171,52 @@
     "insight": {
     },
     "_comment": "Count of Created Projects"
+  },
+  "estimatesByStatusHorizontal":{
+    "chartName": "DSS_MUKTA_ESTIMATES_BY_STATUS_HORIZONTAL",
+    "queries": [
+      {
+        "module": "ESTIMATE",
+        "requestQueryMap": "{\"tenantId\" : \"Data.tenantId\"}",
+        "dateRefField": "Data.auditDetails.createdTime",
+        "indexName": "estimate-inbox-v3",
+        "aggrQuery":"{\"size\":10000,\"aggs\":{\"estimateStatuses\":{\"filters\":{\"filters\":{\"Created\":{\"terms\":{\"Data.wfStatus.keyword\":[\"PENDINGFORVERIFICATION\",\"PENDINGFORTECHNICALSANCTION\",\"PENDINGFORAPPROVAL\",\"PENDINGFORCORRECTION\",\"APPROVED\",\"REJECTED\"]}},\"yetToApprove\":{\"terms\":{\"Data.wfStatus.keyword\":[\"PENDINGFORVERIFICATION\",\"PENDINGFORTECHNICALSANCTION\",\"PENDINGFORAPPROVAL\",\"PENDINGFORCORRECTION\"]}},\"Approved\":{\"term\":{\"Data.wfStatus.keyword\":\"APPROVED\"}}}}}}}" 
+      }
+    ],
+    "chartType": "pie",
+    "valueType": "number",
+    "action": "",
+    "documentType": "_doc",
+    "drillChart": "none",
+    "aggregationPaths": [
+      "estimateStatuses"
+    ],
+    "insight": {
+    },
+    "_comment": "Estimates by Statuses"
+  },
+  "contractsByStatusHorizontal":{
+    "chartName": "DSS_MUKTA_CONTRACTS_BY_STATUS_HORIZONTAL",
+    "queries": [
+      {
+        "module": "CONTRACT",
+        "requestQueryMap": "{\"tenantId\" : \"Data.tenantId\"}",
+        "dateRefField": "Data.auditDetails.createdTime",
+        "indexName": "contract-inbox",
+        "aggrQuery":{"size":10000,"aggs":{"contractStatuses":{"filters":{"filters":{"Created":{"terms":{"Data.contractStatus.keyword":["PENDING_FOR_VERIFICATION","PENDING_FOR_APPROVAL","PENDING_FOR_CORRECTION","PENDING_FOR_REASSIGNMENT","PENDING_FOR_REVERIFICATION","PENDING_FOR_ACCEPTANCE","ACCEPTED","REJECTED"]}},"yetToApprove":{"terms":{"Data.contractStatus.keyword":["PENDING_FOR_VERIFICATION","PENDING_FOR_APPROVAL","PENDING_FOR_CORRECTION","PENDING_FOR_REASSIGNMENT","PENDING_FOR_REVERIFICATION"]}},"yetToAccept":{"term":{"Data.contractStatus.keyword":"PENDING_FOR_ACCEPTANCE"}},"Accepted":{"term":{"Data.contractStatus.keyword":"ACCEPTED"}}}}}}}
+
+      }
+    ],
+    "chartType": "pie",
+    "valueType": "number",
+    "action": "",
+    "documentType": "_doc",
+    "drillChart": "none",
+    "aggregationPaths": [
+      "contractStatuses"
+    ],
+    "insight": {
+    },
+    "_comment": "Contracts by Statuses"
   }
 }
