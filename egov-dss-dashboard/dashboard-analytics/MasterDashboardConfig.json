@@ -125,6 +125,62 @@
           ]
         },
         {
+          "row":4,
+          "name":"DSS_MUKTA",
+          "vizArray":[
+            {
+              "id": 152,
+              "name": "DSS_MUKTA_ESTIMATES_BY_STATUSES",
+              "dimensions": {
+                "height": 250,
+                "width": 4
+              },
+              "label": "",
+              "vizType": "chart",
+              "isCollapsible": false,
+              "charts":[
+                {
+                  "id": "estimatesByStatusHorizontal",
+                  "name": "DSS_MUKTA_ESTIMATES_BY_STATUS_HORIZONTAL",
+                  "code": "",
+                  "chartType": "donut",
+                  "filter": "",
+                  "headers": [],
+                  "tabName": "Number"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "row":4,
+          "name":"DSS_MUKTA",
+          "vizArray":[
+            {
+              "id": 152,
+              "name": "DSS_MUKTA_CONTRACTS_BY_STATUSES",
+              "dimensions": {
+                "height": 250,
+                "width": 4
+              },
+              "label": "",
+              "vizType": "chart",
+              "isCollapsible": false,
+              "charts":[
+                {
+                  "id": "contractsByStatusHorizontal",
+                  "name": "DSS_MUKTA_CONTRACTS_BY_STATUS_HORIZONTAL",
+                  "code": "",
+                  "chartType": "donut",
+                  "filter": "",
+                  "headers": [],
+                  "tabName": "Number"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "row": 5,
           "name": "DSS_MUKTA",
           "vizArray": [
