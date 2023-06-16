@@ -184,7 +184,7 @@
     "documentType": "_doc",
     "drillChart": "none",
     "aggregationPaths": [
-      "estimateStatuses"
+      "Estimates"
     ],
     "insight": {
     },
