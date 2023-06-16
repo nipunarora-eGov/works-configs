@@ -175,7 +175,7 @@
         "requestQueryMap": "{\"tenantId\" : \"Data.tenantId\"}",
         "dateRefField": "Data.auditDetails.createdTime",
         "indexName": "estimate-inbox-v3",
-        "aggrQuery":"{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.tenantId.keyword\":\"pb.testing\"}}]}},\"aggs\":{\"Estimates\":{\"terms\":{\"field\":\"Data.wfStatus.keyword\"},\"aggs\":{\"Count\":{\"value_count\":{\"field\":\"Data.auditDetails.createdTime\"}}}},\"TotalCount\":{\"value_count\":{\"field\":\"Data.auditDetails.createdTime\"}}}}}}" 
+        "aggrQuery":"{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.tenantId.keyword\":\"pb.testing\"}}]}},\"aggs\":{\"ESTIMATES\":{\"terms\":{\"script\":{\"source\":\"if(['PENDINGFORVERIFICATION','REJECTED','PENDINGFORTECHNICALSANCTION','PENDINGFORAPPROVAL','PENDINGFORCORRECTION'].contains(doc['Data.wfStatus.keyword'].value)){return'YET_TO_APPROVE'}else{return'APPROVED'}\"}},\"aggs\":{\"Count\":{\"value_count\":{\"field\":\"Data.auditDetails.createdTime\"}}}},\"CREATED\":{\"value_count\":{\"field\":\"Data.auditDetails.createdTime\"}}}}}}" 
       }
     ],
     "chartType": "pie",
@@ -184,8 +184,8 @@
     "documentType": "_doc",
     "drillChart": "none",
     "aggregationPaths": [
-      "Estimates",
-      "TotalCount"
+      "ESTIMATES",
+      "CREATED"
     ],
     "insight": {
     },
@@ -199,7 +199,7 @@
         "requestQueryMap": "{\"tenantId\" : \"Data.tenantId\"}",
         "dateRefField": "Data.auditDetails.createdTime",
         "indexName": "contract-inbox",
-        "aggrQuery":"{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.tenantId.keyword\":\"pb.testing\"}}]}},\"aggs\":{\"Contracts\":{\"terms\":{\"field\":\"Data.contractStatus.keyword\"},\"aggs\":{\"Count\":{\"value_count\":{\"field\":\"Data.auditDetails.createdTime\"}}}}}}}}"
+        "aggrQuery":"{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.tenantId.keyword\":\"pb.testing\"}}]}},\"aggs\":{\"CONTRACTS\":{\"terms\":{\"script\":{\"source\":\"if(['PENDING_FOR_VERIFICATION','PENDING_FOR_APPROVAL','PENDING_FOR_CORRECTION','PENDING_FOR_REASSIGNMENT','PENDING_FOR_REVERIFICATION'].contains(doc['Data.contractStatus.keyword'].value)){return'YET_TO_APPROVE'}else if(['PENDING_FOR_ACCEPTANCE'].contains(doc['Data.contractStatus.keyword'].value)){return'YET_TO_ACCEPT'}else{return'INPROGRESS'}\"}},\"aggs\":{\"Count\":{\"value_count\":{\"field\":\"Data.auditDetails.createdTime\"}}}},\"CREATED\":{\"value_count\":{\"field\":\"Data.auditDetails.createdTime\"}}}}}}"
 
       }
     ],
@@ -209,7 +209,8 @@
     "documentType": "_doc",
     "drillChart": "none",
     "aggregationPaths": [
-      "Contracts"
+      "CONTRACTS",
+      "CREATED"
     ],
     "insight": {
     },
