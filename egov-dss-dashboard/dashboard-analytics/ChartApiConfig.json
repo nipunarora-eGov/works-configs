@@ -175,7 +175,7 @@
         "requestQueryMap": "{\"tenantId\" : \"Data.tenantId\"}",
         "dateRefField": "Data.auditDetails.createdTime",
         "indexName": "estimate-inbox-v3",
-        "aggrQuery":"{\"size\":10000,\"aggs\":{\"estimateStatuses\":{\"filters\":{\"filters\":{\"Created\":{\"terms\":{\"Data.wfStatus.keyword\":[\"PENDINGFORVERIFICATION\",\"PENDINGFORTECHNICALSANCTION\",\"PENDINGFORAPPROVAL\",\"PENDINGFORCORRECTION\",\"APPROVED\",\"REJECTED\"]}},\"yetToApprove\":{\"terms\":{\"Data.wfStatus.keyword\":[\"PENDINGFORVERIFICATION\",\"PENDINGFORTECHNICALSANCTION\",\"PENDINGFORAPPROVAL\",\"PENDINGFORCORRECTION\"]}},\"Approved\":{\"term\":{\"Data.wfStatus.keyword\":\"APPROVED\"}}}}}}}" 
+        "aggrQuery":"{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.tenantId.keyword\":\"pb.testing\"}}]}},\"aggs\":{\"Estimates\":{\"terms\":{\"field\":\"Data.wfStatus.keyword\"},\"aggs\":{\"Count\":{\"value_count\":{\"field\":\"Data.auditDetails.createdTime\"}}}}}}}}" 
       }
     ],
     "chartType": "pie",
