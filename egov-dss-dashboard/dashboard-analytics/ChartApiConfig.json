@@ -198,7 +198,7 @@
         "requestQueryMap": "{\"tenantId\" : \"Data.tenantId\"}",
         "dateRefField": "Data.auditDetails.createdTime",
         "indexName": "contract-inbox",
-        "aggrQuery":{"size":10000,"aggs":{"contractStatuses":{"filters":{"filters":{"Created":{"terms":{"Data.contractStatus.keyword":["PENDING_FOR_VERIFICATION","PENDING_FOR_APPROVAL","PENDING_FOR_CORRECTION","PENDING_FOR_REASSIGNMENT","PENDING_FOR_REVERIFICATION","PENDING_FOR_ACCEPTANCE","ACCEPTED","REJECTED"]}},"yetToApprove":{"terms":{"Data.contractStatus.keyword":["PENDING_FOR_VERIFICATION","PENDING_FOR_APPROVAL","PENDING_FOR_CORRECTION","PENDING_FOR_REASSIGNMENT","PENDING_FOR_REVERIFICATION"]}},"yetToAccept":{"term":{"Data.contractStatus.keyword":"PENDING_FOR_ACCEPTANCE"}},"Accepted":{"term":{"Data.contractStatus.keyword":"ACCEPTED"}}}}}}}
+        "aggrQuery":"{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.tenantId.keyword\":\"pb.testing\"}}]}},\"aggs\":{\"Contracts\":{\"terms\":{\"field\":\"Data.contractStatus.keyword\"},\"aggs\":{\"Count\":{\"value_count\":{\"field\":\"Data.auditDetails.createdTime\"}}}}}}}}"
 
       }
     ],
@@ -208,7 +208,7 @@
     "documentType": "_doc",
     "drillChart": "none",
     "aggregationPaths": [
-      "contractStatuses"
+      "Contracts"
     ],
     "insight": {
     },
