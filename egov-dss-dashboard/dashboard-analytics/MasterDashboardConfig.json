@@ -132,7 +132,7 @@
                   "id": "projectsByStatusHorizontal",
                   "name": "DSS_MUKTA_PROJECTS_BY_STATUS_HORIZONTAL",
                   "code": "",
-                  "chartType": "donut",
+                  "chartType": "horizontalBar",
                   "filter": "",
                   "headers": [],
                   "tabName": "Number"
@@ -160,7 +160,7 @@
                   "id": "estimatesByStatusHorizontal",
                   "name": "DSS_MUKTA_ESTIMATES_BY_STATUS_HORIZONTAL",
                   "code": "",
-                  "chartType": "donut",
+                  "chartType": "horizontalBar",
                   "filter": "",
                   "headers": [],
                   "tabName": "Number"
@@ -188,7 +188,7 @@
                   "id": "contractsByStatusHorizontal",
                   "name": "DSS_MUKTA_CONTRACTS_BY_STATUS_HORIZONTAL",
                   "code": "",
-                  "chartType": "donut",
+                  "chartType": "horizontalBar",
                   "filter": "",
                   "headers": [],
                   "tabName": "Number"
