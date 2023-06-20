@@ -105,7 +105,8 @@
                   "id": "musterRollsByStatus",
                   "name": "DSS_MUKTA_MUSTER_ROLLS_BY_STATUS",
                   "code": "",
-                  "chartType": "donut",
+                  "chartType": "horizontalBar",
+                  "muktaHorizontalBarChart":true,
                   "filter": "",
                   "headers": []
                 }
@@ -133,6 +134,7 @@
                   "name": "DSS_MUKTA_PROJECTS_BY_STATUS_HORIZONTAL",
                   "code": "",
                   "chartType": "horizontalBar",
+                  "muktaHorizontalBarChart":true,
                   "filter": "",
                   "headers": [],
                   "tabName": "Number"
@@ -161,6 +163,7 @@
                   "name": "DSS_MUKTA_ESTIMATES_BY_STATUS_HORIZONTAL",
                   "code": "",
                   "chartType": "horizontalBar",
+                  "muktaHorizontalBarChart":true,
                   "filter": "",
                   "headers": [],
                   "tabName": "Number"
@@ -189,6 +192,7 @@
                   "name": "DSS_MUKTA_CONTRACTS_BY_STATUS_HORIZONTAL",
                   "code": "",
                   "chartType": "horizontalBar",
+                  "muktaHorizontalBarChart":true,
                   "filter": "",
                   "headers": [],
                   "tabName": "Number"
