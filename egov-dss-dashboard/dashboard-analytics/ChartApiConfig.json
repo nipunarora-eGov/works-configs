@@ -36,7 +36,7 @@
         "module": "MUSTER-ROLL-SERVICES",
         "dateRefField": "Data.auditDetails.createdTime",
         "requestQueryMap": "{\"tenantId\" : \"Data.tenantId\"}",
-        "indexName": "muster-roll-inbox",
+        "indexName": "muster-inbox",
         "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.tenantId.keyword\":\"pb.testing\"}},{\"terms\":{\"Data.musterRollStatus.keyword\":[\"REJECTED\"]}}]}},\"aggs\":{\"Muster Rolls\":{\"terms\":{\"script\":{\"source\":\"if(['APPROVED','SUBMITTED'].contains(doc['Data.musterRollStatus.keyword'].value)){return doc['Data.musterRollStatus.keyword'].value}else{return 'YET_TO_APPROVE'}\"}},\"aggs\":{\"Count\":{\"value_count\":{\"field\":\"Data.auditDetails.createdTime\"}}}}}}}}"
       }
     ],
@@ -254,7 +254,7 @@
         "dateRefField": "Data.auditDetails.createdTime",
         "requestQueryMap": "{\"tenantId\" : \"Data.tenantId\"}",
         "indexName": "expense-bill-index",
-        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.tenantId.keyword\":\"pb.testing\"}}]}},\"aggs\":{\"dayHist\":{\"date_histogram\":{\"field\":\"Data.auditDetails.createdTime\",\"interval\":\"month\"},\"aggs\":{\"TotalAmount\":{\"sum\":{\"field\":\"Data.totalAmount\"}}}}}}}}"
+        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.tenantId.keyword\":\"pb.testing\"}}]}},\"aggs\":{\"Total Payments\":{\"date_histogram\":{\"field\":\"Data.auditDetails.createdTime\",\"interval\":\"month\"},\"aggs\":{\"TotalAmount\":{\"sum\":{\"field\":\"Data.totalAmount\"}}}}}}}}"
       }
     ],
     "chartType": "line",
@@ -263,7 +263,7 @@
     "drillChart": "none",
     "documentType": "_doc",
     "aggregationPaths": [
-      "dayHist"
+      "Total Payments"
     ],
     "isCumulative": false,
     "interval": "month",
@@ -278,8 +278,8 @@
         "module": "MUSTER-ROLL-SERVICES",
         "dateRefField": "Data.auditDetails.createdTime",
         "requestQueryMap": "{\"tenantId\" : \"Data.tenantId\"}",
-        "indexName": "muster-roll-inbox",
-        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.tenantId.keyword\":\"pb.testing\"}},{\"terms\":{\"Data.musterRollStatus.keyword\":[\"REJECTED\"]}}]}},\"aggs\":{\"dayHist\":{\"date_histogram\":{\"field\":\"Data.auditDetails.createdTime\",\"interval\":\"month\"},\"aggs\":{\"TotalAttendanceSum\":{\"sum\":{\"field\":\"Data.individualEntries.totalAttendance\"}}}}}}}}"
+        "indexName": "muster-inbox",
+        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.tenantId.keyword\":\"pb.testing\"}},{\"terms\":{\"Data.musterRollStatus.keyword\":[\"REJECTED\"]}}]}},\"aggs\":{\"Person Days\":{\"date_histogram\":{\"field\":\"Data.auditDetails.createdTime\",\"interval\":\"month\"},\"aggs\":{\"TotalAttendanceSum\":{\"sum\":{\"field\":\"Data.individualEntries.actualTotalAttendance\"}}}}}}}}"
       }
     ],
     "chartType": "line",
@@ -288,7 +288,7 @@
     "drillChart": "none",
     "documentType": "_doc",
     "aggregationPaths": [
-      "dayHist"
+      "Person Days"
     ],
     "isCumulative": false,
     "interval": "month",
@@ -325,5 +325,28 @@
     "insight": {
     },
     "_comment": "Muster rolls not created"
+  },
+  "pendingBillsAmount": {
+    "chartName" : "DSS_MUKTA_PENDING_BILLS",
+    "queries": [
+      {
+        "module": "EXPENSE",
+        "requestQueryMap": "{\"tenantId\" : \"Data.tenantId\"}",
+        "dateRefField": "Data.auditDetails.createdTime",
+        "indexName": "expense-bill-index",
+        "aggrQuery":"{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"terms\":{\"Data.status.keyword\":[\"INACTIVE\"]}},{\"terms\":{\"Data.paymentStatus.keyword\":[\"APPROVED\",\"REJECTED\"]}}]}},\"aggs\":{\"PendingBillsAmount\":{\"sum\":{\"field\":\"Data.totalAmount\"}},\"count\":{\"value_count\":{\"field\":\"Data.paymentStatus.keyword\"}}}}}}"
+      }
+    ],
+    "chartType": "metric",
+    "valueType": "amount",
+    "drillChart": "none",
+    "documentType": "_doc",
+    "action": "",
+    "aggregationPaths": [
+      "PendingBillsAmount"
+    ],
+    "insight": {
+    },
+    "_comment": "Pending Bills"
   }
 }
