@@ -305,6 +305,7 @@
                   "name": "DSS_MUKTA_PROJECTS_BY_PROJECT_TYPE",
                   "code": "",
                   "chartType": "donut",
+                  "variant":"pieChartv2",
                   "filter": "",
                   "headers": [],
                   "tabName": "Number"
@@ -314,6 +315,7 @@
                   "name": "DSS_MUKTA_PENDING_BILLS_BY_BILL_AMOUNT_TYPE",
                   "code": "",
                   "chartType": "donut",
+                  "variant":"pieChartv2",
                   "filter": "",
                   "headers": [],
                   "tabName": "Amount"
@@ -336,6 +338,7 @@
                   "name": "DSS_MUKTA_PENDING_BILLS_BY_BILL_NUMBER_TYPE",
                   "code": "",
                   "chartType": "donut",
+                  "variant":"pieChartv2",
                   "filter": "",
                   "headers": [],
                   "tabName": "Number"
@@ -345,6 +348,7 @@
                   "name": "DSS_MUKTA_PENDING_BILLS_BY_BILL_AMOUNT_TYPE",
                   "code": "",
                   "chartType": "donut",
+                  "variant":"pieChartv2",
                   "filter": "",
                   "headers": [],
                   "tabName": "Amount"
