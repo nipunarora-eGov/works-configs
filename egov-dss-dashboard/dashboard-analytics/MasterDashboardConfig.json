@@ -17,6 +17,7 @@
               "label": "DSS_OVERVIEW_ISSUES",
               "vizType": "metric-collection",
               "noUnit": true,
+              "iconName":"WarningIcon",
               "isHorizontalChart": true,
               "isCollapsible": false,
               "charts": [
@@ -60,36 +61,37 @@
               "label": "DSS_MUKTA_SLA_BREACHED",
               "vizType": "metric-collection",
               "noUnit": true,
-               "isHorizontalChart": true,
+              "iconName":"HistoryIcon",
+              "isHorizontalChart": true,
               "isCollapsible": false,
               "charts": [
                 {
-                  "id": "workOrdersNotIssued",
-                  "name": "DSS_SLA_BRREACHED_ESTIMATE",
+                  "id": "estimatesSlaBreached",
+                  "name": "DSS_MUKTA_ESTIMATE_SLA_BREACHED",
                   "code": "",
                   "chartType": "metric",
                   "filter": "",
                   "headers": []
                 },
                 {
-                  "id": "workOrdersNotIssued",
-                  "name": "DSS_SLA_BRREACHED_CONTRACT",
+                  "id": "contractSlaBreached",
+                  "name": "DSS_MUKTA_CONTRACT_SLA_BREACHED",
                   "code": "",
                   "chartType": "metric",
                   "filter": "",
                   "headers": []
                 },
                 {
-                  "id": "workOrdersNotIssued",
-                  "name": "DSS_SLA_BRREACHED_MUSTER",
+                  "id": "musterSlaBreached",
+                  "name": "DSS_MUKTA_MUSTER_SLA_BREACHED",
                   "code": "",
                   "chartType": "metric",
                   "filter": "",
                   "headers": []
                 },
                 {
-                  "id": "workOrdersNotIssued",
-                  "name": "DSS_SLA_BRREACHED_BILLS",
+                  "id": "billsSlaBreached",
+                  "name": "DSS_MUKTA_BILLS_SLA_BREACHED",
                   "code": "",
                   "chartType": "metric",
                   "filter": "",
@@ -117,7 +119,7 @@
               "charts": [
                 {
                   "id": "ulbWiseLeaderboard",
-                  "name": "DSS_ULB_WISE_LEADERBOARD",
+                  "name": "DSS_MUKTA_ULB_WISE_LEADERBOARD",
                   "code": "",
                   "chartType": "table",
                   "filter": "",
