@@ -365,6 +365,8 @@
               "vizType": "chart",
               "label": "",
               "noUnit": false,
+              "isNotFullWidth": true,
+              "noSearch": true,
               "isCollapsible": true,
               "charts": [
                 {
