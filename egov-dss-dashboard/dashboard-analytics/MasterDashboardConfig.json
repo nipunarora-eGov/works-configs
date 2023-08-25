@@ -140,6 +140,7 @@
               "label": "",
               "noUnit": false,
               "isCollapsible": true,
+              "disableInsights":true,
               "charts": [
                 {
                   "id": "ulbWiseLeaderboard",
@@ -148,7 +149,9 @@
                   "chartType": "table",
                   "filter": "",
                   "headers": [],
-                  "tabName": "Boundary"
+                  "tabName": "Boundary",
+                  "disableInsights":true
+
                 }
               ]
             }
@@ -392,6 +395,7 @@
               "isNotFullWidth": true,
               "noSearch": true,
               "isCollapsible": true,
+              "disableInsights":true,
               "charts": [
                 {
                   "id": "paymentsByGender",
@@ -400,7 +404,9 @@
                   "chartType": "table",
                   "filter": "",
                   "headers": [],
-                  "tabName": "Boundary"
+                  "tabName": "Boundary",
+                  "disableInsights":true
+
                 }
               ]
             }
